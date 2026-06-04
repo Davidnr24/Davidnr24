@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function ProjectsPage() {
   return (
     <main className="px-6 py-16 sm:py-20">
-      <div className="mx-auto w-full max-w-6xl space-y-12">
+      <div className="mx-auto w-full max-w-5xl space-y-12">
         <header className="space-y-3">
           <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
             Personal projects
