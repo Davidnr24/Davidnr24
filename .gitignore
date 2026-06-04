@@ -1,0 +1,39 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDE
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+
+# Repo-wide safety nets for env files and Vercel artifacts.
+# (portfolio-site/.gitignore already covers these inside the app; these
+# entries make sure nothing escapes if files end up at the repo root or
+# in a future sibling directory like terraform/.)
+.env
+.env.*
+!.env.example
+.vercel/
+
+# Node (in case anything ever runs at repo root)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts (defense in depth)
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Logs
+*.log
+
+# Local Claude / agent scratch (do not publish)
+.claude/
