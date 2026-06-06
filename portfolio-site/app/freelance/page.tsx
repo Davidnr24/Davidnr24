@@ -6,9 +6,10 @@ import { FreelanceServices } from "@/components/freelance-services";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Freelance DevOps",
+  title: "Freelance DevOps & Platform Engineering",
   description:
-    "Freelance and contract DevOps services from David Navarro: AWS architecture, Terraform IaC, CI/CD pipelines, Kubernetes ops, internal tooling, and platform consulting.",
+    "Hire David Navarro for freelance and contract DevOps / Platform Engineering work. AWS architecture and cost, Terraform and IaC, CI/CD pipelines, Kubernetes ops, platform reliability and security, and internal tooling. Remote, US East hours, bilingual EN / ES. 2 to 12 week engagements, hourly or fixed scope.",
+  alternates: { canonical: "/freelance" },
 };
 
 const engagementHighlights = [

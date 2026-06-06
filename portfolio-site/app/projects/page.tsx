@@ -9,7 +9,8 @@ import { personalProjects } from "@/content/personal-projects";
 export const metadata: Metadata = {
   title: "Personal Projects",
   description:
-    "Side projects and apps David Navarro has built outside of work: Squadra, Astra DevOps, Xtock, Stylistic, and Generational Pictures.",
+    "Side projects David Navarro has built outside of work: Squadra (Next.js + Supabase), Astra DevOps (Internal Developer Platform for AWS), Xtock, Stylistic, and Generational Pictures. Full-stack, mobile, ML, and DevOps tooling.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {

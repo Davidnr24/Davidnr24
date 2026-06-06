@@ -9,7 +9,8 @@ import { skillGroups, workProjects } from "@/content/skills";
 export const metadata: Metadata = {
   title: "Skills & Work Projects",
   description:
-    "Technical skill set and a deeper look at the platform projects David Navarro has shipped at Agero and Blue Apron.",
+    "Technical skill set of David Navarro, Senior DevOps / Platform Engineer. AWS, Kubernetes, Terraform, CI/CD, observability, and the platform projects shipped at Agero and Blue Apron.",
+  alternates: { canonical: "/skills" },
 };
 
 export default function SkillsPage() {

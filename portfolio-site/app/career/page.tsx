@@ -8,7 +8,8 @@ import { jobs, education, certifications } from "@/content/career";
 export const metadata: Metadata = {
   title: "Career",
   description:
-    "Career history of David Navarro, Senior DevOps / Platform Engineer at Agero, previously Blue Apron. Education and certifications.",
+    "Five years of DevOps and Platform Engineering. David Navarro's career from a DevOps internship in Madrid to Senior Platform Engineering at Agero, with stops at Blue Apron. AWS, Kubernetes, Terraform, CI/CD. Certifications: AWS Solutions Architect, CKA, Terraform Associate.",
+  alternates: { canonical: "/career" },
 };
 
 export default function CareerPage() {

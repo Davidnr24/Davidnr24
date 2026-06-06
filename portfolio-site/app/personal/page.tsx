@@ -7,7 +7,8 @@ import { Separator } from "@/components/ui/separator";
 export const metadata: Metadata = {
   title: "Personal",
   description:
-    "A bit about David Navarro outside of work: where he's from, what he likes to build on the side, and what he gets up to away from a keyboard.",
+    "A bit about David Navarro outside of work. Born and raised in Spain, based in Charlotte NC. Real Madrid fan, snowboarder, tennis player, chess player, and Chevy Camaro driver.",
+  alternates: { canonical: "/personal" },
 };
 
 export default function PersonalPage() {
