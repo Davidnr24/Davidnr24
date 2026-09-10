@@ -18,6 +18,7 @@ Goals:
 | Components | shadcn/ui (Radix primitives, copied into `components/ui/`) |
 | Animation | Motion (`motion/react`) |
 | Icons | lucide-react |
+| Analytics | PostHog (`posthog-js`), proxied through `/ingest` |
 | Fonts | Geist Sans + Geist Mono via `next/font` |
 | Hosting | Vercel (Hobby tier; Pro when monetized) |
 | CI/CD | GitHub Actions → `vercel deploy --prebuilt` |
@@ -44,7 +45,11 @@ components/
 content/               (future) MDX or TS data files for project entries, jobs, etc.
 
 lib/
-└── utils.ts           cn() helper from shadcn
+├── utils.ts           cn() helper from shadcn
+├── env.ts             NEXT_PUBLIC_* access, analytics on/off gate
+└── analytics.ts       CtaName union + cta() attribute helper
+
+instrumentation-client.ts   PostHog init (see docs/ANALYTICS.md)
 
 public/                static assets
 
@@ -65,3 +70,4 @@ Project entries and job history will be authored as typed data (TS modules in `c
 - **New animation** → client component with `import { motion } from "motion/react"` and `"use client"` at top
 - **New static asset** → `public/`
 - **New env var** → see `docs/SECRETS.md`
+- **New tracked button** → spread `cta(name, location)` onto it; see `docs/ANALYTICS.md`
