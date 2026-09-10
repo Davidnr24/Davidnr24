@@ -2,60 +2,48 @@
 
 ## Architecture in one sentence
 
-GitHub Actions runs lint + typecheck + `vercel build --prebuilt`, uploads `.vercel/output` as an artifact, then a second job runs `vercel deploy --prebuilt` to ship it. Vercel acts as a dumb CDN host.
+Vercel's Git integration builds and deploys straight from GitHub: a preview URL
+for every branch and pull request, production on merge to `main`. GitHub Actions
+only runs lint and typecheck.
 
-## One-time setup
+## Who does what
 
-### 1. Create the Vercel project
+| Actor | Job |
+|---|---|
+| Claude | Branches, commits, pushes, opens the PR. |
+| Vercel | Builds the branch, posts a preview URL, deploys production on merge. |
+| GitHub Actions | Lint and typecheck on PRs. It cannot deploy and should not. |
+| David | Reviews the preview, approves, merges. |
 
-```bash
-# From repo root
-cd portfolio-site
-npx vercel@latest login
-npx vercel@latest link
-# When prompted:
-#   - Set up and deploy?            → No, just link
-#   - Which scope?                  → personal account
-#   - Link to existing project?     → No
-#   - Project name?                 → david-navarro-portfolio (or similar)
-#   - In which directory is your code? → ./   (we're already inside portfolio-site)
-#   - Modify settings?              → No
-```
+## Project settings that matter
 
-This creates `portfolio-site/.vercel/project.json` containing `orgId` and `projectId`. **Do not commit `.vercel/`** — it's git-ignored.
-
-### 2. Disable Vercel's native Git integration
-
-Vercel project → Settings → Git → **Disconnect** repo (or never connect it). The GitHub Actions workflow is the only thing that deploys, otherwise every push triggers two builds.
-
-### 3. Add the custom domain
-
-Vercel project → Settings → Domains → Add:
-- `david-navarro.dev` (apex)
-- `www.david-navarro.dev` (redirect to apex, or vice versa — Vercel handles this)
-
-Then at the domain registrar:
-- **Either** point nameservers to Vercel's NS records (easiest), **or**
-- Add the A/ALIAS + CNAME records Vercel displays.
-
-Vercel auto-issues a Let's Encrypt cert. Propagation takes minutes to an hour.
-
-### 4. Add GitHub Secrets
-
-```bash
-# Run from repo root with gh CLI authenticated
-gh secret set VERCEL_TOKEN     # paste a token from https://vercel.com/account/tokens
-gh secret set VERCEL_ORG_ID    # value from portfolio-site/.vercel/project.json -> orgId
-gh secret set VERCEL_PROJECT_ID # value from portfolio-site/.vercel/project.json -> projectId
-```
+- **Root Directory: `portfolio-site`.** This repo has no `package.json` at the
+  root, so Vercel needs to know the app lives one level down. If you ever run
+  `vercel build` by hand, run it from the repo root and let the CLI append that
+  path itself. Running it from inside `portfolio-site` makes it look for
+  `portfolio-site/portfolio-site/package.json` and fail with `ENOENT`.
+- **Framework: Next.js. Node: 24.x.** Both detected, neither overridden.
+- **Environment variables** are set for Production and Preview:
+  `NEXT_PUBLIC_POSTHOG_KEY` and `NEXT_PUBLIC_POSTHOG_HOST`. They are inlined
+  into the browser bundle at build time, so changing one in the dashboard does
+  nothing until the next build. See `docs/ANALYTICS.md`.
 
 ## Day-to-day flow
 
 | Action | Result |
 |---|---|
-| Push to a feature branch + open PR | CI runs `quality → build → deploy` with `--environment=preview`. Vercel returns a preview URL. |
-| Merge PR to `main` | CI runs the same chain with `--prod`. New build replaces production at `david-navarro.dev`. |
-| Rollback | Vercel dashboard → Deployments → click any prior production deploy → Promote to Production. |
+| Push a branch | Vercel builds it and returns a preview URL. |
+| Open a PR | The preview URL is commented on the PR. Lint and typecheck run in Actions. |
+| Merge to `main` | Vercel builds and deploys production at `david-navarro.dev`. |
+| Rollback | Vercel dashboard, Deployments, pick a previous production deploy, Promote to Production. |
+
+## One-time setup, already done
+
+1. Vercel project `portfolio-site` created and linked (`.vercel/project.json`,
+   git-ignored).
+2. Git integration connected with `vercel git connect`, so pushes deploy.
+3. Custom domain `david-navarro.dev` added, with `www` redirecting to the apex.
+4. PostHog env vars added for Production and Preview.
 
 ## Local development
 
@@ -63,16 +51,24 @@ gh secret set VERCEL_PROJECT_ID # value from portfolio-site/.vercel/project.json
 cd portfolio-site
 npm install
 npm run dev              # http://localhost:3000
+```
 
-# To run a production-equivalent build locally:
-npx vercel@latest pull --yes --environment=production
-npx vercel@latest build --prod
-# Output lives in .vercel/output — you can preview it with `npx vercel dev` or by running `next start` against the standard .next build.
+Analytics stay off on `next dev`. See `docs/ANALYTICS.md` for the override.
+
+To reproduce a production build locally, from the **repo root**:
+
+```bash
+vercel pull --yes --environment=production
+vercel build --prod
 ```
 
 ## Troubleshooting
 
-- **CI deploy fails with "project not found"** → `VERCEL_PROJECT_ID` or `VERCEL_ORG_ID` is wrong. Re-run `vercel link` locally, copy values from `.vercel/project.json`, re-set secrets.
-- **Build artifact too large to upload** → check `.vercelignore`; ensure `node_modules` isn't being bundled into `.vercel/output`.
-- **Preview URL doesn't update on PR** → confirm the workflow uses `--environment=preview` (without `--prod`) on `pull_request` events.
-- **Double deploys** → Vercel's native Git integration is still connected; disconnect it (see step 2 above).
+- **`ENOENT ... portfolio-site/portfolio-site/package.json`** means a Vercel
+  command ran from inside `portfolio-site`. Run it from the repo root.
+- **Two deployments per push** means something in CI is deploying as well as
+  Vercel. Actions must never call `vercel deploy`.
+- **A push to a branch produced no preview** usually means the Git integration
+  got disconnected. Check it with `vercel git connect` from the repo root.
+- **Analytics missing in production** almost always means the build ran before
+  `NEXT_PUBLIC_POSTHOG_KEY` existed. Redeploy.
