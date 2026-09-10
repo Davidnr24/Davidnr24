@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Briefcase, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import { primaryNav } from "@/lib/nav";
 import { site } from "@/content/site";
+import { cta } from "@/lib/analytics";
 import { buildHireMeMailto } from "@/lib/mailto";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,30 +16,31 @@ export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
+
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-3 px-6">
+    <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/90 backdrop-blur">
+      <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between gap-3 px-6">
         <Link
           href="/"
-          className="font-semibold tracking-tight text-foreground hover:text-foreground/80"
+          className="flex items-center gap-2 font-mono text-sm text-foreground hover:text-mark-text"
         >
+          <span aria-hidden className="inline-block size-2 bg-mark" />
           {site.name}
         </Link>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
           {primaryNav.map((item) => {
-            const active =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+            const active = isActive(item.href);
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
+                  "text-sm transition-colors",
                   active
-                    ? "text-foreground"
+                    ? "text-foreground underline decoration-mark decoration-2 underline-offset-8"
                     : "text-muted-foreground hover:text-foreground"
                 )}
                 aria-current={active ? "page" : undefined}
@@ -54,21 +56,17 @@ export function SiteHeader() {
             href={buildHireMeMailto()}
             className={cn(
               buttonVariants({ size: "sm" }),
-              "group/hire relative overflow-hidden shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow-md",
+              "bg-mark text-mark-ink hover:bg-mark-hover"
             )}
             aria-label="Hire me (opens an email draft)"
+            {...cta("hire_me", "header")}
           >
-            <span
-              aria-hidden
-              className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover/hire:translate-x-full"
-            />
-            <Briefcase className="size-3.5" aria-hidden />
-            <span>Hire me</span>
+            Hire me
           </a>
 
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-md p-2 text-muted-foreground hover:text-foreground md:hidden"
+            className="inline-flex size-9 items-center justify-center rounded-md text-muted-foreground hover:text-foreground md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
@@ -83,26 +81,24 @@ export function SiteHeader() {
           className="border-t border-border/60 bg-background md:hidden"
           aria-label="Mobile"
         >
-          <ul className="mx-auto flex w-full max-w-6xl flex-col gap-1 px-6 py-3">
+          <ul className="mx-auto flex w-full max-w-5xl flex-col divide-y divide-border/70 px-6">
             {primaryNav.map((item) => {
-              const active =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
+              const active = isActive(item.href);
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
                     className={cn(
-                      "block rounded-md px-3 py-2 text-sm font-medium",
-                      active
-                        ? "bg-muted text-foreground"
-                        : "text-muted-foreground hover:bg-muted/60 hover:text-foreground"
+                      "flex items-center justify-between py-3 text-sm",
+                      active ? "text-foreground" : "text-muted-foreground"
                     )}
                     onClick={() => setOpen(false)}
                     aria-current={active ? "page" : undefined}
                   >
                     {item.label}
+                    {active ? (
+                      <span aria-hidden className="inline-block size-2 bg-mark" />
+                    ) : null}
                   </Link>
                 </li>
               );

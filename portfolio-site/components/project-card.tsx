@@ -5,6 +5,7 @@ import { GitHubIcon } from "@/components/brand-icons";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import type { PersonalProject } from "@/content/personal-projects";
+import { cta } from "@/lib/analytics";
 import { buildAccessRequestMailto } from "@/lib/mailto";
 import { cn } from "@/lib/utils";
 
@@ -77,6 +78,7 @@ export function ProjectCard({ project }: { project: PersonalProject }) {
             target="_blank"
             rel="noopener noreferrer"
             className={buttonVariants({ size: "sm" })}
+            {...cta("project_demo", project.slug)}
           >
             <ExternalLink className="mr-1 size-3.5" aria-hidden />
             Live demo
@@ -88,6 +90,7 @@ export function ProjectCard({ project }: { project: PersonalProject }) {
             target="_blank"
             rel="noopener noreferrer"
             className={buttonVariants({ variant: "outline", size: "sm" })}
+            {...cta("project_source", project.slug)}
           >
             <GitHubIcon className="mr-1 size-3.5" aria-hidden />
             Source
@@ -98,6 +101,7 @@ export function ProjectCard({ project }: { project: PersonalProject }) {
             href={buildAccessRequestMailto(project.repoFullName)}
             className={buttonVariants({ variant: "outline", size: "sm" })}
             aria-label={`Request access to ${project.repoFullName} (opens an email draft)`}
+            {...cta("project_access", project.slug)}
           >
             <Mail className="mr-1 size-3.5" aria-hidden />
             Request access

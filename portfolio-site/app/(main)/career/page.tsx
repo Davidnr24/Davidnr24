@@ -3,6 +3,7 @@ import { ExternalLink, GraduationCap, Award } from "lucide-react";
 
 import { ContactCTAs } from "@/components/contact-ctas";
 import { Separator } from "@/components/ui/separator";
+import { cta } from "@/lib/analytics";
 import { jobs, education, certifications } from "@/content/career";
 
 export const metadata: Metadata = {
@@ -122,6 +123,7 @@ export default function CareerPage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                  {...cta("cert_verify", c.name)}
                 >
                   Verify on Credly
                   <ExternalLink className="size-3.5" aria-hidden />

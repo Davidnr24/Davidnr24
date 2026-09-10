@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { site } from "@/content/site";
+import { CtaTracker } from "@/components/cta-tracker";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,6 +12,14 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 const SITE_URL = "https://www.david-navarro.dev";
@@ -86,76 +92,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const personLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: "David Navarro",
-    alternateName: "Davidnr24",
-    url: SITE_URL,
-    image: `${SITE_URL}/profile.png`,
-    jobTitle: "Senior DevOps / Platform Engineer",
-    description: DEFAULT_DESCRIPTION,
-    email: `mailto:${site.email}`,
-    nationality: { "@type": "Country", name: "Spain" },
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Charlotte",
-      addressRegion: "NC",
-      addressCountry: "US",
-    },
-    knowsLanguage: ["en", "es"],
-    knowsAbout: [
-      "DevOps",
-      "Platform Engineering",
-      "Amazon Web Services",
-      "Kubernetes",
-      "Terraform",
-      "CI/CD",
-      "Site Reliability Engineering",
-      "Internal Developer Platforms",
-      "Cloud Architecture",
-    ],
-    worksFor: { "@type": "Organization", name: "Agero" },
-    sameAs: [site.linkedin, site.github],
-    hasOccupation: {
-      "@type": "Occupation",
-      name: "Senior DevOps / Platform Engineer",
-      occupationLocation: {
-        "@type": "City",
-        name: "Charlotte, NC",
-      },
-      skills:
-        "AWS, Kubernetes, Terraform, CI/CD, DevOps, Platform Engineering, Site Reliability Engineering",
-    },
-  };
-
-  const websiteLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "David Navarro",
-    alternateName: "David Navarro · Senior DevOps / Platform Engineer",
-    url: SITE_URL,
-    inLanguage: "en-US",
-    publisher: { "@type": "Person", name: "David Navarro" },
-  };
-
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <SiteHeader />
-        <div className="flex-1">{children}</div>
-        <SiteFooter />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
-        />
+        <CtaTracker />
+        {children}
       </body>
     </html>
   );
