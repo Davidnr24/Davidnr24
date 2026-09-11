@@ -38,6 +38,6 @@ export const stack: StackEntry[] = [
   {
     icon: "datadog",
     name: "Datadog",
-    body: "Dashboards, alerting and service level objectives at both jobs, an on-call rotation at Blue Apron, and the annual disaster recovery exercise at Agero.",
+    body: "Dashboards, alerting and service level objectives at both jobs, on-call rotation at both, and the annual disaster recovery exercise at Agero.",
   },
 ];

@@ -53,7 +53,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Observability & reliability",
     summary:
-      "Datadog is my default. Dashboards and alerting at both jobs, an on-call rotation at Blue Apron, and annual disaster-recovery exercises at Agero.",
+      "Datadog is my default. Dashboards and alerting at both jobs, on-call rotation at both, and annual disaster-recovery exercises at Agero.",
     items: ["Datadog", "CloudWatch", "Splunk", "PagerDuty", "Rollbar"],
   },
   {

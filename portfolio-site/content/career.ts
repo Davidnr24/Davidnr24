@@ -26,6 +26,7 @@ export const jobs: Job[] = [
       "Shift-left QA + testing automation kept platform availability at 99.997%.",
       "Designed and ran annual disaster-recovery exercises to reduce RTO during outages.",
       "Resolved 100+ security vulnerabilities flagged by Wiz across third-parties and application code.",
+      "On-call rotation for the platform.",
     ],
   },
   {
