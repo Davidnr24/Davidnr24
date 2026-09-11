@@ -11,4 +11,11 @@ export const site = {
   github: "https://github.com/Davidnr24",
   resumeHref: "/David_Navarro_Resume.pdf",
   domain: "david-navarro.dev",
+  /**
+   * Cal.com booking link, in the form "username/event-slug", eg.
+   * "david-navarro/consultation". While this is empty the agency pages fall
+   * back to an email CTA. Fill it in and the booking calendar appears, with
+   * no other change needed.
+   */
+  calLink: "" as string,
 } as const;

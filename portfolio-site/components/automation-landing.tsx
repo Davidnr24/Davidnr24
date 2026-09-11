@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 
 import { InstagramIcon } from "@/components/brand-icons";
+import { BookingEmbed } from "@/components/booking-embed";
 import { IndexRow, IndexRows, Section } from "@/components/section";
 import { MarkerUnderline } from "@/components/marker-underline";
 import { ProfileAvatar } from "@/components/profile-avatar";
@@ -73,6 +74,8 @@ export type AutomationLandingContent = {
     body: string;
     cta: string;
     note: string;
+    /** Shown under the calendar, for anyone who would rather write. */
+    emailInstead: string;
   };
 };
 
@@ -287,35 +290,68 @@ export function AutomationLanding({
           </div>
         </section>
 
-        {/* Final CTA */}
-        <section className="mt-20 rounded-xl bg-mark p-8 text-mark-ink sm:mt-24 sm:p-14">
-          <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h2 className="max-w-lg text-balance font-display text-3xl leading-tight sm:text-4xl">
+        {/* Final CTA. With a Cal link configured this becomes a calendar the
+            visitor books straight from; without one it stays an email draft. */}
+        {site.calLink ? (
+          <section aria-labelledby="book" className="mt-24 sm:mt-32">
+            <div className="flex flex-col gap-3 border-b-2 border-foreground pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
+              <h2
+                id="book"
+                className="max-w-3xl text-balance font-display text-4xl leading-[0.95] tracking-[-0.02em] sm:text-5xl md:text-6xl"
+              >
                 {content.finalCta.heading}
               </h2>
-              <p className="mt-4 max-w-md text-base leading-relaxed text-mark-ink/80">
-                {content.finalCta.body}
-              </p>
-            </div>
-            <div className="shrink-0">
-              <a
-                href={auditMailto}
-                className={cn(
-                  buttonVariants({ size: "lg" }),
-                  "w-full bg-foreground px-6 text-background hover:bg-foreground/85 sm:w-auto"
-                )}
-                {...cta("workflow_audit", "automation_close")}
-              >
-                {content.finalCta.cta}
-                <ArrowRight className="size-4" aria-hidden />
-              </a>
-              <p className="mt-3 text-sm text-mark-ink/70 sm:text-right">
+              <p className="max-w-xs shrink-0 text-sm leading-relaxed text-muted-foreground sm:text-right">
                 {content.finalCta.note}
               </p>
             </div>
-          </div>
-        </section>
+            <p className="mt-8 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {content.finalCta.body}
+            </p>
+            <div className="mt-10">
+              <BookingEmbed calLink={site.calLink} />
+            </div>
+            <p className="mt-6 text-sm text-muted-foreground">
+              {content.finalCta.emailInstead}{" "}
+              <a
+                href={auditMailto}
+                className="text-mark-text underline-offset-4 hover:underline"
+                {...cta("workflow_audit", "automation_close_email")}
+              >
+                {AUDIT_EMAIL}
+              </a>
+            </p>
+          </section>
+        ) : (
+          <section className="mt-20 rounded-xl bg-mark p-8 text-mark-ink sm:mt-24 sm:p-14">
+            <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <h2 className="max-w-lg text-balance font-display text-3xl leading-tight sm:text-4xl">
+                  {content.finalCta.heading}
+                </h2>
+                <p className="mt-4 max-w-md text-base leading-relaxed text-mark-ink/80">
+                  {content.finalCta.body}
+                </p>
+              </div>
+              <div className="shrink-0">
+                <a
+                  href={auditMailto}
+                  className={cn(
+                    buttonVariants({ size: "lg" }),
+                    "w-full bg-foreground px-6 text-background hover:bg-foreground/85 sm:w-auto"
+                  )}
+                  {...cta("workflow_audit", "automation_close")}
+                >
+                  {content.finalCta.cta}
+                  <ArrowRight className="size-4" aria-hidden />
+                </a>
+                <p className="mt-3 text-sm text-mark-ink/70 sm:text-right">
+                  {content.finalCta.note}
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
 
         <footer className="mt-16 border-t border-border pt-8 text-sm text-muted-foreground">
           © {new Date().getFullYear()} {site.name}

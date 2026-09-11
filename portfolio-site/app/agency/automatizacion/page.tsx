@@ -152,6 +152,7 @@ const content: AutomationLandingContent = {
     body: "Pide la llamada. Repasamos cómo llevas la semana y te digo qué podría funcionar sin ti. Si no encajamos, las ideas te las quedas igual.",
     cta: "Pide tu consulta gratuita",
     note: "Gratis y sin compromiso.",
+    emailInstead: "¿Prefieres escribir? Estoy en",
   },
 };
 

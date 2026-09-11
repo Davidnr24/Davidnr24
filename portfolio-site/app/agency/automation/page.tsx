@@ -151,6 +151,7 @@ const content: AutomationLandingContent = {
     body: "Book the call. We go through how you run your week and I tell you what could run without you. If it is not a fit, you keep the ideas anyway.",
     cta: "Book a free consultation",
     note: "Free, no commitment.",
+    emailInstead: "Would rather write instead? I am at",
   },
 };
 
