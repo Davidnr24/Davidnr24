@@ -1,5 +1,5 @@
-
-import { Row, Rows, Section } from "@/components/section";
+import { Section } from "@/components/section";
+import { ToolList } from "@/components/tool-list";
 import { skillGroups, workProjects } from "@/content/skills";
 
 export function SkillsBody({ children }: { children?: React.ReactNode }) {
@@ -11,23 +11,27 @@ export function SkillsBody({ children }: { children?: React.ReactNode }) {
             What I work with, and what I&rsquo;ve shipped with it.
           </h1>
           <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
-            Grouped by area, with a line on where each one actually shows up in
-            the work. Below that, the projects at Agero and Blue Apron that
-            earned most of these in the first place.
+            Grouped by area. Below that, the projects at Agero and Blue Apron
+            that earned most of it.
           </p>
         </header>
 
         <Section id="skills" heading="Skill set.">
-          <Rows>
+          <div className="space-y-10">
             {skillGroups.map((group) => (
-              <Row key={group.category} lead={group.category}>
-                <p>{group.summary}</p>
-                <p className="mt-2 text-sm text-muted-foreground/80">
-                  {group.items.join(" · ")}
+              <div key={group.category}>
+                <h3 className="text-base font-semibold tracking-tight">
+                  {group.category}
+                </h3>
+                <p className="mt-1 max-w-xl text-sm text-muted-foreground">
+                  {group.summary}
                 </p>
-              </Row>
+                <div className="mt-4">
+                  <ToolList items={group.items} />
+                </div>
+              </div>
             ))}
-          </Rows>
+          </div>
         </Section>
 
         <Section
@@ -35,11 +39,21 @@ export function SkillsBody({ children }: { children?: React.ReactNode }) {
           heading="Work projects."
           lede="Kept short on purpose. Happy to walk through any of them on a call."
         >
-          <Rows>
+          <ol className="divide-y divide-border/70">
             {workProjects.map((p) => (
-              <Row key={p.title} lead={p.title} aside={p.employer}>
-                <p className="text-foreground/90">{p.summary}</p>
-                <ul className="mt-3 space-y-1.5">
+              <li key={p.title} className="py-8 first:pt-0">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <h3 className="font-display text-2xl leading-tight">
+                    {p.title}
+                  </h3>
+                  <p className="shrink-0 text-sm text-muted-foreground">
+                    {p.employer}
+                  </p>
+                </div>
+                <p className="mt-2 max-w-2xl text-base leading-relaxed text-foreground/90">
+                  {p.summary}
+                </p>
+                <ul className="mt-3 space-y-1.5 text-sm leading-relaxed text-muted-foreground sm:text-base">
                   {p.highlights.map((h) => (
                     <li key={h} className="flex gap-3">
                       <span
@@ -50,12 +64,12 @@ export function SkillsBody({ children }: { children?: React.ReactNode }) {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-3 text-sm text-muted-foreground/80">
-                  {p.stack.join(" · ")}
-                </p>
-              </Row>
+                <div className="mt-5">
+                  <ToolList items={p.stack} />
+                </div>
+              </li>
             ))}
-          </Rows>
+          </ol>
         </Section>
 
         {children}

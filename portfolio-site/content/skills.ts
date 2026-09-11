@@ -8,7 +8,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "AWS",
     summary:
-      "My core platform at Agero and Blue Apron. Multi-account org work, daily across compute, storage, networking, and managed services.",
+      "My core platform at Agero and Blue Apron, across multiple accounts.",
     items: [
       "S3",
       "RDS",
@@ -28,19 +28,19 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Infrastructure as Code",
     summary:
-      "Terraform is the daily driver: multi-account modules, plan/apply pipelines, state strategy. CloudFormation and Ansible where I've inherited them.",
+      "Terraform is the daily driver. CloudFormation and Ansible where I inherited them.",
     items: ["Terraform", "CloudFormation", "Ansible"],
   },
   {
     category: "Containers & orchestration",
     summary:
-      "EKS and ECS at both Agero and Blue Apron, running distributed microservices across multiple AWS accounts and environments. Custom Helm charts, image hardening, and version upgrades.",
+      "EKS and ECS at both jobs, running distributed microservices across accounts and environments.",
     items: ["Docker", "Kubernetes (EKS)", "Helm", "ECS"],
   },
   {
     category: "CI/CD & deployment",
     summary:
-      "Built and run CircleCI, Jenkins, and GitHub Actions pipelines in production. Authored a custom CircleCI Orb at Agero that replaced a third-party deploy product across the org.",
+      "Built and run in production. I authored the org-wide CircleCI Orb at Agero.",
     items: [
       "CircleCI (custom Orbs)",
       "Jenkins",
@@ -53,13 +53,13 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Observability & reliability",
     summary:
-      "Datadog is my default. Dashboards and alerting at both jobs, on-call rotation at both, and annual disaster-recovery exercises at Agero.",
+      "Datadog by default, on-call at both jobs, disaster recovery drills at Agero.",
     items: ["Datadog", "CloudWatch", "Splunk", "PagerDuty", "Rollbar"],
   },
   {
     category: "Security",
     summary:
-      "Hardened production images, resolved 100+ vulnerabilities flagged by Wiz, and own IAM and WAF baselines across AWS environments.",
+      "Hardened images, resolved 100+ Wiz findings, and own the IAM and WAF baselines.",
     items: [
       "Wiz",
       "Snyk",
@@ -72,7 +72,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Networking & CDN",
     summary:
-      "VPC design, certificate management, and DNS-driven traffic moves. Drove a CDN-as-code project on Fastly via Terraform at Blue Apron.",
+      "VPC design, certificates, and DNS-driven traffic moves. CDN as code on Fastly.",
     items: [
       "VPC",
       "DNS",
@@ -85,7 +85,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Databases",
     summary:
-      "Postgres and Aurora are the everyday tools. Ops experience on Redis migrations, Elasticsearch/OpenSearch upgrades, and managed databases generally.",
+      "Postgres and Aurora every day, plus Redis and OpenSearch migrations.",
     items: [
       "PostgreSQL",
       "Aurora",
@@ -99,7 +99,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Languages",
     summary:
-      "Python and Bash daily for automation. Go for internal tooling (the Blue Apron CLI). TypeScript across personal projects. Ruby and Groovy where the platform calls for it.",
+      "Python and Bash for automation, Go for internal tooling, TypeScript on side projects.",
     items: [
       "Python",
       "Bash",
@@ -113,7 +113,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Web & mobile",
     summary:
-      "Side projects keep me sharp on the application layer. Next.js + Supabase on Squadra, React Native + Rails on Stylistic, React + Tailwind on older work. I'm used to standing up a product end-to-end and shipping it.",
+      "Side projects keep me sharp on the application layer, end to end.",
     items: [
       "Next.js 16 (App Router)",
       "React 19",
@@ -130,7 +130,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "AI & ML",
     summary:
-      "Two angles. Claude and Copilot are part of my daily engineering loop. On the applied side, Xtock is my sandbox for HuggingFace models, fine-tuning, and serving with an eye on inference cost and latency.",
+      "Part of my daily engineering loop, and the subject of my ML sandbox.",
     items: [
       "Claude",
       "GitHub Copilot",
