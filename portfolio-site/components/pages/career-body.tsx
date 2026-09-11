@@ -1,5 +1,6 @@
 import { ExternalLink } from "lucide-react";
 
+import { CompanyLink } from "@/components/company-link";
 import { Row, Rows, Section } from "@/components/section";
 import { cta } from "@/lib/analytics";
 import { jobs, education, certifications } from "@/content/career";
@@ -30,10 +31,15 @@ export function CareerBody({ children }: { children?: React.ReactNode }) {
                     {job.start} to {job.current ? "now" : job.end}
                   </p>
                 </div>
-                <p className="mt-1 text-base text-foreground/90">
-                  {job.company} <span className="text-mark-text">/</span>{" "}
-                  {job.location}
-                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-base text-foreground/90">
+                  <CompanyLink
+                    name={job.company}
+                    url={job.url}
+                    logo={job.logo}
+                  />
+                  <span className="text-mark-text">/</span>
+                  <span className="text-muted-foreground">{job.location}</span>
+                </div>
                 <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
                   {job.highlights.map((h) => (
                     <li key={h} className="flex gap-3">
@@ -81,7 +87,8 @@ export function CareerBody({ children }: { children?: React.ReactNode }) {
                 lead={e.degree}
                 aside={`${e.start} to ${e.end}`}
               >
-                {e.school} <span className="text-mark-text">/</span> {e.location}
+                <CompanyLink name={e.school} url={e.url} />{" "}
+                <span className="text-mark-text">/</span> {e.location}
                 {e.detail ? (
                   <>
                     {" "}

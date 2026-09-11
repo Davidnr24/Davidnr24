@@ -1,5 +1,15 @@
 export type Job = {
   company: string;
+  /** Official site, opened in a new tab from the company name. */
+  url?: string;
+  /**
+   * Path under /public to a logo file, if we have one. Leave unset and the
+   * company renders as a wordmark instead. Agero's own SVG is a gradient
+   * Illustrator export with hidden layers, and Blue Apron blocks automated
+   * downloads, so neither ships here. Drop a file in /public/logos and set
+   * this to swap it in.
+   */
+  logo?: string;
   role: string;
   location: string;
   start: string;
@@ -11,6 +21,7 @@ export type Job = {
 export const jobs: Job[] = [
   {
     company: "Agero",
+    url: "https://www.agero.com",
     role: "Senior DevOps / Platform Engineer",
     location: "Medford, MA (Remote)",
     start: "Oct 2024",
@@ -32,6 +43,7 @@ export const jobs: Job[] = [
   },
   {
     company: "Blue Apron",
+    url: "https://www.blueapron.com",
     role: "DevOps / SRE Engineer",
     location: "New York, NY (Remote)",
     start: "Oct 2022",
@@ -60,6 +72,7 @@ export const jobs: Job[] = [
   },
   {
     company: "Madrid Polytechnic University",
+    url: "https://www.upm.es",
     role: "Python Backend Developer",
     location: "Madrid, Spain",
     start: "Feb 2022",
@@ -74,6 +87,7 @@ export const jobs: Job[] = [
 
 export type Education = {
   school: string;
+  url?: string;
   degree: string;
   location: string;
   start: string;
@@ -84,6 +98,7 @@ export type Education = {
 export const education: Education[] = [
   {
     school: "Polytechnic University of Madrid",
+    url: "https://www.upm.es",
     degree: "B.S. Software Engineering",
     location: "Madrid, Spain",
     start: "2018",

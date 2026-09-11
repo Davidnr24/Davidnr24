@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 import { HeroIntro } from "@/components/hero-intro";
 import { ProfileAvatar } from "@/components/profile-avatar";
+import { CompanyLink } from "@/components/company-link";
 import { Row, Rows, Section } from "@/components/section";
 import { StackList } from "@/components/stack-list";
 import { buttonVariants } from "@/components/ui/button";
@@ -86,8 +87,15 @@ export default function ResumeHome() {
                 lead={job.role}
                 aside={`${job.start} to ${job.current ? "now" : job.end}`}
               >
-                {job.company} <span className="text-mark-text">/</span>{" "}
-                {job.location}
+                <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <CompanyLink
+                    name={job.company}
+                    url={job.url}
+                    logo={job.logo}
+                  />
+                  <span className="text-mark-text">/</span>
+                  <span>{job.location}</span>
+                </span>
               </Row>
             ))}
           </Rows>
