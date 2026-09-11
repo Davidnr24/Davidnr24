@@ -45,7 +45,7 @@ const services: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Workflow,
     title: "CI/CD pipelines",
-    body: "CircleCI, Jenkins or GitHub Actions tuned for deploys that are fast and boring. Blue/green, canary, and ephemeral environments per pull request.",
+    body: "CircleCI or GitHub Actions tuned for deploys that are fast and boring. Blue/green, canary, and ephemeral environments per pull request. I can pick up a Jenkins estate too, though I would rather help you leave it.",
   },
   {
     icon: Boxes,

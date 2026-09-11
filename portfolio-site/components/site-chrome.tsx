@@ -34,7 +34,7 @@ export function SiteChrome({
     name: "David Navarro",
     alternateName: "Davidnr24",
     url: `${SITE_URL}${home}`,
-    image: `${SITE_URL}/profile.png`,
+    image: `${SITE_URL}/ai-fixed.png`,
     jobTitle: "Senior DevOps / Platform Engineer",
     description,
     email: `mailto:${site.email}`,

@@ -65,7 +65,7 @@ export default function ResumeHome() {
               className="absolute -right-2 -top-2 size-full rounded-xl bg-mark-soft"
             />
             <ProfileAvatar
-              src="/profile.png"
+              src="/ai-fixed.png"
               className="relative size-28 rounded-xl sm:size-36"
             />
           </div>

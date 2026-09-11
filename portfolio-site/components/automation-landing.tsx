@@ -270,7 +270,7 @@ export function AutomationLanding({
               className="absolute -right-2 -top-2 size-full rounded-xl bg-mark-soft"
             />
             <ProfileAvatar
-              src="/profile.png"
+              src="/ai-fixed.png"
               className="relative size-24 rounded-xl sm:size-28"
             />
           </div>

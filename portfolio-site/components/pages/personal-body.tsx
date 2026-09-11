@@ -13,34 +13,35 @@ export function PersonalBody({ children }: { children?: React.ReactNode }) {
         <div className="mt-16 grid grid-cols-1 gap-12 border-t border-border pt-10 md:grid-cols-3">
           <div className="space-y-6 text-base leading-relaxed text-foreground/90 md:col-span-2 md:text-lg">
             <p>
-              I grew up in Spain, between Alcalá de Henares and Madrid, and
-              moved to the US to start my career. Virginia first, then Boston,
-              and now Charlotte. I work in English and Spanish, which has come
-              in useful more often than I expected, since most of the teams
-              I&rsquo;ve been on were spread across time zones anyway.
+              I was born and raised in Spain, between Alcalá de Henares and
+              Madrid, and I moved to the US to start my career. Virginia
+              first, then Boston, and now Charlotte. I&rsquo;m bilingual in
+              English and Spanish, which has mattered more than I expected on
+              teams spread across several countries.
             </p>
             <p>
-              Most evenings I end up building something. Usually a side
-              project I&rsquo;ve been turning over for weeks. Sometimes
-              it&rsquo;s just an excuse to try a tool I keep reading about.
-              Either way it&rsquo;s where the bad first version gets made,
-              well before anything goes near production.
+              Most evenings I end up building something. Usually it&rsquo;s a
+              side project I&rsquo;ve been thinking about for weeks, and
+              sometimes it&rsquo;s just an excuse to try a tool I keep reading
+              about. That&rsquo;s where the rough first version of an idea
+              gets made, long before anything like it goes near production.
             </p>
             <p>
-              Real Madrid since I was a kid, like most people I grew up with.
-              I still play football with friends most Sundays. Tennis when the
-              weather cooperates, snowboarding whenever I can get to the
-              mountains, gym the rest of the time.
+              I&rsquo;ve supported Real Madrid since I was a kid, which is
+              fairly standard for someone who grew up where I did, and I still
+              play football with friends most Sundays. I play tennis when the
+              weather allows it, snowboard whenever I can get to the
+              mountains, and go to the gym to fill in the rest of the week.
             </p>
             <p>
-              Chess is the other one. I&rsquo;ve played for years and I
-              don&rsquo;t lose often.
+              Chess is the other thing I take seriously. I&rsquo;ve been
+              playing for years and I&rsquo;m hard to beat.
             </p>
             <p>
-              I spend a good part of the year back in Europe and usually add a
-              trip somewhere onto it. When I want to switch off without going
-              anywhere, I drive. The Camaro is a manual, which is most of the
-              point.
+              I still spend a good part of the year in Europe, and I usually
+              add a trip somewhere new while I&rsquo;m over there. When I want
+              to switch off without leaving home, I go for a drive. My Camaro
+              is a manual, which is the whole reason I bought it.
             </p>
           </div>
 

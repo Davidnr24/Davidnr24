@@ -28,7 +28,7 @@ export const stack: StackEntry[] = [
   {
     icon: "ci",
     name: "CI/CD",
-    body: "CircleCI, Jenkins and GitHub Actions in production. At Agero I designed the org-wide CircleCI Orb that replaced a third-party deploy product, plus ephemeral environments spun up per pull request.",
+    body: "CircleCI first, GitHub Actions close behind, with Jenkins earlier in my career. At Agero I designed the org-wide CircleCI Orb that replaced a paid deploy product, plus ephemeral environments spun up per pull request.",
   },
   {
     icon: "docker",

@@ -1,5 +1,6 @@
 import {
   Activity,
+  Bot,
   Boxes,
   Cloud,
   Code,
@@ -8,7 +9,6 @@ import {
   Network,
   ShieldCheck,
   Smartphone,
-  Sparkles,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
@@ -28,7 +28,7 @@ const GROUP_ICONS: Record<string, LucideIcon> = {
   Databases: Database,
   Languages: Code,
   "Web & mobile": Smartphone,
-  "AI & ML": Sparkles,
+  "AI & agentic engineering": Bot,
 };
 
 export function SkillsBody({ children }: { children?: React.ReactNode }) {
