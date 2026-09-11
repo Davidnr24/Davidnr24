@@ -26,15 +26,6 @@ export function HeroIntro() {
       animate="show"
       className="flex flex-col gap-6"
     >
-      <motion.p
-        variants={line}
-        className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-xs text-muted-foreground"
-      >
-        <span aria-hidden className="inline-block size-2 bg-mark" />
-        Charlotte, NC <span className="text-mark-text">/</span> English and
-        Spanish <span className="text-mark-text">/</span> open to roles and
-        contracts
-      </motion.p>
       <motion.h1
         variants={line}
         className="max-w-3xl text-balance font-display text-[2.8rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl md:text-7xl"
@@ -48,11 +39,11 @@ export function HeroIntro() {
       </motion.h1>
       <motion.p
         variants={line}
-        className="max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg"
+        className="max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl"
       >
-        I&rsquo;m David Navarro, a Senior DevOps / Platform Engineer. Five
-        years on AWS, Kubernetes, Terraform and CI/CD at Blue Apron and Agero,
-        where I work on the platform team today.
+        I&rsquo;m David Navarro, a Senior DevOps / Platform Engineer in
+        Charlotte, NC. Five years on AWS, Kubernetes, Terraform and CI/CD at
+        Blue Apron and Agero, where I work on the platform team today.
       </motion.p>
     </motion.div>
   );

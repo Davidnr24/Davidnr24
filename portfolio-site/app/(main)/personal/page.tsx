@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 
-import { ContactCTAs } from "@/components/contact-ctas";
-import { Separator } from "@/components/ui/separator";
+import { PageClose } from "@/components/page-close";
 
 export const metadata: Metadata = {
   title: "Personal",
@@ -13,21 +12,16 @@ export const metadata: Metadata = {
 
 export default function PersonalPage() {
   return (
-    <main className="px-6 py-16 sm:py-20">
-      <div className="mx-auto w-full max-w-5xl space-y-12">
-        <header className="space-y-3">
-          <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-            Personal
-          </p>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+    <main className="px-6 py-16 sm:py-24">
+      <div className="mx-auto w-full max-w-5xl">
+        <header>
+          <h1 className="max-w-3xl text-balance font-display text-[2.6rem] leading-[1.03] tracking-[-0.02em] sm:text-5xl">
             Beyond the terminal.
           </h1>
         </header>
 
-        <Separator />
-
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
-          <section className="space-y-6 text-base leading-relaxed text-foreground/90 md:col-span-2">
+        <div className="mt-16 grid grid-cols-1 gap-12 border-t border-border pt-10 md:grid-cols-3">
+          <div className="space-y-6 text-base leading-relaxed text-foreground/90 md:col-span-2 md:text-lg">
             <p>
               I was born and raised in Spain, between Alcalá de Henares and
               Madrid, and moved to the US to start my career. From there it was
@@ -38,11 +32,11 @@ export default function PersonalPage() {
             </p>
             <p>
               Most evenings I end up back at the keyboard anyway, building
-              something. Sometimes that&rsquo;s a side project that&rsquo;s been
-              bouncing around my head for weeks, other times it&rsquo;s just an
-              excuse to play with a tool I&rsquo;ve been meaning to learn. It&rsquo;s
-              where I get to make the messy first version of things before any
-              of it goes near real production.
+              something. Sometimes that&rsquo;s a side project that&rsquo;s
+              been bouncing around my head for weeks, other times it&rsquo;s
+              just an excuse to play with a tool I&rsquo;ve been meaning to
+              learn. It&rsquo;s where I get to make the messy first version of
+              things before any of it goes near real production.
             </p>
             <p>
               I grew up obsessed with Real Madrid, like most kids in Spain, and
@@ -53,10 +47,10 @@ export default function PersonalPage() {
               in between.
             </p>
             <p>
-              Off the pitch, chess is the other thing I take seriously. I&rsquo;ve
-              been playing for years and I&rsquo;m hard to beat. Same instinct
-              as the day job: pattern-match, think a few moves ahead, and
-              don&rsquo;t blow up your own position.
+              Off the pitch, chess is the other thing I take seriously.
+              I&rsquo;ve been playing for years and I&rsquo;m hard to beat.
+              Same instinct as the day job: pattern-match, think a few moves
+              ahead, and don&rsquo;t blow up your own position.
             </p>
             <p>
               I still split a good chunk of the year between the US and Europe
@@ -65,49 +59,33 @@ export default function PersonalPage() {
               home, the move is usually a drive in my manual Chevy Camaro. Best
               way I&rsquo;ve found to clear my head.
             </p>
-          </section>
+          </div>
 
-          <aside className="space-y-4 md:col-span-1 md:sticky md:top-20 md:self-start">
-            <figure className="group relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <Image
-                src="/personal/soccer.jpeg"
-                alt="Playing soccer"
-                width={1200}
-                height={1200}
-                sizes="(min-width: 768px) 320px, 100vw"
-                className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-            </figure>
-            <figure className="group relative aspect-square overflow-hidden rounded-2xl border border-border bg-muted shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md">
-              <Image
-                src="/personal/snowboard.jpeg"
-                alt="Snowboarding in the mountains"
-                width={1200}
-                height={1200}
-                sizes="(min-width: 768px) 320px, 100vw"
-                className="size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-              />
-            </figure>
-          </aside>
+          <div className="space-y-4 md:col-span-1 md:sticky md:top-20 md:self-start">
+            <Image
+              src="/personal/soccer.jpeg"
+              alt="Playing soccer"
+              width={1200}
+              height={1200}
+              sizes="(min-width: 768px) 320px, 100vw"
+              className="aspect-square w-full rounded-xl object-cover"
+            />
+            <Image
+              src="/personal/snowboard.jpeg"
+              alt="Snowboarding in the mountains"
+              width={1200}
+              height={1200}
+              sizes="(min-width: 768px) 320px, 100vw"
+              className="aspect-square w-full rounded-xl object-cover"
+            />
+          </div>
         </div>
 
-        <section className="rounded-lg border border-border/60 bg-muted/30 p-6">
-          <h2 className="text-lg font-semibold tracking-tight">
-            Let&rsquo;s talk
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Whether it&rsquo;s work or just to compare notes on AWS bills.
-          </p>
-          <ContactCTAs className="mt-4" />
-        </section>
+        <PageClose
+          heading="Let's talk."
+          body="Whether it's about work, or just to compare notes on how big an AWS bill can get."
+          cta="Say hello"
+        />
       </div>
     </main>
   );

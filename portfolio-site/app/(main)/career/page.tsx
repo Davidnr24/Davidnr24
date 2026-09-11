@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { ExternalLink, GraduationCap, Award } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
-import { ContactCTAs } from "@/components/contact-ctas";
-import { Separator } from "@/components/ui/separator";
+import { PageClose } from "@/components/page-close";
+import { Row, Rows, Section } from "@/components/section";
 import { cta } from "@/lib/analytics";
 import { jobs, education, certifications } from "@/content/career";
 
@@ -15,56 +15,40 @@ export const metadata: Metadata = {
 
 export default function CareerPage() {
   return (
-    <main className="px-6 py-16 sm:py-20">
-      <div className="mx-auto w-full max-w-5xl space-y-16">
-        <header className="space-y-3">
-          <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-            Career
-          </p>
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
+    <main className="px-6 py-16 sm:py-24">
+      <div className="mx-auto w-full max-w-5xl">
+        <header>
+          <h1 className="max-w-3xl text-balance font-display text-[2.6rem] leading-[1.03] tracking-[-0.02em] sm:text-5xl">
             Five years building platforms that don&rsquo;t go down.
           </h1>
-          <p className="max-w-2xl text-base text-muted-foreground">
-            From a DevOps internship in Madrid to Senior Platform Engineering
-            at Agero. Here&rsquo;s the path and what I shipped along the way.
+          <p className="mt-6 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
+            From a DevOps internship in Madrid to senior platform engineering
+            at Agero. The path, and what I shipped along the way.
           </p>
         </header>
 
-        <section aria-labelledby="experience">
-          <h2 id="experience" className="text-xl font-semibold tracking-tight">
-            Experience
-          </h2>
-          <Separator className="mt-3 mb-8" />
-          <ol className="space-y-12">
+        <Section id="experience" heading="Experience.">
+          <ol className="divide-y divide-border/70">
             {jobs.map((job) => (
-              <li key={`${job.company}-${job.start}`} className="relative">
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
-                  <div>
-                    <h3 className="text-lg font-semibold tracking-tight">
-                      {job.role}{" "}
-                      <span className="text-muted-foreground">
-                        · {job.company}
-                      </span>
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {job.location}
-                    </p>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    {job.start} - {job.end}
-                    {job.current ? (
-                      <span className="ml-2 inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-400">
-                        Current
-                      </span>
-                    ) : null}
+              <li key={`${job.company}-${job.start}`} className="py-8 first:pt-0">
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <h3 className="font-display text-2xl leading-tight">
+                    {job.role}
+                  </h3>
+                  <p className="shrink-0 text-sm text-muted-foreground">
+                    {job.start} to {job.current ? "now" : job.end}
                   </p>
                 </div>
-                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-foreground/90">
-                  {job.highlights.map((h, i) => (
-                    <li key={i} className="flex gap-2">
+                <p className="mt-1 text-base text-foreground/90">
+                  {job.company} <span className="text-mark-text">/</span>{" "}
+                  {job.location}
+                </p>
+                <ul className="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  {job.highlights.map((h) => (
+                    <li key={h} className="flex gap-3">
                       <span
                         aria-hidden
-                        className="mt-2 inline-block size-1 shrink-0 rounded-full bg-muted-foreground/60"
+                        className="mt-2 inline-block size-1.5 shrink-0 bg-mark"
                       />
                       <span>{h}</span>
                     </li>
@@ -73,75 +57,55 @@ export default function CareerPage() {
               </li>
             ))}
           </ol>
-        </section>
+        </Section>
 
-        <section aria-labelledby="education">
-          <h2
-            id="education"
-            className="flex items-center gap-2 text-xl font-semibold tracking-tight"
-          >
-            <GraduationCap className="size-5" aria-hidden />
-            Education
-          </h2>
-          <Separator className="mt-3 mb-6" />
-          <ul className="space-y-4">
-            {education.map((e) => (
-              <li key={e.school}>
-                <p className="font-medium">{e.degree}</p>
-                <p className="text-sm text-muted-foreground">
-                  {e.school} · {e.location} · {e.start}-{e.end}
-                  {e.detail ? ` · ${e.detail}` : ""}
-                </p>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section aria-labelledby="certs">
-          <h2
-            id="certs"
-            className="flex items-center gap-2 text-xl font-semibold tracking-tight"
-          >
-            <Award className="size-5" aria-hidden />
-            Certifications
-          </h2>
-          <Separator className="mt-3 mb-6" />
-          <ul className="space-y-4">
+        <Section id="certs" heading="Certifications.">
+          <Rows>
             {certifications.map((c) => (
-              <li
-                key={c.name}
-                className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between"
-              >
-                <div>
-                  <p className="font-medium">{c.name}</p>
-                  <p className="text-sm text-muted-foreground">
-                    {c.issuer} · {c.date} · {c.validity}
-                  </p>
-                </div>
+              <Row key={c.name} lead={c.name} aside={c.date}>
+                <p>
+                  {c.issuer} <span className="text-mark-text">/</span>{" "}
+                  {c.validity}
+                </p>
                 <a
                   href={c.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+                  className="mt-2 inline-flex items-center gap-1 text-sm font-medium text-mark-text underline-offset-4 hover:underline"
                   {...cta("cert_verify", c.name)}
                 >
                   Verify on Credly
                   <ExternalLink className="size-3.5" aria-hidden />
                 </a>
-              </li>
+              </Row>
             ))}
-          </ul>
-        </section>
+          </Rows>
+        </Section>
 
-        <section className="rounded-lg border border-border/60 bg-muted/30 p-6">
-          <h2 className="text-lg font-semibold tracking-tight">
-            Hiring or contracting?
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            The fastest way to start a conversation.
-          </p>
-          <ContactCTAs className="mt-4" />
-        </section>
+        <Section id="education" heading="Education.">
+          <Rows>
+            {education.map((e) => (
+              <Row
+                key={e.school}
+                lead={e.degree}
+                aside={`${e.start} to ${e.end}`}
+              >
+                {e.school} <span className="text-mark-text">/</span> {e.location}
+                {e.detail ? (
+                  <>
+                    {" "}
+                    <span className="text-mark-text">/</span> {e.detail}
+                  </>
+                ) : null}
+              </Row>
+            ))}
+          </Rows>
+        </Section>
+
+        <PageClose
+          heading="Hiring, or contracting?"
+          body="The button opens an email draft with the questions I would ask anyway: company, scope, timeline, stack."
+        />
       </div>
     </main>
   );

@@ -19,9 +19,9 @@ The feel is a well-typeset technical document: numbered sections, hairline rules
 
 What that means in practice:
 
-- Content sits in a two-column grid on desktop: a narrow left column for the section number and heading, a wide right column for the body. Stacks to one column on mobile.
-- Sections are separated by a 1px rule and a number in mono, like `(02)`. Not by boxes.
-- Lists are rows divided by hairlines. Cards are the exception, used only when items are genuinely parallel and need to be compared (a project grid).
+- Content sits in a two-column grid on desktop: a narrow left column for the heading, a wide right column for the body. Stacks to one column on mobile.
+- Sections are separated by a 1px rule and nothing else. Not by boxes, not by a label.
+- Lists are rows divided by hairlines. No cards anywhere. If items need comparing, they are still rows: the eye reads a column of rows faster than a grid of boxes.
 - One dark block per page, black background, for the single most important thing: a case study, a headline number, a closing call to action.
 - Hover states change colour or underline. They do not lift, glow, shimmer, blur, or rotate.
 - Every page ends with the same closing: a short line, one primary action, the footer. No grey "Let's talk" box.
@@ -30,7 +30,9 @@ What that means in practice:
 
 These are the tells that make the site look generated. Do not add them back.
 
-- `rounded-2xl` bordered cards as the default container. Rows and rules instead.
+- **Kickers.** No small label above a heading, in any form: no mono `(01)`, no uppercase tracked `SERVICES`, no `location / language / status` strip over the hero. The heading starts the section. This is the single strongest tell that a page was generated, and it is banned everywhere.
+- **Cards.** No bordered, rounded, shadowed boxes holding a title and two lines of text. Not for services, not for steps, not for projects, not for skills. Rows separated by hairlines instead.
+- Icon tiles: an icon in a bordered rounded square next to a heading.
 - Gradient overlays, blur glows, shimmer sweeps, ping dots, icons that rotate on hover.
 - Badge clouds. A list of 60 pills is not a skills section. Group and write a sentence.
 - Uppercase tracked-out grey eyebrows above every heading. Use the mono section number instead.
@@ -70,7 +72,7 @@ Three faces, each with one job.
 |---|---|---|---|
 | Display | Instrument Serif | `--font-display` | h1 and h2 only. Regular weight, tight leading, tracking slightly negative. Italic allowed for one emphasised word. |
 | Text | Geist Sans | `--font-geist-sans` | body, h3 and below, buttons, nav |
-| Label | Geist Mono | `--font-geist-mono` | section numbers, eyebrows, dates, metrics, the top rule, micro copy |
+| Label | Geist Mono | `--font-geist-mono` | metrics and figures only. Never for labels above a heading. |
 
 Scale (desktop / mobile):
 
@@ -78,7 +80,7 @@ Scale (desktop / mobile):
 - h2: `text-3xl` / `text-2xl`, `leading-tight`, display face
 - h3: `text-base font-semibold tracking-tight`, text face
 - body: `text-base` (mobile) to `text-lg` (desktop), `leading-relaxed`, max width `max-w-xl` for paragraphs
-- label: `text-xs font-mono`, normal case, colour `muted-foreground` or `--mark-text`
+- step numeral: `font-display text-4xl text-mark-text`, sitting beside the step, not above it
 - metric: `text-5xl font-mono font-semibold tracking-tight`, accent colour inside the dark block
 
 The marker underline (`MarkerUnderline` in `components/marker-underline.tsx`) may be used on at most one word per page, in the h1.
@@ -88,6 +90,7 @@ The marker underline (`MarkerUnderline` in `components/marker-underline.tsx`) ma
 - Page container: `max-w-5xl mx-auto px-6`. Same on every page, including the standalone landings.
 - Vertical rhythm between sections: `mt-20 sm:mt-24`, then `border-t pt-10`.
 - Section grid: `grid-cols-1 sm:grid-cols-[1fr_2fr] gap-x-12 gap-y-8`.
+- Rows, the default container: `py-6`, hairline `border-t border-border/70` between them, nothing around them.
 - Rows inside a list: `py-5`, divided by `border-t border-border/70`.
 - Dark block and final CTA: `rounded-xl p-7 sm:p-12`. This is the only place a large radius appears.
 - Buttons: shadcn `size="lg"` on hero and final CTA, default elsewhere. Primary is accent fill with `--mark-ink` text. Secondary is `foreground` fill on the accent band, or `outline` on the page.

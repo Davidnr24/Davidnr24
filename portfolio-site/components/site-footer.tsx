@@ -21,7 +21,7 @@ export function SiteFooter() {
       <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-6 py-10 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="font-display text-2xl">{site.name}</p>
-          <p className="mt-1 font-mono text-xs text-muted-foreground">
+          <p className="mt-1 text-sm text-muted-foreground">
             {site.role} <span className="text-mark-text">/</span>{" "}
             {site.location}
           </p>
@@ -54,7 +54,7 @@ export function SiteFooter() {
           )}
         </ul>
       </div>
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 pb-8 font-mono text-xs text-muted-foreground/70">
+      <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 pb-8 text-sm text-muted-foreground/70">
         <span>
           © {new Date().getFullYear()} {site.name}
         </span>

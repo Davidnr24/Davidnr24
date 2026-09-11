@@ -34,7 +34,7 @@ const doors: {
   },
   {
     title: "Automation for small businesses",
-    body: "For online coaches and other one-person businesses: the repetitive admin around clients runs itself. Free 30-minute audit to start.",
+    body: "For online coaches and other small businesses: I automate the repetitive work around clients with AI, and cut down the pile of tools it runs on. The consultation is free.",
     href: "/automation",
     label: "Read the case study",
     event: "door_automation",
@@ -94,7 +94,7 @@ export default function Home() {
               >
                 Résumé (PDF)
               </Link>
-              <p className="font-mono text-xs text-muted-foreground">
+              <p className="text-sm text-muted-foreground">
                 AWS Solutions Architect{" "}
                 <span className="text-mark-text">/</span> CKA{" "}
                 <span className="text-mark-text">/</span> Terraform Associate
@@ -113,7 +113,7 @@ export default function Home() {
           </div>
         </header>
 
-        <Section id="doors" number="01" heading="Three ways to work with me.">
+        <Section id="doors" heading="Three ways to work with me.">
           <Rows>
             {doors.map((d) => (
               <li key={d.title} className="py-5 first:pt-0">
@@ -138,7 +138,6 @@ export default function Home() {
 
         <Section
           id="now"
-          number="02"
           heading="Now."
           lede="What the day job looks like this year."
         >
@@ -163,7 +162,6 @@ export default function Home() {
         >
           <div className="grid grid-cols-1 gap-10 p-7 sm:grid-cols-[2fr_3fr] sm:gap-14 sm:p-12">
             <div>
-              <p className="font-mono text-xs text-mark">(03) numbers</p>
               <h2
                 id="numbers"
                 className="mt-2 font-display text-3xl leading-tight sm:text-4xl"
@@ -200,7 +198,7 @@ export default function Home() {
           </div>
         </section>
 
-        <Section id="elsewhere" number="04" heading="Elsewhere.">
+        <Section id="elsewhere" heading="Elsewhere.">
           <Rows>
             {elsewhere.map((e) => {
               const inner = (

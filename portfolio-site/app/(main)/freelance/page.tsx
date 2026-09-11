@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
-import { Clock, Globe2, MapPin, Sparkles } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
-import { ContactCTAs } from "@/components/contact-ctas";
-import { FreelanceServices } from "@/components/freelance-services";
+import { PageClose } from "@/components/page-close";
+import { Row, Rows, Section } from "@/components/section";
+import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/content/site";
+import { cta } from "@/lib/analytics";
+import { buildHireMeMailto } from "@/lib/mailto";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Freelance DevOps & Platform Engineering",
@@ -12,208 +17,174 @@ export const metadata: Metadata = {
   alternates: { canonical: "/freelance" },
 };
 
-const engagementHighlights = [
+const services = [
   {
-    icon: Clock,
-    label: "Async-first",
-    body: "Weekly written updates and a shared channel. Works across time zones.",
+    title: "AWS architecture and cost",
+    body: "A greenfield account set up properly, or an audit of the one you have. Multi-account organisations, networking, IAM, and cost cuts that survive the next quarter.",
   },
   {
-    icon: Globe2,
-    label: "Remote, EN / ES",
-    body: "US East hours by default. Bilingual English / Spanish.",
+    title: "Terraform and infrastructure as code",
+    body: "Move click-ops into Terraform, with module and state structure a small team can operate safely. Plan on pull request, apply on merge.",
   },
   {
-    icon: Sparkles,
-    label: "Senior-only",
-    body: "I work the engagement myself. No juniors handed the keys.",
+    title: "CI/CD pipelines",
+    body: "CircleCI, Jenkins or GitHub Actions tuned for deploys that are fast and boring. Blue/green, canary, and ephemeral environments per pull request.",
+  },
+  {
+    title: "Kubernetes and containers",
+    body: "EKS and GKE clusters with the Helm and Argo plumbing around them. Workloads that scale and recover without paging anyone at 3am.",
+  },
+  {
+    title: "Reliability and security",
+    body: "Observability in Datadog, an on-call rotation people can live with, an incident process, and a security baseline you can defend in an audit.",
+  },
+  {
+    title: "Internal tooling",
+    body: "The small Next.js and Node services, dashboards and bots that unblock your team. The ops tools nobody has time to build.",
+  },
+];
+
+const howIWork = [
+  {
+    title: "Async first",
+    body: "A weekly written update and a shared channel. It works across time zones and it leaves a paper trail you can read later.",
+  },
+  {
+    title: "Remote, English or Spanish",
+    body: "US East hours by default, from Charlotte, NC. Bilingual, so a Spanish-speaking team is no friction.",
+  },
+  {
+    title: "You get me, not a bench",
+    body: "I do the work myself. Nobody junior gets handed the keys to your production account halfway through.",
   },
 ];
 
 const steps = [
   {
-    n: "01",
-    title: "30-min intro call",
-    body: "You explain the problem, I tell you whether I'm the right fit. No charge.",
+    title: "Intro call",
+    body: "Thirty minutes. You describe the problem, I tell you honestly whether I am the right person for it. No charge.",
   },
   {
-    n: "02",
     title: "Written scope",
-    body: "One page covering deliverables, timeline, and pricing (hourly or fixed).",
+    body: "One page: deliverables, timeline, and price, hourly or fixed. You know what you are buying before anything starts.",
   },
   {
-    n: "03",
     title: "The work",
-    body: "Async with a shared channel and a weekly written update. Demos when it helps.",
+    body: "Async, in a shared channel, with a written update every week and a demo when a demo helps more than a paragraph.",
   },
   {
-    n: "04",
     title: "Handoff",
-    body: "Docs, runbooks, and a walkthrough so your team owns it after I'm gone.",
+    body: "Docs, runbooks, and a walkthrough, so your team owns it after I am gone. No lock-in to me.",
   },
 ];
 
 export default function FreelancePage() {
   return (
-    <main className="px-6 py-16 sm:py-20">
-      <div className="mx-auto w-full max-w-5xl space-y-20">
-        <header className="relative space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/60" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-            </span>
-            Available for contract work
-          </div>
+    <main className="px-6 py-16 sm:py-24">
+      <div className="mx-auto w-full max-w-5xl">
+        <header>
+          <h1 className="max-w-3xl text-balance font-display text-[2.8rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl">
+            Senior DevOps, on a contract basis.
+          </h1>
+          <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            Short engagements for startups and small teams that need a senior
+            platform engineer without making the hire yet. AWS, Kubernetes,
+            Terraform, CI/CD, and the tooling that holds it together.
+          </p>
 
-          <div className="space-y-4">
-            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-              Senior DevOps,{" "}
-              <span className="text-muted-foreground">on a contract basis.</span>
-            </h1>
-            <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Short-term and project-based engagements for startups and small
-              teams that need a Senior DevOps / Platform Engineer, without
-              making the hire yet. AWS, Kubernetes, Terraform, CI/CD, and the
-              internal tooling that holds it all together.
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <a
+              href={buildHireMeMailto("a contract engagement")}
+              className={cn(
+                buttonVariants({ size: "lg" }),
+                "w-full bg-mark px-6 text-mark-ink hover:bg-mark-hover sm:w-auto"
+              )}
+              {...cta("hire_me", "freelance_hero")}
+            >
+              Start a conversation
+              <ArrowRight className="size-4" aria-hidden />
+            </a>
+            <Link
+              href={site.resumeHref}
+              target="_blank"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "lg" }),
+                "w-full sm:w-auto"
+              )}
+              {...cta("resume", "freelance_hero")}
+            >
+              Résumé (PDF)
+            </Link>
+            <p className="text-sm text-muted-foreground">
+              Available now <span className="text-mark-text">/</span> 2 to 12
+              weeks <span className="text-mark-text">/</span> hourly or fixed
+              scope
             </p>
-          </div>
-
-          <ContactCTAs size="lg" />
-
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="size-4" aria-hidden />
-              Remote from {site.location}
-            </span>
-            <span aria-hidden>·</span>
-            <span>Hourly or fixed-scope</span>
-            <span aria-hidden>·</span>
-            <span>2-12 week engagements</span>
           </div>
         </header>
 
-        <section aria-labelledby="services" className="space-y-8">
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-                Services
-              </p>
-              <h2
-                id="services"
-                className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl"
-              >
-                What I can build for you
-              </h2>
-            </div>
-          </div>
-          <FreelanceServices />
-        </section>
+        <Section id="services" heading="What I can build for you.">
+          <Rows>
+            {services.map((s) => (
+              <Row key={s.title} lead={s.title}>
+                {s.body}
+              </Row>
+            ))}
+          </Rows>
+        </Section>
 
-        <section aria-labelledby="engagement" className="space-y-6">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-              Engagement
-            </p>
-            <h2
-              id="engagement"
-              className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl"
-            >
-              How I work
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {engagementHighlights.map((h) => {
-              const Icon = h.icon;
-              return (
-                <div
-                  key={h.label}
-                  className="group rounded-2xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
+        <Section
+          id="how-i-work"
+          heading="How I work."
+          lede="The parts people usually find out too late."
+        >
+          <Rows>
+            {howIWork.map((h) => (
+              <Row key={h.title} lead={h.title}>
+                {h.body}
+              </Row>
+            ))}
+          </Rows>
+        </Section>
+
+        {/* The one dark block on this page */}
+        <section
+          aria-labelledby="process"
+          className="mt-20 overflow-hidden rounded-xl bg-foreground p-8 text-background sm:mt-24 sm:p-14"
+        >
+          <h2
+            id="process"
+            className="max-w-lg text-balance font-display text-3xl leading-tight sm:text-4xl"
+          >
+            How an engagement runs.
+          </h2>
+          <ol className="mt-10 grid grid-cols-1 gap-x-14 gap-y-8 sm:grid-cols-2">
+            {steps.map((s, i) => (
+              <li key={s.title} className="flex gap-5">
+                <span
+                  aria-hidden
+                  className="font-display text-3xl leading-none text-mark"
                 >
-                  <div className="inline-flex size-9 items-center justify-center rounded-lg border border-border bg-muted/60 transition-colors group-hover:bg-foreground group-hover:text-background">
-                    <Icon className="size-4" aria-hidden />
-                  </div>
-                  <p className="mt-3 text-sm font-semibold tracking-tight">
-                    {h.label}
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {h.body}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        <section aria-labelledby="how-it-works" className="space-y-6">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-              Process
-            </p>
-            <h2
-              id="how-it-works"
-              className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl"
-            >
-              How it works
-            </h2>
-          </div>
-          <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {steps.map((s) => (
-              <li
-                key={s.n}
-                className="group relative rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/30 hover:shadow-sm"
-              >
-                <div className="flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-muted-foreground transition-colors group-hover:text-foreground">
-                    {s.n}
-                  </span>
+                  {i + 1}
+                </span>
+                <div>
                   <h3 className="text-base font-semibold tracking-tight">
                     {s.title}
                   </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-background/75">
+                    {s.body}
+                  </p>
                 </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {s.body}
-                </p>
               </li>
             ))}
           </ol>
         </section>
 
-        <section
-          aria-labelledby="engagements"
-          className="rounded-2xl border border-dashed border-border bg-muted/30 p-6 text-center"
-        >
-          <h2
-            id="engagements"
-            className="text-base font-semibold tracking-tight"
-          >
-            No public engagements listed yet
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            As I take on freelance work, projects (with each client&rsquo;s
-            permission) will show up here.
-          </p>
-        </section>
-
-        <section className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 sm:p-10">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.04] via-transparent to-foreground/[0.06]"
-          />
-          <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-2">
-              <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                Need a hand with platform work?
-              </h2>
-              <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
-                The Hire me button drops you straight into an email draft with
-                the right questions already there: company, scope, timeline,
-                stack. Five minutes to send.
-              </p>
-            </div>
-            <ContactCTAs size="lg" className="shrink-0" />
-          </div>
-        </section>
+        <PageClose
+          heading="Need a hand with platform work?"
+          body="The button opens an email draft with the questions I would ask anyway: company, scope, timeline, stack. Five minutes to send."
+          cta="Start a conversation"
+        />
       </div>
     </main>
   );
