@@ -23,8 +23,9 @@ export function PersonalBody({ children }: { children?: React.ReactNode }) {
               Most evenings I end up building something. Usually it&rsquo;s a
               side project I&rsquo;ve been thinking about for weeks, and
               sometimes it&rsquo;s just an excuse to try a tool I keep reading
-              about. That&rsquo;s where the rough first version of an idea
-              gets made, long before anything like it goes near production.
+              about. Most of them never turn into anything, but a few have,
+              and I learn more from the ones that break than from the ones
+              that work.
             </p>
             <p>
               I&rsquo;ve supported Real Madrid since I was a kid, which is
@@ -40,8 +41,9 @@ export function PersonalBody({ children }: { children?: React.ReactNode }) {
             <p>
               I still spend a good part of the year in Europe, and I usually
               add a trip somewhere new while I&rsquo;m over there. When I want
-              to switch off without leaving home, I go for a drive. My Camaro
-              is a manual, which is the whole reason I bought it.
+              to switch off without leaving home, I go for a drive in my
+              Camaro, which is a manual, and that is the whole reason I
+              bought it.
             </p>
           </div>
 
