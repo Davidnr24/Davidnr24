@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 
 import { PageClose } from "@/components/page-close";
+import { ProfileAvatar } from "@/components/profile-avatar";
 import { IndexRow, IndexRows, Section } from "@/components/section";
 import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/content/site";
@@ -65,9 +66,20 @@ const services: { icon: LucideIcon; title: string; body: string }[] = [
 ];
 
 const metrics = [
-  { value: "40%", label: "faster deploys after rebuilding the CI/CD pipelines for ECS services at Agero" },
-  { value: "85%", label: "fewer critical vulnerabilities after hardening images and dependencies" },
-  { value: "99.997%", label: "platform availability, with shift-left QA and test automation" },
+  {
+    value: "40%",
+    label:
+      "faster deploys after rebuilding the CI/CD pipelines for ECS services at Agero",
+  },
+  {
+    value: "85%",
+    label:
+      "fewer critical vulnerabilities after hardening images and dependencies",
+  },
+  {
+    value: "99.997%",
+    label: "platform availability, with shift-left QA and test automation",
+  },
 ];
 
 const moreMetrics = [
@@ -118,44 +130,56 @@ export default function FreelanceHome() {
   return (
     <main className="px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-6xl">
-        <header>
-          <h1 className="max-w-3xl text-balance font-display text-[2.8rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl">
-            Senior DevOps, on a contract basis.
-          </h1>
-          <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Short engagements for startups and small teams that need a senior
-            platform engineer without making the hire yet. AWS, Kubernetes,
-            Terraform, CI/CD, and the tooling that holds it together.
-          </p>
-
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-            <a
-              href={buildHireMeMailto("a contract engagement")}
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "w-full bg-mark px-6 text-mark-ink hover:bg-mark-hover sm:w-auto"
-              )}
-              {...cta("hire_me", "freelance_hero")}
-            >
-              Start a conversation
-              <ArrowRight className="size-4" aria-hidden />
-            </a>
-            <Link
-              href={site.resumeHref}
-              target="_blank"
-              className={cn(
-                buttonVariants({ variant: "outline", size: "lg" }),
-                "w-full sm:w-auto"
-              )}
-              {...cta("resume", "freelance_hero")}
-            >
-              Résumé (PDF)
-            </Link>
-            <p className="text-sm text-muted-foreground">
-              Available now <span className="text-mark-text">/</span> 2 to 12
-              weeks <span className="text-mark-text">/</span> hourly or fixed
-              scope
+        <header className="flex flex-col-reverse gap-10 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h1 className="max-w-3xl text-balance font-display text-[2.8rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl">
+              Senior DevOps, on a contract basis.
+            </h1>
+            <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              Short engagements for startups and small teams that need a senior
+              platform engineer without making the hire yet. AWS, Kubernetes,
+              Terraform, CI/CD, and the tooling that holds it together.
             </p>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <a
+                href={buildHireMeMailto("a contract engagement")}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "w-full bg-mark px-6 text-mark-ink hover:bg-mark-hover sm:w-auto",
+                )}
+                {...cta("hire_me", "freelance_hero")}
+              >
+                Start a conversation
+                <ArrowRight className="size-4" aria-hidden />
+              </a>
+              <Link
+                href={site.resumeHref}
+                target="_blank"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "w-full sm:w-auto",
+                )}
+                {...cta("resume", "freelance_hero")}
+              >
+                Résumé (PDF)
+              </Link>
+              <p className="text-sm text-muted-foreground">
+                Available now <span className="text-mark-text">/</span> 2 to 12
+                weeks <span className="text-mark-text">/</span> hourly or fixed
+                scope
+              </p>
+            </div>
+          </div>
+          <div className="relative shrink-0 self-start">
+            <span
+              aria-hidden
+              className="absolute -right-2 -top-2 size-full rounded-xl bg-mark-soft"
+            />
+            <ProfileAvatar
+              src="/ai-fixed.png"
+              className="relative size-28 rounded-xl sm:size-36"
+            />
           </div>
         </header>
 
