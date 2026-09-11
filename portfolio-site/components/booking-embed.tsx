@@ -17,15 +17,16 @@ export function BookingEmbed({
   namespace?: string;
 }) {
   const container = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  // Browsers without IntersectionObserver get the embed straight away rather
+  // than never, so the initial state answers that question instead of an
+  // effect flipping it on the first render.
+  const [visible, setVisible] = useState(
+    () => typeof IntersectionObserver === "undefined"
+  );
 
   useEffect(() => {
     const node = container.current;
-    if (!node) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setVisible(true);
-      return;
-    }
+    if (!node || typeof IntersectionObserver === "undefined") return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
