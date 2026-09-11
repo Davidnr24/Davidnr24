@@ -18,7 +18,7 @@ export const stack: StackEntry[] = [
   {
     icon: "kubernetes",
     name: "Kubernetes",
-    body: "EKS clusters running distributed microservices at Blue Apron, with shared Helm charts, image hardening and version upgrades across every environment. Certified Kubernetes Administrator.",
+    body: "EKS at both Agero and Blue Apron, alongside ECS at Agero, running distributed microservices across multiple AWS accounts and environments. Shared Helm charts, image hardening and version upgrades. Certified Kubernetes Administrator.",
   },
   {
     icon: "terraform",

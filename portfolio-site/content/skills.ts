@@ -34,7 +34,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Containers & orchestration",
     summary:
-      "EKS clusters running distributed microservices at Blue Apron, ECS-heavy at Agero. Custom Helm charts, image hardening, and version upgrades across environments.",
+      "EKS and ECS at both Agero and Blue Apron, running distributed microservices across multiple AWS accounts and environments. Custom Helm charts, image hardening, and version upgrades.",
     items: ["Docker", "Kubernetes (EKS)", "Helm", "ECS"],
   },
   {
