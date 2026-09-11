@@ -17,16 +17,14 @@ export function BookingEmbed({
   namespace?: string;
 }) {
   const container = useRef<HTMLDivElement>(null);
-  // Browsers without IntersectionObserver get the embed straight away rather
-  // than never, so the initial state answers that question instead of an
-  // effect flipping it on the first render.
-  const [visible, setVisible] = useState(
-    () => typeof IntersectionObserver === "undefined"
-  );
+  // Starts false on both server and client, so the markup matches on hydration
+  // and the iframe only arrives once someone scrolls near it. IntersectionObserver
+  // needs no fallback: it has been available in every current browser for years.
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const node = container.current;
-    if (!node || typeof IntersectionObserver === "undefined") return;
+    if (!node) return;
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries.some((e) => e.isIntersecting)) {
