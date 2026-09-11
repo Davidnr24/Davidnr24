@@ -110,6 +110,8 @@ const content: AutomationLandingContent = {
   caseStudy: {
     label: "Caso real",
     name: "AlfreHealth",
+    handle: "@alfre.health",
+    handleUrl: "https://www.instagram.com/alfre.health/",
     story:
       "Alfre lleva un negocio de coaching de salud online. Cada cliente nuevo le suponía la misma hora de gestión: capturas del formulario inicial, apuntes de la primera llamada, la ficha del cliente escrita a mano y el plan del primer mes. Le construí una aplicación sencilla que hace esa parte. Pega los apuntes de la llamada, elige el cliente, y la aplicación redacta el resumen, el plan del mes uno y el mensaje de bienvenida. Él lo lee, cambia lo que quiere y lo envía.",
     metrics: [

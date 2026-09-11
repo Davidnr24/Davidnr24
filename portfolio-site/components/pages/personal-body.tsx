@@ -3,9 +3,9 @@ import Image from "next/image";
 export function PersonalBody({ children }: { children?: React.ReactNode }) {
   return (
     <main className="px-6 py-16 sm:py-24">
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-6xl">
         <header>
-          <h1 className="max-w-3xl text-balance font-display text-[2.6rem] leading-[1.03] tracking-[-0.02em] sm:text-5xl">
+          <h1 className="max-w-4xl text-balance font-display text-[2.8rem] leading-[0.98] tracking-[-0.02em] sm:text-6xl">
             Beyond the terminal.
           </h1>
         </header>

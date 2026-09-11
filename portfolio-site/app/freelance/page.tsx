@@ -1,9 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  Boxes,
+  Cloud,
+  Globe,
+  Handshake,
+  MessagesSquare,
+  ShieldCheck,
+  Workflow,
+  Wrench,
+  GitBranch,
+  type LucideIcon,
+} from "lucide-react";
 
 import { PageClose } from "@/components/page-close";
-import { Row, Rows, Section } from "@/components/section";
+import { IndexRow, IndexRows, Section } from "@/components/section";
 import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/content/site";
 import { cta } from "@/lib/analytics";
@@ -19,28 +31,34 @@ export const metadata: Metadata = {
   alternates: { canonical: "/freelance" },
 };
 
-const services = [
+const services: { icon: LucideIcon; title: string; body: string }[] = [
   {
+    icon: Cloud,
     title: "AWS architecture and cost",
     body: "A greenfield account set up properly, or an audit of the one you have. Multi-account organisations, networking, IAM, and cost cuts that survive the next quarter.",
   },
   {
+    icon: GitBranch,
     title: "Terraform and infrastructure as code",
     body: "Move click-ops into Terraform, with module and state structure a small team can operate safely. Plan on pull request, apply on merge.",
   },
   {
+    icon: Workflow,
     title: "CI/CD pipelines",
     body: "CircleCI, Jenkins or GitHub Actions tuned for deploys that are fast and boring. Blue/green, canary, and ephemeral environments per pull request.",
   },
   {
+    icon: Boxes,
     title: "Kubernetes and containers",
     body: "EKS and GKE clusters with the Helm and Argo plumbing around them. Workloads that scale and recover without paging anyone at 3am.",
   },
   {
+    icon: ShieldCheck,
     title: "Reliability and security",
     body: "Observability in Datadog, an on-call rotation people can live with, an incident process, and a security baseline you can defend in an audit.",
   },
   {
+    icon: Wrench,
     title: "Internal tooling",
     body: "The small Next.js and Node services, dashboards and bots that unblock your team. The ops tools nobody has time to build.",
   },
@@ -59,16 +77,19 @@ const moreMetrics = [
   "A custom CircleCI Orb replaced a paid third-party deploy product across the org.",
 ];
 
-const howIWork = [
+const howIWork: { icon: LucideIcon; title: string; body: string }[] = [
   {
+    icon: MessagesSquare,
     title: "Async first",
     body: "A weekly written update and a shared channel. It works across time zones and leaves a paper trail you can read later.",
   },
   {
+    icon: Globe,
     title: "Remote, English or Spanish",
     body: "US East hours by default, from Charlotte, NC. Bilingual, so a Spanish-speaking team is no friction.",
   },
   {
+    icon: Handshake,
     title: "You get me, not a bench",
     body: "I do the work myself. Nobody junior gets handed the keys to your production account halfway through.",
   },
@@ -96,7 +117,7 @@ const steps = [
 export default function FreelanceHome() {
   return (
     <main className="px-6 py-16 sm:py-24">
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-6xl">
         <header>
           <h1 className="max-w-3xl text-balance font-display text-[2.8rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl">
             Senior DevOps, on a contract basis.
@@ -139,13 +160,13 @@ export default function FreelanceHome() {
         </header>
 
         <Section id="services" heading="What I can build for you.">
-          <Rows>
+          <IndexRows>
             {services.map((s) => (
-              <Row key={s.title} lead={s.title}>
+              <IndexRow key={s.title} icon={s.icon} title={s.title}>
                 {s.body}
-              </Row>
+              </IndexRow>
             ))}
-          </Rows>
+          </IndexRows>
         </Section>
 
         {/* The one dark block: numbers, because contract buyers ask for them */}
@@ -196,36 +217,34 @@ export default function FreelanceHome() {
           heading="How I work."
           lede="The parts people usually find out too late."
         >
-          <Rows>
+          <IndexRows>
             {howIWork.map((h) => (
-              <Row key={h.title} lead={h.title}>
+              <IndexRow key={h.title} icon={h.icon} title={h.title}>
                 {h.body}
-              </Row>
+              </IndexRow>
             ))}
-          </Rows>
+          </IndexRows>
         </Section>
 
         <Section id="process" heading="How an engagement runs.">
-          <ol className="divide-y divide-border/70">
+          <IndexRows>
             {steps.map((s, i) => (
-              <li key={s.title} className="flex gap-6 py-6 first:pt-0 sm:gap-8">
-                <span
-                  aria-hidden
-                  className="font-display text-3xl leading-none text-mark-text sm:text-4xl"
-                >
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold tracking-tight">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
-                    {s.body}
-                  </p>
-                </div>
-              </li>
+              <IndexRow
+                key={s.title}
+                mark={
+                  <span
+                    aria-hidden
+                    className="font-display text-4xl leading-none text-mark-text transition-transform group-hover:scale-110"
+                  >
+                    {i + 1}
+                  </span>
+                }
+                title={s.title}
+              >
+                {s.body}
+              </IndexRow>
             ))}
-          </ol>
+          </IndexRows>
         </Section>
 
         <PageClose

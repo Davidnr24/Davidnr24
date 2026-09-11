@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 import { HeroIntro } from "@/components/hero-intro";
 import { ProfileAvatar } from "@/components/profile-avatar";
 import { CompanyLink } from "@/components/company-link";
-import { Row, Rows, Section } from "@/components/section";
+import { IndexRow, IndexRows, Section } from "@/components/section";
 import { StackList } from "@/components/stack-list";
 import { buttonVariants } from "@/components/ui/button";
 import { jobs } from "@/content/career";
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function ResumeHome() {
   return (
     <main className="px-6 py-16 sm:py-24">
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-6xl">
         <header className="flex flex-col-reverse gap-10 sm:flex-row sm:items-end sm:justify-between">
           <div className="flex flex-col gap-8">
             <HeroIntro />
@@ -80,11 +80,11 @@ export default function ResumeHome() {
         </Section>
 
         <Section id="where" heading="Where I've worked.">
-          <Rows>
+          <IndexRows>
             {jobs.slice(0, 3).map((job) => (
-              <Row
+              <IndexRow
                 key={`${job.company}-${job.start}`}
-                lead={job.role}
+                title={job.role}
                 aside={`${job.start} to ${job.current ? "now" : job.end}`}
               >
                 <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -96,15 +96,15 @@ export default function ResumeHome() {
                   <span className="text-mark-text">/</span>
                   <span>{job.location}</span>
                 </span>
-              </Row>
+              </IndexRow>
             ))}
-          </Rows>
+          </IndexRows>
           <Link
             href="/resume/career"
-            className="mt-6 inline-flex items-center gap-1 text-sm font-medium text-mark-text underline-offset-4 hover:underline"
+            className="mt-8 inline-flex items-center gap-1 text-base font-medium text-mark-text underline-offset-4 hover:underline"
           >
             The full history
-            <ArrowRight className="size-3.5" aria-hidden />
+            <ArrowRight className="size-4" aria-hidden />
           </Link>
         </Section>
 

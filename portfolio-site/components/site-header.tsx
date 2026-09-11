@@ -29,7 +29,7 @@ export function SiteHeader({ nav, home, ctaLabel, ctaHref }: Props) {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between gap-3 px-6">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-3 px-6">
         <Link
           href={home}
           className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-mark-text"
@@ -88,7 +88,7 @@ export function SiteHeader({ nav, home, ctaLabel, ctaHref }: Props) {
           className="border-t border-border/60 bg-background md:hidden"
           aria-label="Mobile"
         >
-          <ul className="mx-auto flex w-full max-w-5xl flex-col divide-y divide-border/70 px-6">
+          <ul className="mx-auto flex w-full max-w-6xl flex-col divide-y divide-border/70 px-6">
             {nav.map((item) => {
               const active = isActive(item.href);
               return (

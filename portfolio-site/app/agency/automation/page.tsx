@@ -109,6 +109,8 @@ const content: AutomationLandingContent = {
   caseStudy: {
     label: "Case study",
     name: "AlfreHealth",
+    handle: "@alfre.health",
+    handleUrl: "https://www.instagram.com/alfre.health/",
     story:
       "Alfre runs an online health coaching business. Every new client meant the same hour of admin: screenshots of the intake form, notes from the first call, a client profile typed out by hand, and a plan for the first month. I built him a small app that does that part. He pastes in his call notes, picks the client, and the app writes the summary, the month one plan and the welcome message. He reads it, changes what he wants, and sends it.",
     metrics: [

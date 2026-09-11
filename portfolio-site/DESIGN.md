@@ -19,8 +19,8 @@ The feel is a well-typeset technical document: numbered sections, hairline rules
 
 What that means in practice:
 
-- Content sits in a two-column grid on desktop: a narrow left column for the heading, a wide right column for the body. Stacks to one column on mobile.
-- Sections are separated by a 1px rule and nothing else. Not by boxes, not by a label.
+- A section header runs the **full width**: the title in large display type above a 2px rule, with any supporting line pushed to the opposite edge. Never a narrow left column with the content beside it; that reads as a template the moment it repeats.
+- Items below sit on a 12 column grid: a mark in column 1, the title in columns 2 to 5, the body in columns 6 to 12. The row tints on hover, which groups it without needing a border.
 - Lists are rows divided by hairlines. No cards anywhere. If items need comparing, they are still rows: the eye reads a column of rows faster than a grid of boxes.
 - One dark block per page, black background, for the single most important thing: a case study, a headline number, a closing call to action.
 - Hover states change colour or underline. They do not lift, glow, shimmer, blur, or rotate.
@@ -87,7 +87,7 @@ The marker underline (`MarkerUnderline` in `components/marker-underline.tsx`) ma
 
 ## Spacing and layout
 
-- Page container: `max-w-5xl mx-auto px-6`. Same on every page, including the standalone landings.
+- Page container: `max-w-6xl mx-auto px-6`. Same on every page, including the standalone landings. The 12 column grid needs the extra width to breathe.
 - Vertical rhythm between sections: `mt-20 sm:mt-24`, then `border-t pt-10`.
 - Section grid: `grid-cols-1 sm:grid-cols-[1fr_2fr] gap-x-12 gap-y-8`.
 - Rows, the default container: `py-6`, hairline `border-t border-border/70` between them, nothing around them.
@@ -106,7 +106,8 @@ The marker underline (`MarkerUnderline` in `components/marker-underline.tsx`) ma
 
 - Avatar: square with `rounded-xl`, offset accent-soft square behind it. Circle avatars are gone.
 - Photos on the About page: full-bleed within the grid column, `rounded-xl`, no hover zoom, no gradient overlay.
-- Icons: lucide, `strokeWidth={1.75}`, `size-4` inline with text or `size-5` at the start of a row. Never inside a bordered icon tile.
+- Icons: lucide at `strokeWidth={1.5}`, `size-7` in a row's mark column, `size-4` inline with text. Brand marks come from `components/tech-icons.tsx`. Never inside a bordered icon tile, and never an emoji: emoji render differently on every platform and cannot take the accent colour.
+- Every item in a list of services, steps or skills carries a mark. A column of titles with no marks is what made the old layout feel empty.
 
 ## Accessibility minimums
 

@@ -1,5 +1,18 @@
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Gift,
+  PhoneCall,
+  Receipt,
+  Rocket,
+  Search,
+  Sparkles,
+  Unplug,
+  Wrench,
+} from "lucide-react";
 
+import { InstagramIcon } from "@/components/brand-icons";
+import { IndexRow, IndexRows, Section } from "@/components/section";
 import { MarkerUnderline } from "@/components/marker-underline";
 import { ProfileAvatar } from "@/components/profile-avatar";
 import { buttonVariants } from "@/components/ui/button";
@@ -36,6 +49,9 @@ export type AutomationLandingContent = {
   caseStudy: {
     label: string;
     name: string;
+    /** Public handle, shown next to the name so the claim is checkable. */
+    handle?: string;
+    handleUrl?: string;
     story: string;
     metrics: { value: string; label: string }[];
   };
@@ -62,6 +78,10 @@ export type AutomationLandingContent = {
 
 const AUDIT_EMAIL = site.email;
 
+const SERVICE_ICONS = [Sparkles, Unplug, Wrench];
+const STEP_ICONS = [PhoneCall, Search, Rocket];
+const PRICING_ICONS = [Gift, Receipt, BadgeCheck];
+
 function buildAuditMailto(subject: string, bodyLines: string[]): string {
   return `mailto:${AUDIT_EMAIL}?subject=${encodeURIComponent(
     subject
@@ -80,7 +100,7 @@ export function AutomationLanding({
 
   return (
     <main lang={content.lang} className="flex-1 px-6 py-16 sm:py-24">
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-6xl">
         {/* Hero. No label above the headline, on purpose. See DESIGN.md. */}
         <header>
           <h1 className="max-w-3xl text-balance font-display text-[2.9rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl md:text-7xl">
@@ -117,67 +137,51 @@ export function AutomationLanding({
         </header>
 
         {/* What I do */}
-        <section
-          aria-labelledby="services"
-          className="mt-24 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-12 sm:mt-28 sm:grid-cols-[1fr_2fr]"
-        >
-          <h2
-            id="services"
-            className="font-display text-3xl leading-tight tracking-[-0.01em] sm:text-4xl"
-          >
-            {content.services.heading}
-          </h2>
-          <ul className="divide-y divide-border/70">
-            {content.services.items.map((s) => (
-              <li key={s.title} className="py-6 first:pt-0">
-                <h3 className="text-lg font-semibold tracking-tight">
-                  {s.title}
-                </h3>
-                <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
-                  {s.body}
-                </p>
-              </li>
+        <Section id="services" heading={content.services.heading}>
+          <IndexRows>
+            {content.services.items.map((item, i) => (
+              <IndexRow
+                key={item.title}
+                icon={SERVICE_ICONS[i]}
+                title={item.title}
+              >
+                {item.body}
+              </IndexRow>
             ))}
-          </ul>
-        </section>
+          </IndexRows>
+        </Section>
 
         {/* How it works */}
-        <section
-          aria-labelledby="how"
-          className="mt-20 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-12 sm:mt-24 sm:grid-cols-[1fr_2fr]"
-        >
-          <div>
-            <h2
-              id="how"
-              className="font-display text-3xl leading-tight tracking-[-0.01em] sm:text-4xl"
-            >
-              {content.how.heading}
-            </h2>
-            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              {content.how.lede}
-            </p>
-          </div>
-          <ol className="divide-y divide-border/70">
-            {content.how.steps.map((s, i) => (
-              <li key={s.title} className="flex gap-6 py-6 first:pt-0 sm:gap-8">
-                <span
-                  aria-hidden
-                  className="font-display text-3xl leading-none text-mark-text sm:text-4xl"
+        <Section id="how" heading={content.how.heading} lede={content.how.lede}>
+          <IndexRows>
+            {content.how.steps.map((step, i) => {
+              const Icon = STEP_ICONS[i];
+              return (
+                <IndexRow
+                  key={step.title}
+                  mark={
+                    <span className="flex items-baseline gap-2">
+                      <span
+                        aria-hidden
+                        className="font-display text-3xl leading-none text-mark-text"
+                      >
+                        {i + 1}
+                      </span>
+                      <Icon
+                        className="size-5 text-mark-text transition-transform group-hover:scale-110"
+                        strokeWidth={1.5}
+                        aria-hidden
+                      />
+                    </span>
+                  }
+                  title={step.title}
                 >
-                  {i + 1}
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold tracking-tight">
-                    {s.title}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
-                    {s.body}
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
+                  {step.body}
+                </IndexRow>
+              );
+            })}
+          </IndexRows>
+        </Section>
 
         {/* Case study: the one dark block on the page */}
         <section
@@ -192,9 +196,22 @@ export function AutomationLanding({
               >
                 {content.caseStudy.name}
               </h2>
-              <p className="mt-2 text-sm text-background/60">
-                {content.caseStudy.label}
-              </p>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+                <p className="text-sm text-background/60">
+                  {content.caseStudy.label}
+                </p>
+                {content.caseStudy.handle && content.caseStudy.handleUrl ? (
+                  <a
+                    href={content.caseStudy.handleUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm text-background/80 underline-offset-4 hover:text-mark hover:underline"
+                  >
+                    <InstagramIcon className="size-4" aria-hidden />
+                    {content.caseStudy.handle}
+                  </a>
+                ) : null}
+              </div>
               <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-background/80">
                 {content.caseStudy.story}
               </p>
@@ -228,29 +245,19 @@ export function AutomationLanding({
         </section>
 
         {/* What it costs */}
-        <section
-          aria-labelledby="pricing"
-          className="mt-20 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-12 sm:mt-24 sm:grid-cols-[1fr_2fr]"
-        >
-          <h2
-            id="pricing"
-            className="font-display text-3xl leading-tight tracking-[-0.01em] sm:text-4xl"
-          >
-            {content.pricing.heading}
-          </h2>
-          <ul className="divide-y divide-border/70">
-            {content.pricing.items.map((p) => (
-              <li key={p.title} className="py-6 first:pt-0">
-                <h3 className="text-lg font-semibold tracking-tight">
-                  {p.title}
-                </h3>
-                <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
-                  {p.body}
-                </p>
-              </li>
+        <Section id="pricing" heading={content.pricing.heading}>
+          <IndexRows>
+            {content.pricing.items.map((item, i) => (
+              <IndexRow
+                key={item.title}
+                icon={PRICING_ICONS[i]}
+                title={item.title}
+              >
+                {item.body}
+              </IndexRow>
             ))}
-          </ul>
-        </section>
+          </IndexRows>
+        </Section>
 
         {/* About */}
         <section
