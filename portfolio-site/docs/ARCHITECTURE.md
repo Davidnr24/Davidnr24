@@ -6,7 +6,31 @@ A statically-generated marketing/portfolio site for David Navarro (Senior DevOps
 
 Goals:
 - Showcase personal projects, professional career, hobbies
-- Funnel for job interviews and freelance DevOps work
+- Funnel for job interviews, freelance DevOps work, and automation clients
+
+## Front doors
+
+The site is not one portfolio with a nav bar listing everything. It is three
+self-contained sites, so David can send a link to exactly the person it was
+written for and they see nothing else.
+
+| Door | Audience | Contains |
+|---|---|---|
+| `/resume` | Full-time hiring managers | Hero, the stack with brand marks, work history, and career / skills / projects / personal. No contracting, no agency, no percentages. |
+| `/freelance` | Contract buyers | Services, results with the numbers, how engagements run, and the same four inner pages. |
+| `/agency` | Coaches and small businesses | Automation and AI work, at `/agency/automation` (EN) and `/agency/automatizacion` (ES). |
+
+`/` and `/agency` are private indexes for navigating between doors. Both are
+behind a password in `proxy.ts`; see `docs/SECRETS.md`.
+
+Each door has its own `layout.tsx` rendering `SiteChrome`, which supplies the
+header, its navigation, the footer and the structured data. No door links to
+another.
+
+Career, skills, projects and personal are identical across the resume and
+freelance doors. The bodies live in `components/pages/` and are shared; the
+freelance copies canonicalise to the resume ones so search engines see one
+copy while visitors keep the right navigation.
 
 ## Stack
 
@@ -30,33 +54,32 @@ Default Next.js build (no `output: 'export'`). Every page is statically pre-rend
 ## Project layout (inside `portfolio-site/`)
 
 ```
-app/                   App Router routes
-├── layout.tsx         Root layout, fonts, theme provider
-├── page.tsx           Home (hero)
-├── projects/          (future) personal projects
-├── experience/        (future) career timeline
-├── about/             (future) bio + hobbies
-└── services/          (future, gated on Pro tier) freelance DevOps offering
+app/
+├── layout.tsx         Root layout, fonts, analytics listener
+├── page.tsx           Private index (password protected)
+├── resume/            Front door: full-time roles
+│   ├── layout.tsx     SiteChrome with the resume navigation
+│   ├── page.tsx       Hero, stack, work history
+│   └── career|skills|projects|personal/
+├── freelance/         Front door: contract work
+│   ├── layout.tsx     SiteChrome with the freelance navigation
+│   ├── page.tsx       Services, results, engagement process
+│   └── career|skills|projects|personal/
+└── agency/            Front door: automation clients
+    ├── page.tsx       Private index (password protected)
+    ├── automation/    English landing
+    └── automatizacion/ Spanish landing
 
 components/
-├── ui/                shadcn primitives (do not edit by hand — managed by CLI)
-└── ...                custom composite components
+├── ui/                shadcn primitives (do not edit by hand, managed by CLI)
+├── pages/             Shared bodies for the four inner pages
+├── site-chrome.tsx    Header + footer + structured data for one door
+├── stack-list.tsx     The tech stack rows
+└── tech-icons.tsx     Inlined brand marks
 
-content/               (future) MDX or TS data files for project entries, jobs, etc.
-
-lib/
-├── utils.ts           cn() helper from shadcn
-├── env.ts             NEXT_PUBLIC_* access, analytics on/off gate
-└── analytics.ts       CtaName union + cta() attribute helper
-
-instrumentation-client.ts   PostHog init (see docs/ANALYTICS.md)
-
-public/                static assets
-
-docs/                  this directory — all project docs live here
-DESIGN.md              design tokens — read before any UI work
-components.json        shadcn config
-next.config.ts
+content/               Typed data: career, skills, projects, stack, site
+lib/                   cn(), nav per door, mailto builders, analytics helpers
+proxy.ts               Basic auth on the two private indexes
 ```
 
 ## Content model

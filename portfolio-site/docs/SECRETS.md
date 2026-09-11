@@ -16,6 +16,7 @@
 | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | **GitHub repo Secrets** (`gh secret set`) | The deploy workflow only |
 | Server-side env vars for the app (none today; future: e.g., contact-form provider key) | **Vercel project Environment Variables** (per environment: Production / Preview / Development) | Next.js server runtime; pulled into local `.env.local` via `vercel env pull` |
 | `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | **Vercel project env vars** (Production + Preview) | Browser bundle. The PostHog project key is write-only ingest and is public by design. |
+| `SITE_PASSWORD` | **Vercel project env var**, marked Secret (Production + Preview) | `proxy.ts`, server side only. Basic auth on the two private index pages, `/` and `/agency`. Never prefix it with `NEXT_PUBLIC_`: that would ship the password to every visitor. |
 | Local-only development secrets | **`portfolio-site/.env.local`** (git-ignored) — populated by `vercel env pull` | `npm run dev` |
 
 ## Local dev workflow
