@@ -106,7 +106,11 @@ The marker underline (`MarkerUnderline` in `components/marker-underline.tsx`) ma
 
 - Avatar: square with `rounded-xl`, offset accent-soft square behind it. Circle avatars are gone.
 - Photos on the About page: full-bleed within the grid column, `rounded-xl`, no hover zoom, no gradient overlay.
-- Icons: lucide at `strokeWidth={1.5}`, `size-7` in a row's mark column, `size-4` inline with text. Brand marks come from `components/tech-icons.tsx`. Never inside a bordered icon tile, and never an emoji: emoji render differently on every platform and cannot take the accent colour.
+- Two kinds of mark, and they do different jobs:
+  - **Product marks** (`components/logo-icons.tsx`) keep their real brand colours. An RDS icon that is not RDS blue is not recognisable as RDS, which defeats the point. Used wherever a specific product is named.
+  - **Concept icons** are lucide at `strokeWidth={1.5}` in `mark-text`, for section rows and for anything that is a practice rather than a product.
+- Sizes: `size-9` for a row's mark column on a landing page, `size-7` for a concept icon, `size-5` inline in a tool list.
+- Never inside a bordered icon tile, and never an emoji: emoji render differently on every platform, cannot take a colour, and clash with the serif setting.
 - Every item in a list of services, steps or skills carries a mark. A column of titles with no marks is what made the old layout feel empty.
 
 ## Accessibility minimums

@@ -67,18 +67,22 @@ export function IndexRow({
   aside?: React.ReactNode;
   children?: React.ReactNode;
 }) {
+  const hasMark = Boolean(mark || Icon);
+
   return (
-    <li className="group grid grid-cols-1 items-start gap-x-8 gap-y-3 py-8 transition-colors hover:bg-mark-soft sm:grid-cols-12 sm:px-4 sm:py-9">
-      <div className="flex items-center sm:col-span-1 sm:justify-start sm:pt-1">
-        {mark ?? (Icon ? (
-          <Icon
-            className="size-7 text-mark-text transition-transform group-hover:scale-110"
-            strokeWidth={1.5}
-            aria-hidden
-          />
-        ) : null)}
-      </div>
-      <div className="sm:col-span-4">
+    <li className="group grid grid-cols-1 items-start gap-x-8 gap-y-3 py-8 transition-colors hover:bg-mark-soft sm:-mx-4 sm:grid-cols-12 sm:px-4 sm:py-9">
+      {hasMark ? (
+        <div className="flex items-center sm:col-span-1 sm:justify-start sm:pt-1">
+          {mark ?? (Icon ? (
+            <Icon
+              className="size-7 text-mark-text transition-transform group-hover:scale-110"
+              strokeWidth={1.5}
+              aria-hidden
+            />
+          ) : null)}
+        </div>
+      ) : null}
+      <div className={hasMark ? "sm:col-span-4" : "sm:col-span-5"}>
         <h3 className="font-display text-2xl leading-tight tracking-[-0.01em] sm:text-3xl">
           {title}
         </h3>

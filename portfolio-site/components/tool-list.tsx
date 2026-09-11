@@ -1,8 +1,13 @@
+import { LOGO_FOR, LogoMark } from "@/components/logo-icons";
 import { AwsWordmark, TOOL_MARKS } from "@/components/tech-icons";
 
 function Mark({ name }: { name: string }) {
-  const mark = TOOL_MARKS[name];
+  // Real product mark first: an RDS icon says RDS in a way a wordmark cannot.
+  const logo = LOGO_FOR[name];
+  if (logo) return <LogoMark name={logo} className="size-5" />;
 
+  // Monochrome fallback for the handful with no logo in the set.
+  const mark = TOOL_MARKS[name];
   if (mark === "aws") {
     return (
       <AwsWordmark className="text-[0.65rem] font-bold leading-none tracking-tight text-foreground" />
@@ -17,7 +22,7 @@ function Mark({ name }: { name: string }) {
 }
 
 /**
- * A wrapped list of tools, each with its brand mark. Used instead of a wall of
+ * A wrapped list of tools, each with its product mark. Replaces a wall of
  * comma-separated names: same information, read at a glance.
  */
 export function ToolList({ items }: { items: readonly string[] }) {
