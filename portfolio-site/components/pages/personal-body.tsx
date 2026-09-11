@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-
 export function PersonalBody({ children }: { children?: React.ReactNode }) {
   return (
     <main className="px-6 py-16 sm:py-24">
@@ -14,41 +13,34 @@ export function PersonalBody({ children }: { children?: React.ReactNode }) {
         <div className="mt-16 grid grid-cols-1 gap-12 border-t border-border pt-10 md:grid-cols-3">
           <div className="space-y-6 text-base leading-relaxed text-foreground/90 md:col-span-2 md:text-lg">
             <p>
-              I was born and raised in Spain, between Alcalá de Henares and
-              Madrid, and moved to the US to start my career. From there it was
-              Virginia, then Boston, and eventually Charlotte, NC, where
-              I&rsquo;m based now. I&rsquo;m bilingual in English and Spanish,
-              and bouncing between cultures and time zones has come in handy on
-              every distributed team I&rsquo;ve worked with.
+              I grew up in Spain, between Alcalá de Henares and Madrid, and
+              moved to the US to start my career. Virginia first, then Boston,
+              and now Charlotte. I work in English and Spanish, which has come
+              in useful more often than I expected, since most of the teams
+              I&rsquo;ve been on were spread across time zones anyway.
             </p>
             <p>
-              Most evenings I end up back at the keyboard anyway, building
-              something. Sometimes that&rsquo;s a side project that&rsquo;s
-              been bouncing around my head for weeks, other times it&rsquo;s
-              just an excuse to play with a tool I&rsquo;ve been meaning to
-              learn. It&rsquo;s where I get to make the messy first version of
-              things before any of it goes near real production.
+              Most evenings I end up building something. Usually a side
+              project I&rsquo;ve been turning over for weeks. Sometimes
+              it&rsquo;s just an excuse to try a tool I keep reading about.
+              Either way it&rsquo;s where the bad first version gets made,
+              well before anything goes near production.
             </p>
             <p>
-              I grew up obsessed with Real Madrid, like most kids in Spain, and
-              a kickabout with friends on a Sunday still beats most other ways
-              to spend an afternoon. The rest of the week I try to stay active.
-              Tennis when the weather plays along, snowboarding whenever I can
-              get out to the mountains, and the gym to keep things consistent
-              in between.
+              Real Madrid since I was a kid, like most people I grew up with.
+              I still play football with friends most Sundays. Tennis when the
+              weather cooperates, snowboarding whenever I can get to the
+              mountains, gym the rest of the time.
             </p>
             <p>
-              Off the pitch, chess is the other thing I take seriously.
-              I&rsquo;ve been playing for years and I&rsquo;m hard to beat.
-              Same instinct as the day job: pattern-match, think a few moves
-              ahead, and don&rsquo;t blow up your own position.
+              Chess is the other one. I&rsquo;ve played for years and I
+              don&rsquo;t lose often.
             </p>
             <p>
-              I still split a good chunk of the year between the US and Europe
-              and will take any excuse to fly out and see somewhere new on the
-              continent. And when I need a break from coding without leaving
-              home, the move is usually a drive in my manual Chevy Camaro. Best
-              way I&rsquo;ve found to clear my head.
+              I spend a good part of the year back in Europe and usually add a
+              trip somewhere onto it. When I want to switch off without going
+              anywhere, I drive. The Camaro is a manual, which is most of the
+              point.
             </p>
           </div>
 
