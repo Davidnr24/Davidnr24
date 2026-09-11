@@ -10,13 +10,14 @@ export const metadata: Metadata = {
     absolute: "Automatización para coaches online | David Navarro",
   },
   description:
-    "Creo automatizaciones para coaches online: notas de clientes, resúmenes de sesión y seguimientos que se hacen solos. Recupera horas cada semana y acepta más clientes. Auditoría gratuita.",
+    "Automatizo con inteligencia artificial el trabajo repetitivo de tu negocio y simplifico las herramientas que usas. Altas de clientes, notas, resúmenes y seguimientos que se hacen solos. La consulta es gratis.",
   keywords: [
+    "automatización con IA para negocios",
     "automatización para coaches",
-    "coaching online automatización",
-    "notas de clientes automáticas",
-    "resúmenes de sesión",
-    "gestión de clientes coaching",
+    "automatización de procesos",
+    "alta de clientes automática",
+    "simplificar herramientas",
+    "consulta gratuita automatización",
     "David Navarro",
   ],
   alternates: {
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Automatización para coaches online | David Navarro",
     description:
-      "Notas de clientes, resúmenes de sesión y seguimientos que se hacen solos. Recupera horas cada semana con una auditoría gratuita.",
+      "Automatización con IA del trabajo repetitivo con tus clientes, y menos herramientas para llevarlo. La consulta es gratis.",
     url: "/automatizacion",
     type: "website",
     locale: "es_ES",
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Automatización para coaches online | David Navarro",
     description:
-      "Notas de clientes, resúmenes de sesión y seguimientos que se hacen solos. Recupera horas cada semana con una auditoría gratuita.",
+      "Automatización con IA del trabajo repetitivo con tus clientes, y menos herramientas para llevarlo. La consulta es gratis.",
   },
 };
 
@@ -47,112 +48,108 @@ export const metadata: Metadata = {
 // a la redacción exacta de la cita antes de difundir la página.
 const content: AutomationLandingContent = {
   lang: "es-ES",
-  topRule: "david-navarro.dev / automatización para coaches online",
   hero: {
     h1Before: "Recupera",
     h1Marked: "horas",
     h1After: "cada semana. Acepta más clientes, no más papeleo.",
     subhead:
-      "Creo automatizaciones para coaches online para que el alta de clientes, las notas de sesión y los seguimientos se hagan solos.",
-    cta: "Pide tu auditoría gratuita",
-    micro: ["gratis", "30 minutos", "sin tecnicismos"],
+      "Uso inteligencia artificial para automatizar el trabajo repetitivo con tus clientes, y reduzco el montón de herramientas que necesitas para llevar tu negocio.",
+    cta: "Pide tu consulta gratuita",
+    micro: ["totalmente gratis", "30 minutos", "sin tecnicismos"],
   },
   mailto: {
-    subject: "Auditoría gratuita de mi forma de trabajar",
+    subject: "Consulta gratuita",
     bodyLines: [
       "Hola David:",
       "",
-      "Me gustaría una auditoría gratuita de mi forma de trabajar.",
+      "Me gustaría pedir la consulta gratuita.",
       "",
       "- Mi nombre:",
-      "- Tipo de coaching que hago:",
+      "- A qué se dedica mi negocio:",
       "- Número aproximado de clientes:",
-      "- La tarea de gestión que más tiempo me quita:",
+      "- La tarea que más tiempo me quita cada semana:",
       "",
       "¡Gracias!",
     ],
   },
-  pain: {
-    heading: "¿Te suena?",
+  services: {
+    heading: "Qué hago",
     items: [
       {
-        title: "Notas a las 9 de la noche",
-        body: "Terminas tu última sesión y te pasas la noche pasando notas a limpio mientras la cena se enfría.",
+        title: "Automatizo tus procesos con IA",
+        body: "Alta de clientes, notas de sesión, resúmenes, seguimientos. El trabajo que repites con cada cliente pasa a hacerlo el software, y tú lo revisas antes de que le llegue nada a nadie.",
       },
       {
-        title: "Copiar, pegar, repetir",
-        body: "Los mismos datos del cliente acaban escritos en tu hoja de cálculo, tu app de coaching y tu correo. Tres veces.",
+        title: "Simplifico tus herramientas",
+        body: "Casi todo el mundo paga cinco herramientas que se solapan a medias, y aun así copia los mismos datos de una a otra. Lo reduzco a lo que de verdad usas y hago que el resto se entienda entre sí.",
       },
       {
-        title: "Seguimientos que se escapan",
-        body: "Un seguimiento se te pasa, un cliente se siente olvidado y solo te das cuenta cuando deja de responder.",
+        title: "Construyo lo que falta",
+        body: "Cuando nada de lo que hay encaja con tu forma de trabajar, te construyo una aplicación pequeña que hace justo eso y nada más.",
       },
     ],
   },
   how: {
-    heading: "Tres pasos. Tú tienes el control.",
+    heading: "Cómo funciona",
+    lede: "Tres pasos, y el primero no cuesta nada.",
     steps: [
       {
-        title: "Una llamada rápida",
-        body: "Repasamos cómo organizas tu semana. Identifico dónde se va tu tiempo de verdad y qué puede funcionar solo.",
+        title: "Una llamada gratuita",
+        body: "Treinta minutos sobre cómo llevas tu semana de verdad: qué haces cada día, qué repites con cada cliente y qué vas dejando para después. Sin coste, sin compromiso y sin tecnicismos.",
       },
       {
-        title: "Yo lo construyo",
-        body: "Conecto las herramientas que ya usas. Tú sigues con tus clientes. Para ellos no cambia nada.",
+        title: "Identifico qué te está costando tiempo",
+        body: "Reviso tu día a día y vuelvo con las pocas cosas que merece la pena arreglar primero, y con las horas que te está costando cada una.",
       },
       {
-        title: "Tú lo apruebas",
-        body: "Lo revisas todo y das el visto bueno antes de ponerlo en marcha. Nada funciona sin tu OK.",
+        title: "Lo construyo y tú lo apruebas",
+        body: "Conecto las herramientas que ya usas. Nada se pone en marcha hasta que lo has visto y lo has aprobado, y para tus clientes no cambia nada.",
       },
     ],
   },
   caseStudy: {
-    eyebrow: "caso real",
+    label: "Caso real",
     name: "AlfreHealth",
     story:
-      "Alfre lleva AlfreHealth, un negocio de coaching de salud online. Cada cliente nuevo le suponía la misma hora de gestión: capturas del formulario inicial, apuntes de la primera llamada, la ficha del cliente escrita a mano y el plan del primer mes. Le construí una aplicación sencilla que hace esa parte. Pega los apuntes de la llamada, elige el cliente, y la app redacta el resumen de la llamada, el plan del mes uno y el mensaje de bienvenida. Él lo lee, cambia un par de cosas y lo envía.",
-    flow: [
-      "Junta el formulario inicial y los apuntes de la llamada en una sola ficha de cliente, sin copiar nada a mano.",
-      "Redacta el plan del primer mes para que Alfre lo revise. Al cliente no le llega nada hasta que él lo aprueba.",
-      "Lo siguiente: elige una de sus propias rutinas de entrenamiento de una lista y la app la mete en el plan.",
-    ],
+      "Alfre lleva un negocio de coaching de salud online. Cada cliente nuevo le suponía la misma hora de gestión: capturas del formulario inicial, apuntes de la primera llamada, la ficha del cliente escrita a mano y el plan del primer mes. Le construí una aplicación sencilla que hace esa parte. Pega los apuntes de la llamada, elige el cliente, y la aplicación redacta el resumen, el plan del mes uno y el mensaje de bienvenida. Él lo lee, cambia lo que quiere y lo envía.",
     metrics: [
       { value: "1 h", label: "ahorrada con cada cliente nuevo" },
-      { value: "15 min", label: "para dar de alta a un cliente. Antes, más de una hora." },
-      { value: "1", label: "doble clic para ejecutarlo. Sin terminal, sin saber de informática." },
+      { value: "15 min", label: "para dar de alta a un cliente, antes más de una hora" },
+      { value: "0", label: "pasos que tiene que recordar" },
     ],
   },
   testimonial: {
     srHeading: "Testimonio",
     quote:
-      "Lo ha hecho de locos, lo ha hecho muy bien. Una hora por cliente, una hora por onboarding, está de locos.",
+      "Lo ha hecho muy bien. Una hora ahorrada por cliente, en cada onboarding. Está de locos.",
     name: "Alfre, coach de salud online",
   },
   pricing: {
-    heading: "Precio cerrado. Pagas cuando funciona.",
+    heading: "Cuánto cuesta",
     items: [
       {
-        title: "Precio por fase",
+        title: "La consulta es gratis",
+        body: "La llamada, y lo que salga de ella, no te cuestan nada. Da igual que luego trabajemos juntos o no.",
+      },
+      {
+        title: "Precio cerrado por fase",
         body: "Acordamos qué entrega cada fase y cuánto cuesta antes de empezar. No hay contador de horas.",
       },
       {
-        title: "Se paga cuando está en marcha",
-        body: "Pagas una fase cuando ya está funcionando en tu negocio, no antes.",
-      },
-      {
-        title: "Empezamos por algo pequeño",
-        body: "La primera automatización es pequeña a propósito. La ves funcionar antes de hablar de nada más grande.",
+        title: "Pagas cuando está funcionando",
+        body: "Una fase se paga cuando ya funciona en tu negocio, no antes.",
       },
     ],
   },
   about: {
     heading: "Hola, soy David.",
-    body: "Soy ingeniero sénior y llevo cinco años automatizando el trabajo de grandes empresas. Ahora uso esas mismas habilidades para ayudar a coaches online a trabajar más ligeros: las tareas repetitivas del día a día se hacen solas y tú puedes aceptar más clientes sin quemarte.",
+    body: "Soy ingeniero sénior. Llevo cinco años automatizando el trabajo de grandes empresas, de esas que miden el ahorro en horas de ingeniería al mes. Ahora hago lo mismo para negocios pequeños, donde una hora al día importa muchísimo más.",
   },
   finalCta: {
-    heading: "¿Quieres saber qué podrías delegar?",
-    body: "Pide una auditoría gratuita. Vemos cómo organizas tu semana y te digo exactamente qué se puede automatizar para que aceptes más clientes sin añadir horas. Y si no encajamos, te llevas ideas igualmente.",
-    cta: "Pide tu auditoría gratuita",
+    heading: "Vamos a encontrar una hora en tu semana.",
+    body: "Pide la llamada. Repasamos cómo llevas la semana y te digo qué podría funcionar sin ti. Si no encajamos, las ideas te las quedas igual.",
+    cta: "Pide tu consulta gratuita",
+    note: "Gratis y sin compromiso.",
   },
 };
 

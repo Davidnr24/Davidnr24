@@ -1,29 +1,15 @@
-import {
-  ArrowRight,
-  BadgeCheck,
-  BellOff,
-  ClipboardList,
-  Coffee,
-  Dumbbell,
-  Hammer,
-  MessagesSquare,
-  Receipt,
-  ShieldCheck,
-  Stamp,
-  StickyNote,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-import { cta } from "@/lib/analytics";
 import { MarkerUnderline } from "@/components/marker-underline";
 import { ProfileAvatar } from "@/components/profile-avatar";
 import { buttonVariants } from "@/components/ui/button";
+import { cta } from "@/lib/analytics";
 import { site } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 export type AutomationLandingContent = {
   /** BCP 47 tag stamped on <main> so screen readers switch language. */
   lang: string;
-  topRule: string;
   hero: {
     /** Headline pieces; `marked` gets the hand-drawn orange underline. */
     h1Before: string;
@@ -31,26 +17,26 @@ export type AutomationLandingContent = {
     h1After: string;
     subhead: string;
     cta: string;
-    /** Three short mono words joined by orange slashes. */
+    /** Three short words under the button, joined by orange slashes. */
     micro: [string, string, string];
   };
   mailto: {
     subject: string;
     bodyLines: string[];
   };
-  pain: {
+  services: {
     heading: string;
     items: { title: string; body: string }[];
   };
   how: {
     heading: string;
+    lede: string;
     steps: { title: string; body: string }[];
   };
   caseStudy: {
-    eyebrow: string;
+    label: string;
     name: string;
     story: string;
-    flow: string[];
     metrics: { value: string; label: string }[];
   };
   testimonial: {
@@ -70,15 +56,11 @@ export type AutomationLandingContent = {
     heading: string;
     body: string;
     cta: string;
+    note: string;
   };
 };
 
 const AUDIT_EMAIL = site.email;
-
-const painIcons = [Coffee, StickyNote, BellOff];
-const stepIcons = [MessagesSquare, Hammer, Stamp];
-const flowIcons = [ClipboardList, ShieldCheck, Dumbbell];
-const pricingIcons = [Receipt, BadgeCheck, Hammer];
 
 function buildAuditMailto(subject: string, bodyLines: string[]): string {
   return `mailto:${AUDIT_EMAIL}?subject=${encodeURIComponent(
@@ -97,23 +79,11 @@ export function AutomationLanding({
   );
 
   return (
-    <main
-      lang={content.lang}
-      className="flex-1 px-6 py-10 sm:py-14"
-    >
+    <main lang={content.lang} className="flex-1 px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-5xl">
-        {/* Standalone top rule */}
-        <p className="flex items-center gap-2 font-mono text-xs text-muted-foreground">
-          <span
-            aria-hidden
-            className="inline-block size-2 bg-(--mark)"
-          />
-          {content.topRule}
-        </p>
-
-        {/* Hero */}
-        <header className="mt-14 sm:mt-20">
-          <h1 className="max-w-3xl text-balance text-[2.6rem]/[1.05] font-semibold tracking-tight sm:text-6xl/[1.05]">
+        {/* Hero. No label above the headline, on purpose. See DESIGN.md. */}
+        <header>
+          <h1 className="max-w-3xl text-balance font-display text-[2.9rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl md:text-7xl">
             {content.hero.h1Before}{" "}
             <span className="relative inline-block whitespace-nowrap">
               {content.hero.h1Marked}
@@ -121,162 +91,118 @@ export function AutomationLanding({
             </span>{" "}
             {content.hero.h1After}
           </h1>
-          <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
             {content.hero.subhead}
           </p>
 
-          <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
               href={auditMailto}
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "w-full bg-(--mark) px-5 text-(--mark-ink) hover:bg-(--mark-hover) sm:w-auto"
+                "w-full bg-mark px-6 text-mark-ink hover:bg-mark-hover sm:w-auto"
               )}
               {...cta("workflow_audit", "automation_hero")}
             >
               {content.hero.cta}
               <ArrowRight className="size-4" aria-hidden />
             </a>
-            <p className="font-mono text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               {content.hero.micro[0]}{" "}
-              <span className="text-(--mark-text)">/</span>{" "}
-              {content.hero.micro[1]}{" "}
-              <span className="text-(--mark-text)">/</span>{" "}
+              <span className="text-mark-text">/</span>{" "}
+              {content.hero.micro[1]} <span className="text-mark-text">/</span>{" "}
               {content.hero.micro[2]}
             </p>
           </div>
         </header>
 
-        {/* Pain */}
+        {/* What I do */}
         <section
-          aria-labelledby="pain"
-          className="mt-24 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-10 sm:mt-28 sm:grid-cols-[1fr_2fr]"
+          aria-labelledby="services"
+          className="mt-24 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-12 sm:mt-28 sm:grid-cols-[1fr_2fr]"
         >
-          <div>
-            <p className="font-mono text-xs text-(--mark-text)">(01)</p>
-            <h2
-              id="pain"
-              className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl"
-            >
-              {content.pain.heading}
-            </h2>
-          </div>
-          <ul>
-            {content.pain.items.map((p, i) => {
-              const Icon = painIcons[i];
-              return (
-                <li
-                  key={p.title}
-                  className={cn(
-                    "flex gap-4 py-5 sm:gap-6",
-                    i > 0 && "border-t border-border/70"
-                  )}
-                >
-                  <Icon
-                    className="mt-1 size-5 shrink-0 text-(--mark-text)"
-                    strokeWidth={1.75}
-                    aria-hidden
-                  />
-                  <div>
-                    <h3 className="text-base font-semibold tracking-tight">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {p.body}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
+          <h2
+            id="services"
+            className="font-display text-3xl leading-tight tracking-[-0.01em] sm:text-4xl"
+          >
+            {content.services.heading}
+          </h2>
+          <ul className="divide-y divide-border/70">
+            {content.services.items.map((s) => (
+              <li key={s.title} className="py-6 first:pt-0">
+                <h3 className="text-lg font-semibold tracking-tight">
+                  {s.title}
+                </h3>
+                <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
+                  {s.body}
+                </p>
+              </li>
+            ))}
           </ul>
         </section>
 
         {/* How it works */}
         <section
           aria-labelledby="how"
-          className="mt-20 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-10 sm:mt-24 sm:grid-cols-[1fr_2fr]"
+          className="mt-20 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-12 sm:mt-24 sm:grid-cols-[1fr_2fr]"
         >
           <div>
-            <p className="font-mono text-xs text-(--mark-text)">(02)</p>
             <h2
               id="how"
-              className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl"
+              className="font-display text-3xl leading-tight tracking-[-0.01em] sm:text-4xl"
             >
               {content.how.heading}
             </h2>
+            <p className="mt-3 max-w-xs text-sm leading-relaxed text-muted-foreground">
+              {content.how.lede}
+            </p>
           </div>
-          <ol className="relative ml-4 border-l border-(--mark-border) sm:ml-5">
-            {content.how.steps.map((s, i) => {
-              const Icon = stepIcons[i];
-              return (
-                <li
-                  key={s.title}
-                  className="relative pb-10 pl-8 last:pb-1 sm:pl-10"
+          <ol className="divide-y divide-border/70">
+            {content.how.steps.map((s, i) => (
+              <li key={s.title} className="flex gap-6 py-6 first:pt-0 sm:gap-8">
+                <span
+                  aria-hidden
+                  className="font-display text-3xl leading-none text-mark-text sm:text-4xl"
                 >
-                  <span
-                    aria-hidden
-                    className="absolute -left-4 top-0 inline-flex size-8 items-center justify-center rounded-full bg-(--mark) font-mono text-xs font-semibold text-(--mark-ink) sm:-left-4.5 sm:size-9"
-                  >
-                    {i + 1}
-                  </span>
-                  <h3 className="flex items-center gap-2 text-base font-semibold tracking-tight">
+                  {i + 1}
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold tracking-tight">
                     {s.title}
-                    <Icon
-                      className="size-4 text-(--mark-text)"
-                      strokeWidth={1.75}
-                      aria-hidden
-                    />
                   </h3>
-                  <p className="mt-1 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
+                  <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
                     {s.body}
                   </p>
-                </li>
-              );
-            })}
+                </div>
+              </li>
+            ))}
           </ol>
         </section>
 
-        {/* Case study: the one dark, editorial moment on the page */}
+        {/* Case study: the one dark block on the page */}
         <section
           aria-labelledby="case-study"
           className="mt-20 overflow-hidden rounded-xl bg-foreground text-background sm:mt-24"
         >
-          <div className="grid grid-cols-1 gap-10 p-7 sm:grid-cols-[3fr_2fr] sm:gap-14 sm:p-12">
+          <div className="grid grid-cols-1 gap-10 p-8 sm:grid-cols-[3fr_2fr] sm:gap-14 sm:p-14">
             <div>
-              <p className="font-mono text-xs text-(--mark)">
-                (03) {content.caseStudy.eyebrow}
-              </p>
               <h2
                 id="case-study"
-                className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl"
+                className="font-display text-3xl leading-tight sm:text-4xl"
               >
                 {content.caseStudy.name}
               </h2>
-              <p className="mt-4 max-w-xl text-pretty text-sm leading-relaxed text-background/70 sm:text-base">
+              <p className="mt-2 text-sm text-background/60">
+                {content.caseStudy.label}
+              </p>
+              <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-background/80">
                 {content.caseStudy.story}
               </p>
-              <ul className="mt-6 space-y-4">
-                {content.caseStudy.flow.map((text, i) => {
-                  const Icon = flowIcons[i];
-                  return (
-                    <li key={text} className="flex items-start gap-3">
-                      <Icon
-                        className="mt-0.5 size-4.5 shrink-0 text-(--mark)"
-                        strokeWidth={1.75}
-                        aria-hidden
-                      />
-                      <p className="text-sm leading-relaxed text-background/80 sm:text-base">
-                        {text}
-                      </p>
-                    </li>
-                  );
-                })}
-              </ul>
             </div>
-            <div className="flex flex-col justify-center gap-8 border-t border-background/15 pt-8 sm:border-l sm:border-t-0 sm:pl-12 sm:pt-0">
+            <div className="flex flex-col justify-center gap-8 border-t border-background/15 pt-8 sm:border-l sm:border-t-0 sm:pl-14 sm:pt-0">
               {content.caseStudy.metrics.map((m) => (
                 <div key={m.label}>
-                  <p className="font-mono text-4xl font-semibold tracking-tight text-(--mark) sm:text-5xl">
+                  <p className="font-mono text-4xl font-semibold tracking-tight text-mark sm:text-5xl">
                     {m.value}
                   </p>
                   <p className="mt-1 text-sm text-background/70">{m.label}</p>
@@ -286,81 +212,55 @@ export function AutomationLanding({
           </div>
         </section>
 
-        {/* Testimonial. Quote comes from the 1 Sept 2026 call with Alfre. */}
+        {/* Testimonial */}
         <section aria-labelledby="testimonial" className="mt-20 sm:mt-24">
           <h2 id="testimonial" className="sr-only">
             {content.testimonial.srHeading}
           </h2>
-          <figure className="mx-auto max-w-2xl">
-            <p
-              aria-hidden
-              className="font-serif text-7xl leading-none text-(--mark)"
-            >
-              &ldquo;
-            </p>
-            <blockquote className="-mt-6 pl-8 font-serif text-xl italic leading-relaxed sm:text-2xl">
-              {content.testimonial.quote}
+          <figure className="mx-auto max-w-3xl text-center">
+            <blockquote className="text-balance font-display text-2xl leading-snug sm:text-3xl">
+              &ldquo;{content.testimonial.quote}&rdquo;
             </blockquote>
-            <figcaption className="mt-5 pl-8 font-mono text-xs text-muted-foreground">
-              {content.testimonial.name}{" "}
-              <span className="text-(--mark-text)">/</span> AlfreHealth
+            <figcaption className="mt-6 text-sm text-muted-foreground">
+              {content.testimonial.name}
             </figcaption>
           </figure>
         </section>
 
-        {/* Pricing model */}
+        {/* What it costs */}
         <section
           aria-labelledby="pricing"
-          className="mt-20 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-10 sm:mt-24 sm:grid-cols-[1fr_2fr]"
+          className="mt-20 grid grid-cols-1 gap-x-12 gap-y-8 border-t border-border pt-12 sm:mt-24 sm:grid-cols-[1fr_2fr]"
         >
-          <div>
-            <p className="font-mono text-xs text-(--mark-text)">(04)</p>
-            <h2
-              id="pricing"
-              className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl"
-            >
-              {content.pricing.heading}
-            </h2>
-          </div>
-          <ul>
-            {content.pricing.items.map((p, i) => {
-              const Icon = pricingIcons[i];
-              return (
-                <li
-                  key={p.title}
-                  className={cn(
-                    "flex gap-4 py-5 sm:gap-6",
-                    i > 0 && "border-t border-border/70"
-                  )}
-                >
-                  <Icon
-                    className="mt-1 size-5 shrink-0 text-(--mark-text)"
-                    strokeWidth={1.75}
-                    aria-hidden
-                  />
-                  <div>
-                    <h3 className="text-base font-semibold tracking-tight">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1 max-w-lg text-sm leading-relaxed text-muted-foreground sm:text-base">
-                      {p.body}
-                    </p>
-                  </div>
-                </li>
-              );
-            })}
+          <h2
+            id="pricing"
+            className="font-display text-3xl leading-tight tracking-[-0.01em] sm:text-4xl"
+          >
+            {content.pricing.heading}
+          </h2>
+          <ul className="divide-y divide-border/70">
+            {content.pricing.items.map((p) => (
+              <li key={p.title} className="py-6 first:pt-0">
+                <h3 className="text-lg font-semibold tracking-tight">
+                  {p.title}
+                </h3>
+                <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
+                  {p.body}
+                </p>
+              </li>
+            ))}
           </ul>
         </section>
 
         {/* About */}
         <section
           aria-labelledby="about"
-          className="mt-20 flex flex-col items-start gap-7 border-t border-border pt-10 sm:mt-24 sm:flex-row sm:items-center sm:gap-10"
+          className="mt-20 flex flex-col items-start gap-8 border-t border-border pt-12 sm:mt-24 sm:flex-row sm:items-center sm:gap-12"
         >
           <div className="relative shrink-0">
             <span
               aria-hidden
-              className="absolute -right-2 -top-2 size-full rounded-xl bg-(--mark-soft)"
+              className="absolute -right-2 -top-2 size-full rounded-xl bg-mark-soft"
             />
             <ProfileAvatar
               src="/profile.png"
@@ -368,50 +268,50 @@ export function AutomationLanding({
             />
           </div>
           <div>
-            <p className="font-mono text-xs text-(--mark-text)">(05)</p>
             <h2
               id="about"
-              className="mt-2 text-xl font-semibold tracking-tight"
+              className="font-display text-2xl leading-tight sm:text-3xl"
             >
               {content.about.heading}
             </h2>
-            <p className="mt-2 max-w-2xl text-pretty text-sm leading-relaxed text-muted-foreground sm:text-base">
+            <p className="mt-3 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground">
               {content.about.body}
             </p>
           </div>
         </section>
 
-        {/* Final CTA: solid orange band */}
-        <section className="mt-20 rounded-xl bg-(--mark) p-7 text-(--mark-ink) sm:mt-24 sm:p-12">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        {/* Final CTA */}
+        <section className="mt-20 rounded-xl bg-mark p-8 text-mark-ink sm:mt-24 sm:p-14">
+          <div className="flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h2 className="max-w-md text-balance text-2xl font-semibold tracking-tight sm:text-3xl">
+              <h2 className="max-w-lg text-balance font-display text-3xl leading-tight sm:text-4xl">
                 {content.finalCta.heading}
               </h2>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-(--mark-ink)/80 sm:text-base">
+              <p className="mt-4 max-w-md text-base leading-relaxed text-mark-ink/80">
                 {content.finalCta.body}
               </p>
             </div>
-            <a
-              href={auditMailto}
-              className={cn(
-                buttonVariants({ size: "lg" }),
-                "w-full shrink-0 bg-foreground px-5 text-background hover:bg-foreground/85 sm:w-auto"
-              )}
-              {...cta("workflow_audit", "automation_close")}
-            >
-              {content.finalCta.cta}
-              <ArrowRight className="size-4" aria-hidden />
-            </a>
+            <div className="shrink-0">
+              <a
+                href={auditMailto}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "w-full bg-foreground px-6 text-background hover:bg-foreground/85 sm:w-auto"
+                )}
+                {...cta("workflow_audit", "automation_close")}
+              >
+                {content.finalCta.cta}
+                <ArrowRight className="size-4" aria-hidden />
+              </a>
+              <p className="mt-3 text-sm text-mark-ink/70 sm:text-right">
+                {content.finalCta.note}
+              </p>
+            </div>
           </div>
         </section>
 
-        <footer className="mt-14 flex items-center justify-between font-mono text-xs text-muted-foreground/70">
-          <span>© {new Date().getFullYear()} David Navarro</span>
-          <span
-            aria-hidden
-            className="inline-block size-2 bg-(--mark)"
-          />
+        <footer className="mt-16 border-t border-border pt-8 text-sm text-muted-foreground">
+          © {new Date().getFullYear()} {site.name}
         </footer>
       </div>
     </main>
