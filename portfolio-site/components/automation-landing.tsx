@@ -292,7 +292,7 @@ export function AutomationLanding({
 
         {/* Final CTA. With a Cal link configured this becomes a calendar the
             visitor books straight from; without one it stays an email draft. */}
-        {site.calLink ? (
+        {site.calendlyUrl ? (
           <section aria-labelledby="book" className="mt-24 sm:mt-32">
             <div className="flex flex-col gap-3 border-b-2 border-foreground pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
               <h2
@@ -309,7 +309,7 @@ export function AutomationLanding({
               {content.finalCta.body}
             </p>
             <div className="mt-10">
-              <BookingEmbed calLink={site.calLink} />
+              <BookingEmbed url={site.calendlyUrl} />
             </div>
             <p className="mt-6 text-sm text-muted-foreground">
               {content.finalCta.emailInstead}{" "}

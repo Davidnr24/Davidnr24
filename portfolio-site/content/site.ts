@@ -12,10 +12,11 @@ export const site = {
   resumeHref: "/David_Navarro_Resume.pdf",
   domain: "david-navarro.dev",
   /**
-   * Cal.com booking link, in the form "username/event-slug", eg.
-   * "david-navarro/consultation". While this is empty the agency pages fall
-   * back to an email CTA. Fill it in and the booking calendar appears, with
-   * no other change needed.
+   * Full Calendly event URL, eg.
+   * "https://calendly.com/david-navarro/free-consultation". While this is
+   * empty the agency pages keep the email CTA and no Calendly code is loaded
+   * at all. Paste the link in and the booking calendar appears, with no other
+   * change needed.
    */
-  calLink: "" as string,
+  calendlyUrl: "" as string,
 } as const;
