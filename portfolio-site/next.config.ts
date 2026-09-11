@@ -12,6 +12,22 @@ const POSTHOG_ASSETS_HOST = POSTHOG_HOST.replace(
 );
 
 const nextConfig: NextConfig = {
+  // The site reorganised into audience-specific front doors. Keep the old
+  // paths working for anything already shared or indexed.
+  async redirects() {
+    return [
+      { source: "/career", destination: "/resume/career", permanent: true },
+      { source: "/skills", destination: "/resume/skills", permanent: true },
+      { source: "/projects", destination: "/resume/projects", permanent: true },
+      { source: "/personal", destination: "/resume/personal", permanent: true },
+      { source: "/automation", destination: "/agency/automation", permanent: true },
+      {
+        source: "/automatizacion",
+        destination: "/agency/automatizacion",
+        permanent: true,
+      },
+    ];
+  },
   async rewrites() {
     return [
       {

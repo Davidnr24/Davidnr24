@@ -11,9 +11,11 @@ import { buildHireMeMailto } from "@/lib/mailto";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Freelance DevOps & Platform Engineering",
+  title: {
+    absolute: "Freelance DevOps & Platform Engineering · David Navarro",
+  },
   description:
-    "Hire David Navarro for freelance and contract DevOps / Platform Engineering work. AWS architecture and cost, Terraform and IaC, CI/CD pipelines, Kubernetes ops, platform reliability and security, and internal tooling. Remote, US East hours, bilingual EN / ES. 2 to 12 week engagements, hourly or fixed scope.",
+    "Hire David Navarro for contract DevOps and Platform Engineering. AWS architecture and cost, Terraform, CI/CD pipelines, Kubernetes, reliability and internal tooling. Remote, US East hours, bilingual EN / ES. Two to twelve week engagements.",
   alternates: { canonical: "/freelance" },
 };
 
@@ -44,10 +46,23 @@ const services = [
   },
 ];
 
+const metrics = [
+  { value: "40%", label: "faster deploys after rebuilding the CI/CD pipelines for ECS services at Agero" },
+  { value: "85%", label: "fewer critical vulnerabilities after hardening images and dependencies" },
+  { value: "99.997%", label: "platform availability, with shift-left QA and test automation" },
+];
+
+const moreMetrics = [
+  "30+ hours of manual ops work a month removed with Bash and Python automation.",
+  "AWS spend down 20% at Blue Apron by moving cross-account infrastructure to Terraform.",
+  "Mean time to detect cut in half with Datadog monitoring and alerting.",
+  "A custom CircleCI Orb replaced a paid third-party deploy product across the org.",
+];
+
 const howIWork = [
   {
     title: "Async first",
-    body: "A weekly written update and a shared channel. It works across time zones and it leaves a paper trail you can read later.",
+    body: "A weekly written update and a shared channel. It works across time zones and leaves a paper trail you can read later.",
   },
   {
     title: "Remote, English or Spanish",
@@ -78,7 +93,7 @@ const steps = [
   },
 ];
 
-export default function FreelancePage() {
+export default function FreelanceHome() {
   return (
     <main className="px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-5xl">
@@ -133,6 +148,49 @@ export default function FreelancePage() {
           </Rows>
         </Section>
 
+        {/* The one dark block: numbers, because contract buyers ask for them */}
+        <section
+          aria-labelledby="results"
+          className="mt-20 overflow-hidden rounded-xl bg-foreground text-background sm:mt-24"
+        >
+          <div className="grid grid-cols-1 gap-10 p-8 sm:grid-cols-[2fr_3fr] sm:gap-14 sm:p-14">
+            <div>
+              <h2
+                id="results"
+                className="font-display text-3xl leading-tight sm:text-4xl"
+              >
+                What changed on the last two platforms I ran.
+              </h2>
+              <ul className="mt-6 space-y-3">
+                {moreMetrics.map((m) => (
+                  <li
+                    key={m}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-background/75"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-2 inline-block size-1.5 shrink-0 bg-mark"
+                    />
+                    {m}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex flex-col justify-center gap-8 border-t border-background/15 pt-8 sm:border-l sm:border-t-0 sm:pl-14 sm:pt-0">
+              {metrics.map((m) => (
+                <div key={m.value}>
+                  <p className="font-mono text-4xl font-semibold tracking-tight text-mark sm:text-5xl">
+                    {m.value}
+                  </p>
+                  <p className="mt-1 max-w-sm text-sm text-background/70">
+                    {m.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <Section
           id="how-i-work"
           heading="How I work."
@@ -147,43 +205,34 @@ export default function FreelancePage() {
           </Rows>
         </Section>
 
-        {/* The one dark block on this page */}
-        <section
-          aria-labelledby="process"
-          className="mt-20 overflow-hidden rounded-xl bg-foreground p-8 text-background sm:mt-24 sm:p-14"
-        >
-          <h2
-            id="process"
-            className="max-w-lg text-balance font-display text-3xl leading-tight sm:text-4xl"
-          >
-            How an engagement runs.
-          </h2>
-          <ol className="mt-10 grid grid-cols-1 gap-x-14 gap-y-8 sm:grid-cols-2">
+        <Section id="process" heading="How an engagement runs.">
+          <ol className="divide-y divide-border/70">
             {steps.map((s, i) => (
-              <li key={s.title} className="flex gap-5">
+              <li key={s.title} className="flex gap-6 py-6 first:pt-0 sm:gap-8">
                 <span
                   aria-hidden
-                  className="font-display text-3xl leading-none text-mark"
+                  className="font-display text-3xl leading-none text-mark-text sm:text-4xl"
                 >
                   {i + 1}
                 </span>
                 <div>
-                  <h3 className="text-base font-semibold tracking-tight">
+                  <h3 className="text-lg font-semibold tracking-tight">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-background/75">
+                  <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">
                     {s.body}
                   </p>
                 </div>
               </li>
             ))}
           </ol>
-        </section>
+        </Section>
 
         <PageClose
           heading="Need a hand with platform work?"
           body="The button opens an email draft with the questions I would ask anyway: company, scope, timeline, stack. Five minutes to send."
           cta="Start a conversation"
+          href={buildHireMeMailto("a contract engagement")}
         />
       </div>
     </main>

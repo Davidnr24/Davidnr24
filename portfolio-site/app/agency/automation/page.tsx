@@ -21,17 +21,17 @@ export const metadata: Metadata = {
     "David Navarro",
   ],
   alternates: {
-    canonical: "/automation",
+    canonical: "/agency/automation",
     languages: {
-      en: "/automation",
-      es: "/automatizacion",
+      en: "/agency/automation",
+      es: "/agency/automatizacion",
     },
   },
   openGraph: {
     title: "Workflow automation for online coaches | David Navarro",
     description:
       "AI automation for the repetitive work around your clients, and fewer tools to run it on. The consultation is free.",
-    url: "/automation",
+    url: "/agency/automation",
     type: "website",
   },
   twitter: {

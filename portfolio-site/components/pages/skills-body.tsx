@@ -1,17 +1,8 @@
-import type { Metadata } from "next";
 
-import { PageClose } from "@/components/page-close";
 import { Row, Rows, Section } from "@/components/section";
 import { skillGroups, workProjects } from "@/content/skills";
 
-export const metadata: Metadata = {
-  title: "Skills & Work Projects",
-  description:
-    "Technical skill set of David Navarro, Senior DevOps / Platform Engineer. AWS, Kubernetes, Terraform, CI/CD, observability, and the platform projects shipped at Agero and Blue Apron.",
-  alternates: { canonical: "/skills" },
-};
-
-export default function SkillsPage() {
+export function SkillsBody({ children }: { children?: React.ReactNode }) {
   return (
     <main className="px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-5xl">
@@ -67,11 +58,7 @@ export default function SkillsPage() {
           </Rows>
         </Section>
 
-        <PageClose
-          heading="Want the long version?"
-          body="The résumé has the dates, the scope and the outcomes, formatted so an applicant tracking system can read it."
-          cta="Get in touch"
-        />
+        {children}
       </div>
     </main>
   );

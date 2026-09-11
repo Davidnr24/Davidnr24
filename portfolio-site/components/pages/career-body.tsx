@@ -1,19 +1,10 @@
-import type { Metadata } from "next";
 import { ExternalLink } from "lucide-react";
 
-import { PageClose } from "@/components/page-close";
 import { Row, Rows, Section } from "@/components/section";
 import { cta } from "@/lib/analytics";
 import { jobs, education, certifications } from "@/content/career";
 
-export const metadata: Metadata = {
-  title: "Career",
-  description:
-    "Five years of DevOps and Platform Engineering. David Navarro's career from a DevOps internship in Madrid to Senior Platform Engineering at Agero, with stops at Blue Apron. AWS, Kubernetes, Terraform, CI/CD. Certifications: AWS Solutions Architect, CKA, Terraform Associate.",
-  alternates: { canonical: "/career" },
-};
-
-export default function CareerPage() {
+export function CareerBody({ children }: { children?: React.ReactNode }) {
   return (
     <main className="px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-5xl">
@@ -102,10 +93,7 @@ export default function CareerPage() {
           </Rows>
         </Section>
 
-        <PageClose
-          heading="Hiring, or contracting?"
-          body="The button opens an email draft with the questions I would ask anyway: company, scope, timeline, stack."
-        />
+        {children}
       </div>
     </main>
   );

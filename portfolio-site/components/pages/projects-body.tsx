@@ -1,18 +1,9 @@
-import type { Metadata } from "next";
 
-import { PageClose } from "@/components/page-close";
 import { ProjectCard } from "@/components/project-card";
 import { Rows } from "@/components/section";
 import { personalProjects } from "@/content/personal-projects";
 
-export const metadata: Metadata = {
-  title: "Personal Projects",
-  description:
-    "Side projects David Navarro has built outside of work: Squadra (Next.js + Supabase), Astra DevOps (Internal Developer Platform for AWS), Xtock, Stylistic, and Generational Pictures. Full-stack, mobile, ML, and DevOps tooling.",
-  alternates: { canonical: "/projects" },
-};
-
-export default function ProjectsPage() {
+export function ProjectsBody({ children }: { children?: React.ReactNode }) {
   return (
     <main className="px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-5xl">
@@ -41,10 +32,7 @@ export default function ProjectsPage() {
           </Rows>
         </div>
 
-        <PageClose
-          heading="Want to talk through any of these?"
-          body="Happy to walk through the architecture, the trade-offs, or the messy parts that never made it into the description."
-        />
+        {children}
       </div>
     </main>
   );

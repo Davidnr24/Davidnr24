@@ -1,16 +1,7 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 
-import { PageClose } from "@/components/page-close";
 
-export const metadata: Metadata = {
-  title: "Personal",
-  description:
-    "A bit about David Navarro outside of work. Born and raised in Spain, based in Charlotte NC. Real Madrid fan, snowboarder, tennis player, chess player, and Chevy Camaro driver.",
-  alternates: { canonical: "/personal" },
-};
-
-export default function PersonalPage() {
+export function PersonalBody({ children }: { children?: React.ReactNode }) {
   return (
     <main className="px-6 py-16 sm:py-24">
       <div className="mx-auto w-full max-w-5xl">
@@ -81,11 +72,7 @@ export default function PersonalPage() {
           </div>
         </div>
 
-        <PageClose
-          heading="Let's talk."
-          body="Whether it's about work, or just to compare notes on how big an AWS bill can get."
-          cta="Say hello"
-        />
+        {children}
       </div>
     </main>
   );

@@ -5,33 +5,41 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
-import { primaryNav } from "@/lib/nav";
+import type { NavLink } from "@/lib/nav";
 import { site } from "@/content/site";
 import { cta } from "@/lib/analytics";
-import { buildHireMeMailto } from "@/lib/mailto";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-export function SiteHeader() {
+type Props = {
+  /** Links for this front door. See lib/nav.ts. */
+  nav: NavLink[];
+  /** Where the wordmark points, ie. this door's own home. */
+  home: string;
+  ctaLabel: string;
+  ctaHref: string;
+};
+
+export function SiteHeader({ nav, home, ctaLabel, ctaHref }: Props) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+    href === home ? pathname === home : pathname.startsWith(href);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/90 backdrop-blur">
       <div className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between gap-3 px-6">
         <Link
-          href="/"
-          className="flex items-center gap-2 font-mono text-sm text-foreground hover:text-mark-text"
+          href={home}
+          className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-mark-text"
         >
           <span aria-hidden className="inline-block size-2 bg-mark" />
           {site.name}
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex" aria-label="Primary">
-          {primaryNav.map((item) => {
+          {nav.map((item) => {
             const active = isActive(item.href);
             return (
               <Link
@@ -53,15 +61,14 @@ export function SiteHeader() {
 
         <div className="flex items-center gap-2">
           <a
-            href={buildHireMeMailto()}
+            href={ctaHref}
             className={cn(
               buttonVariants({ size: "sm" }),
               "bg-mark text-mark-ink hover:bg-mark-hover"
             )}
-            aria-label="Hire me (opens an email draft)"
-            {...cta("hire_me", "header")}
+            {...cta("email", "header")}
           >
-            Hire me
+            {ctaLabel}
           </a>
 
           <button
@@ -82,7 +89,7 @@ export function SiteHeader() {
           aria-label="Mobile"
         >
           <ul className="mx-auto flex w-full max-w-5xl flex-col divide-y divide-border/70 px-6">
-            {primaryNav.map((item) => {
+            {nav.map((item) => {
               const active = isActive(item.href);
               return (
                 <li key={item.href}>

@@ -21,17 +21,17 @@ export const metadata: Metadata = {
     "David Navarro",
   ],
   alternates: {
-    canonical: "/automatizacion",
+    canonical: "/agency/automatizacion",
     languages: {
-      en: "/automation",
-      es: "/automatizacion",
+      en: "/agency/automation",
+      es: "/agency/automatizacion",
     },
   },
   openGraph: {
     title: "Automatización para coaches online | David Navarro",
     description:
       "Automatización con IA del trabajo repetitivo con tus clientes, y menos herramientas para llevarlo. La consulta es gratis.",
-    url: "/automatizacion",
+    url: "/agency/automatizacion",
     type: "website",
     locale: "es_ES",
   },
