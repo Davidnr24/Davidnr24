@@ -120,7 +120,7 @@ export function AutomationLanding({
 
           <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
-              href={auditMailto}
+              href={site.calendlyUrl ? "#book" : auditMailto}
               className={cn(
                 buttonVariants({ size: "lg" }),
                 "w-full bg-mark px-6 text-mark-ink hover:bg-mark-hover sm:w-auto"
@@ -293,10 +293,14 @@ export function AutomationLanding({
         {/* Final CTA. With a Cal link configured this becomes a calendar the
             visitor books straight from; without one it stays an email draft. */}
         {site.calendlyUrl ? (
-          <section aria-labelledby="book" className="mt-24 sm:mt-32">
+          <section
+            id="book"
+            aria-labelledby="book-heading"
+            className="mt-24 scroll-mt-8 sm:mt-32"
+          >
             <div className="flex flex-col gap-3 border-b-2 border-foreground pb-5 sm:flex-row sm:items-end sm:justify-between sm:gap-10">
               <h2
-                id="book"
+                id="book-heading"
                 className="max-w-3xl text-balance font-display text-4xl leading-[0.95] tracking-[-0.02em] sm:text-5xl md:text-6xl"
               >
                 {content.finalCta.heading}

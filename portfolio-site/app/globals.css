@@ -156,3 +156,14 @@
     @apply font-sans;
   }
 }
+
+/*
+ * In-page jumps (the agency hero button down to the booking calendar) glide
+ * rather than teleport, so it is obvious the page moved rather than changed.
+ * Anyone who asks their system for less motion gets the instant jump.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
