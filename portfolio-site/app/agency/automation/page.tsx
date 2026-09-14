@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { AGENCY_ORIGIN } from "@/lib/hosts";
 import {
   AutomationLanding,
   type AutomationLandingContent,
@@ -20,18 +21,19 @@ export const metadata: Metadata = {
     "free automation consultation",
     "David Navarro",
   ],
+  metadataBase: new URL(AGENCY_ORIGIN),
   alternates: {
-    canonical: "/agency/automation",
+    canonical: "/automation",
     languages: {
-      en: "/agency/automation",
-      es: "/agency/automatizacion",
+      en: `${AGENCY_ORIGIN}/automation`,
+      es: `${AGENCY_ORIGIN}/automatizacion`,
     },
   },
   openGraph: {
     title: "Workflow automation for online coaches | David Navarro",
     description:
       "AI automation for the repetitive work around your clients, and fewer tools to run it on. The consultation is free.",
-    url: "/agency/automation",
+    url: "/automation",
     type: "website",
   },
   twitter: {

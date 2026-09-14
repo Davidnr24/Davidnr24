@@ -15,7 +15,12 @@ export const metadata: Metadata = {
  * password in proxy.ts so a visitor who lands on the bare domain does not see
  * the other pitches.
  */
-const doors = [
+const doors: {
+  href: string;
+  label: string;
+  detail: string;
+  external?: boolean;
+}[] = [
   {
     href: "/resume",
     label: "Resume",
@@ -29,10 +34,11 @@ const doors = [
       "For contract buyers. Same background, framed around results and engagements, with the numbers attached.",
   },
   {
-    href: "/agency",
+    href: "https://agency.navarlabs.dev/automation",
     label: "Agency",
     detail:
-      "For coaches and small businesses. Automation and AI work, in English and Spanish.",
+      "Navar Labs, on its own domain. Automation and AI for coaches and small businesses, in English and Spanish.",
+    external: true,
   },
 ];
 
@@ -46,7 +52,7 @@ export default function Index() {
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">
           Three front doors, one per audience. Send the link that matches the
           conversation. Each one stands on its own and does not link to the
-          others.
+          others. The agency runs on its own domain.
         </p>
 
         <ul className="mt-12 divide-y divide-border/70 border-y border-border">
@@ -54,6 +60,9 @@ export default function Index() {
             <li key={d.href}>
               <Link
                 href={d.href}
+                {...(d.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
                 className="group flex items-center justify-between gap-6 py-6"
               >
                 <span>
