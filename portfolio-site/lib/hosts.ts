@@ -12,6 +12,10 @@
 export const PERSONAL_ORIGIN = "https://www.david-navarro.dev";
 export const AGENCY_HOST = "agency.navarlabs.dev";
 export const AGENCY_ORIGIN = `https://${AGENCY_HOST}`;
+export const LABS_HOST = "navarlabs.dev";
+export const LABS_ORIGIN = `https://${LABS_HOST}`;
+/** The studio's full marketing site, on a domain this project does not serve. */
+export const LABS_STUDIO_URL = "https://navarlabs.com";
 
 /** Clean hostname, no port, lowercased. */
 export function hostnameOf(host: string | null | undefined): string {
@@ -20,6 +24,12 @@ export function hostnameOf(host: string | null | undefined): string {
 
 export function isAgencyHost(host: string | null | undefined): boolean {
   return hostnameOf(host) === AGENCY_HOST;
+}
+
+/** The navarlabs.dev root, which serves a short index of what lives there. */
+export function isLabsHost(host: string | null | undefined): boolean {
+  const name = hostnameOf(host);
+  return name === LABS_HOST || name === `www.${LABS_HOST}`;
 }
 
 /** True only for the live personal domain, not for preview deployments. */

@@ -5,7 +5,9 @@ import { ACCESS_COOKIE, accessToken } from "./lib/access";
 import {
   AGENCY_ORIGIN,
   AGENCY_ROUTES,
+  LABS_ORIGIN,
   isAgencyHost,
+  isLabsHost,
   isPersonalHost,
 } from "./lib/hosts";
 
@@ -38,6 +40,7 @@ export async function proxy(request: NextRequest) {
   if (pathname.startsWith("/ingest")) return NextResponse.next();
 
   if (isAgencyHost(host)) return agency(request, pathname);
+  if (isLabsHost(host)) return labs(request, pathname);
 
   // On the live personal domain the agency pages live elsewhere. Previews keep
   // serving them in place so a branch can be checked before it ships.
@@ -74,6 +77,29 @@ function agency(request: NextRequest, pathname: string) {
   const notFound = url.clone();
   notFound.pathname = "/_not-found";
   return NextResponse.rewrite(notFound, { status: 404 });
+}
+
+/** The navarlabs.dev root serves one page and nothing else. */
+function labs(request: NextRequest, pathname: string) {
+  if (isAsset(pathname)) return NextResponse.next();
+
+  const url = request.nextUrl;
+  // www redirects to the bare domain, so there is one address for the index.
+  if (hostOnly(request) === `www.${new URL(LABS_ORIGIN).host}`) {
+    return NextResponse.redirect(new URL(pathname, LABS_ORIGIN), 308);
+  }
+  if (pathname === "/") {
+    const rewritten = url.clone();
+    rewritten.pathname = "/navarlabs";
+    return NextResponse.rewrite(rewritten);
+  }
+  const notFound = url.clone();
+  notFound.pathname = "/_not-found";
+  return NextResponse.rewrite(notFound, { status: 404 });
+}
+
+function hostOnly(request: NextRequest): string {
+  return (request.headers.get("host") ?? "").toLowerCase().split(":")[0];
 }
 
 /** Personal-domain paths that now belong to the agency domain. */
