@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { AGENCY_ORIGIN } from "@/lib/hosts";
 import {
   AutomationLanding,
   type AutomationLandingContent,
@@ -20,18 +21,19 @@ export const metadata: Metadata = {
     "consulta gratuita automatización",
     "David Navarro",
   ],
+  metadataBase: new URL(AGENCY_ORIGIN),
   alternates: {
-    canonical: "/agency/automatizacion",
+    canonical: "/automatizacion",
     languages: {
-      en: "/agency/automation",
-      es: "/agency/automatizacion",
+      en: `${AGENCY_ORIGIN}/automation`,
+      es: `${AGENCY_ORIGIN}/automatizacion`,
     },
   },
   openGraph: {
     title: "Automatización para coaches online | David Navarro",
     description:
       "Automatización con IA del trabajo repetitivo con tus clientes, y menos herramientas para llevarlo. La consulta es gratis.",
-    url: "/agency/automatizacion",
+    url: "/automatizacion",
     type: "website",
     locale: "es_ES",
   },

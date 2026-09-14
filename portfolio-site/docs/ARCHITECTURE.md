@@ -8,6 +8,34 @@ Goals:
 - Showcase personal projects, professional career, hobbies
 - Funnel for job interviews, freelance DevOps work, and automation clients
 
+## Two domains, one project
+
+One Vercel project (`portfolio-site`) serves both domains. Which host a request
+arrives on decides what it can see. That split lives in `lib/hosts.ts` and is
+enforced by `proxy.ts`; nothing else needs to know about it.
+
+| Host | Serves |
+|---|---|
+| `www.david-navarro.dev` | David personally: `/resume/*`, `/freelance/*`, and the private index at `/`. |
+| `agency.navarlabs.dev` | Navar Labs' automation offer: `/automation` (EN) and `/automatizacion` (ES). `/` redirects to `/automation`. |
+
+The agency pages are authored at `/agency/automation` and `/agency/automatizacion`
+and the proxy maps the public paths onto them. On the agency host nothing else
+answers: `/resume` and the `/agency/*` routes themselves return 404, so the two
+domains never serve the same page. On the personal host every agency path
+redirects out to the agency domain, which keeps links already shared working.
+
+Preview deployments on `*.vercel.app` behave like the personal host and can
+still reach `/agency/*` directly, so a branch is testable before it ships.
+
+DNS: `agency.navarlabs.dev` is a CNAME to `cname.vercel-dns.com` in the
+Cloudflare `navarlabs.dev` zone, unproxied so Vercel can terminate TLS. That
+matches `dwmt.navarlabs.dev`, the convention already in that zone. The company
+site at navarlabs.com sits in a different Cloudflare account and is untouched.
+
+`sitemap.xml` and `robots.txt` are route handlers rather than Next's static
+conventions, because each host has to answer with its own URLs.
+
 ## Front doors
 
 The site is not one portfolio with a nav bar listing everything. It is three
@@ -18,9 +46,9 @@ written for and they see nothing else.
 |---|---|---|
 | `/resume` | Full-time hiring managers | Hero, the stack with brand marks, work history, and career / skills / projects / personal. No contracting, no agency, no percentages. |
 | `/freelance` | Contract buyers | Services, results with the numbers, how engagements run, and the same four inner pages. |
-| `/agency` | Coaches and small businesses | Automation and AI work, at `/agency/automation` (EN) and `/agency/automatizacion` (ES). |
+| `agency.navarlabs.dev` | Coaches and small businesses | Automation and AI work, at `/automation` (EN) and `/automatizacion` (ES). Its own domain. |
 
-`/` and `/agency` are private indexes for navigating between doors. Both are
+`/` on the personal domain is a private index for navigating between doors,
 behind a password in `proxy.ts`; see `docs/SECRETS.md`.
 
 Each door has its own `layout.tsx` rendering `SiteChrome`, which supplies the
