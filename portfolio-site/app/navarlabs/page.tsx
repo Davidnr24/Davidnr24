@@ -1,40 +1,59 @@
 import type { Metadata } from "next";
-import { ArrowUpRight } from "lucide-react";
 
-import { AGENCY_ORIGIN, LABS_ORIGIN, LABS_STUDIO_URL } from "@/lib/hosts";
+import { LABS_ORIGIN } from "@/lib/hosts";
 
+const DESCRIPTION =
+  "A software development company. We design, build and run web and mobile applications, and the infrastructure underneath them.";
+
+// The root layout carries David's personal identity: his name, his keywords,
+// his OG card. None of it belongs on a company page, and inherited values
+// would make a shared link preview as his resume, so every field is overridden
+// here rather than left to merge.
 export const metadata: Metadata = {
   metadataBase: new URL(LABS_ORIGIN),
   title: { absolute: "Navar Labs" },
-  description:
-    "Software studio. Products, an automation agency for small businesses, and consultancy for teams that need precision.",
+  description: DESCRIPTION,
+  applicationName: "Navar Labs",
+  authors: [{ name: "Navar Labs" }],
+  creator: "Navar Labs",
+  publisher: "Navar Labs",
+  keywords: [
+    "Navar Labs",
+    "software development company",
+    "web application development",
+    "mobile application development",
+    "automation",
+    "cloud infrastructure",
+  ],
   alternates: { canonical: "/" },
-  // navarlabs.com is the studio's own site and should own the brand in search.
-  // This page is a short index of what runs on the .dev domain.
-  robots: { index: false, follow: true },
+  openGraph: {
+    type: "website",
+    siteName: "Navar Labs",
+    title: "Navar Labs",
+    description: DESCRIPTION,
+    url: "/",
+    images: [],
+  },
+  twitter: {
+    card: "summary",
+    title: "Navar Labs",
+    description: DESCRIPTION,
+    images: [],
+  },
 };
 
-const entries = [
+const work = [
   {
-    href: "https://dwmt.navarlabs.dev",
-    label: "DWMT",
-    detail:
-      "An AI date coach that measures how well someone fits what you said you want. Talk out your dates, get an honest read.",
-    meta: "Product",
+    title: "Web and mobile applications",
+    body: "Built end to end, from the first sketch to something running in production with real users on it.",
   },
   {
-    href: `${AGENCY_ORIGIN}/automation`,
-    label: "Agency",
-    detail:
-      "Automation and AI for coaches and small businesses. Client onboarding, notes and follow-ups that run themselves. The consultation is free.",
-    meta: "Service",
+    title: "Automation and AI",
+    body: "The repetitive work inside a business handed over to software, so the people there can do the part that actually needs them.",
   },
   {
-    href: LABS_STUDIO_URL,
-    label: "The studio",
-    detail:
-      "TaalPal, the consultancy work, and everything else we do. The full site lives on navarlabs.com.",
-    meta: "navarlabs.com",
+    title: "Cloud and platform engineering",
+    body: "The infrastructure, pipelines and monitoring that keep all of it up, on AWS and Kubernetes.",
   },
 ];
 
@@ -46,38 +65,21 @@ export default function NavarLabs() {
           <h1 className="font-display text-5xl leading-[0.95] tracking-[-0.02em] sm:text-6xl">
             Navar Labs
           </h1>
-          <p className="mt-5 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
-            A software studio. We build our own products, automate the
-            repetitive work out of small businesses, and take on engineering
-            for teams in domains where precision matters.
+          <p className="mt-6 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
+            A software development company. We design, build and run web and
+            mobile applications, and the infrastructure underneath them.
           </p>
         </header>
 
         <ul className="mt-14 divide-y divide-border border-y border-border">
-          {entries.map((e) => (
-            <li key={e.href}>
-              <a
-                href={e.href}
-                className="group flex items-start justify-between gap-6 py-6"
-              >
-                <span>
-                  <span className="flex items-baseline gap-3">
-                    <span className="font-display text-2xl leading-tight">
-                      {e.label}
-                    </span>
-                    <span className="text-sm text-muted-foreground">
-                      {e.meta}
-                    </span>
-                  </span>
-                  <span className="mt-2 block max-w-md text-sm leading-relaxed text-muted-foreground">
-                    {e.detail}
-                  </span>
-                </span>
-                <ArrowUpRight
-                  className="mt-1 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-mark-text"
-                  aria-hidden
-                />
-              </a>
+          {work.map((w) => (
+            <li key={w.title} className="py-6">
+              <h2 className="font-display text-2xl leading-tight">
+                {w.title}
+              </h2>
+              <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted-foreground">
+                {w.body}
+              </p>
             </li>
           ))}
         </ul>

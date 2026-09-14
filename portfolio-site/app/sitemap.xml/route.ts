@@ -3,8 +3,10 @@ import { headers } from "next/headers";
 import {
   AGENCY_ORIGIN,
   AGENCY_ROUTES,
+  LABS_ORIGIN,
   PERSONAL_ORIGIN,
   isAgencyHost,
+  isLabsHost,
 } from "@/lib/hosts";
 
 /**
@@ -76,7 +78,11 @@ ${urls}
 
 export async function GET() {
   const host = (await headers()).get("host");
-  const entries = isAgencyHost(host) ? agency() : personal();
+  const entries = isLabsHost(host)
+    ? [{ loc: `${LABS_ORIGIN}/`, priority: 1 }]
+    : isAgencyHost(host)
+      ? agency()
+      : personal();
   return new Response(xml(entries, new Date().toISOString()), {
     headers: {
       "Content-Type": "application/xml",
