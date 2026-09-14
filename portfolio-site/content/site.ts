@@ -11,4 +11,12 @@ export const site = {
   github: "https://github.com/Davidnr24",
   resumeHref: "/David_Navarro_Resume.pdf",
   domain: "david-navarro.dev",
+  /**
+   * Full Calendly event URL, eg.
+   * "https://calendly.com/david-navarro/free-consultation". While this is
+   * empty the agency pages keep the email CTA and no Calendly code is loaded
+   * at all. Paste the link in and the booking calendar appears, with no other
+   * change needed.
+   */
+  calendlyUrl: "https://calendly.com/hi-david-navarro/30min" as string,
 } as const;

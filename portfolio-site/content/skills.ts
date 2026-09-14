@@ -8,7 +8,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "AWS",
     summary:
-      "My core platform at Agero and Blue Apron. Multi-account org work, daily across compute, storage, networking, and managed services.",
+      "My core platform at Agero and Blue Apron, across multiple accounts.",
     items: [
       "S3",
       "RDS",
@@ -28,38 +28,55 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Infrastructure as Code",
     summary:
-      "Terraform is the daily driver: multi-account modules, plan/apply pipelines, state strategy. CloudFormation and Ansible where I've inherited them.",
+      "Terraform is the daily driver. CloudFormation and Ansible where I inherited them.",
     items: ["Terraform", "CloudFormation", "Ansible"],
+  },
+  {
+    category: "AI & agentic engineering",
+    summary:
+      "Agentic coding tools are part of how I ship now, and the applied side is my ML sandbox.",
+    items: [
+      "Claude Code",
+      "Codex",
+      "Agentic workflows",
+      "Claude",
+      "GitHub Copilot",
+      "HuggingFace",
+      "Fine-tuning",
+      "SageMaker",
+      "Bedrock",
+      "MLOps",
+    ],
   },
   {
     category: "Containers & orchestration",
     summary:
-      "EKS clusters running distributed microservices at Blue Apron, ECS-heavy at Agero. Custom Helm charts, image hardening, and version upgrades across environments.",
+      "EKS and ECS at both jobs, running distributed microservices across accounts and environments.",
     items: ["Docker", "Kubernetes (EKS)", "Helm", "ECS"],
   },
   {
     category: "CI/CD & deployment",
     summary:
-      "Built and run CircleCI, Jenkins, and GitHub Actions pipelines in production. Authored a custom CircleCI Orb at Agero that replaced a third-party deploy product across the org.",
+      "CircleCI is my daily driver, GitHub Actions close behind. I authored the org-wide CircleCI Orb at Agero that replaced a paid deploy product.",
     items: [
       "CircleCI (custom Orbs)",
-      "Jenkins",
       "GitHub Actions",
       "Blue/green deploys",
       "Canary deploys",
       "Ephemeral environments",
+      "Jenkins (legacy)",
     ],
   },
   {
     category: "Observability & reliability",
     summary:
-      "Datadog is my default. Dashboards and alerting at both jobs, an on-call rotation at Blue Apron, and annual disaster-recovery exercises at Agero.",
+      "Datadog by default, on-call at both jobs, disaster recovery drills at Agero.",
     items: ["Datadog", "CloudWatch", "Splunk", "PagerDuty", "Rollbar"],
   },
   {
     category: "Security",
     summary:
-      "Hardened production images, resolved 100+ vulnerabilities flagged by Wiz, and own IAM and WAF baselines across AWS environments.",
+      "Hardened images, resolved 100+ Wiz findings, and own the IAM and WAF baselines.",
     items: [
       "Wiz",
       "Snyk",
@@ -72,7 +89,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Networking & CDN",
     summary:
-      "VPC design, certificate management, and DNS-driven traffic moves. Drove a CDN-as-code project on Fastly via Terraform at Blue Apron.",
+      "VPC design, certificates, and DNS-driven traffic moves. CDN as code on Fastly.",
     items: [
       "VPC",
       "DNS",
@@ -85,7 +102,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Databases",
     summary:
-      "Postgres and Aurora are the everyday tools. Ops experience on Redis migrations, Elasticsearch/OpenSearch upgrades, and managed databases generally.",
+      "Postgres and Aurora every day, plus Redis and OpenSearch migrations.",
     items: [
       "PostgreSQL",
       "Aurora",
@@ -99,7 +116,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Languages",
     summary:
-      "Python and Bash daily for automation. Go for internal tooling (the Blue Apron CLI). TypeScript across personal projects. Ruby and Groovy where the platform calls for it.",
+      "Python and Bash for automation, Go for internal tooling, TypeScript on side projects.",
     items: [
       "Python",
       "Bash",
@@ -113,7 +130,7 @@ export const skillGroups: SkillGroup[] = [
   {
     category: "Web & mobile",
     summary:
-      "Side projects keep me sharp on the application layer. Next.js + Supabase on Squadra, React Native + Rails on Stylistic, React + Tailwind on older work. I'm used to standing up a product end-to-end and shipping it.",
+      "Side projects keep me sharp on the application layer, end to end.",
     items: [
       "Next.js 16 (App Router)",
       "React 19",
@@ -127,20 +144,6 @@ export const skillGroups: SkillGroup[] = [
       "Render",
     ],
   },
-  {
-    category: "AI & ML",
-    summary:
-      "Two angles. Claude and Copilot are part of my daily engineering loop. On the applied side, Xtock is my sandbox for HuggingFace models, fine-tuning, and serving with an eye on inference cost and latency.",
-    items: [
-      "Claude",
-      "GitHub Copilot",
-      "HuggingFace",
-      "Fine-tuning",
-      "SageMaker",
-      "Bedrock",
-      "MLOps",
-    ],
-  },
 ];
 
 export type WorkProject = {
@@ -152,6 +155,32 @@ export type WorkProject = {
 };
 
 export const workProjects: WorkProject[] = [
+  {
+    title: "Cross-region disaster recovery",
+    employer: "Agero",
+    summary:
+      "Migrated the whole platform from us-east-2 to us-west-2 and back again, production and staging, with under thirty minutes of downtime. Scripted end to end so the failover is a run, not a project.",
+    highlights: [
+      "Full region failover and failback, rehearsed annually rather than written down and hoped for",
+      "Automation scripts stand up ECS services, data stores and networking in the target region",
+      "Under 30 minutes of downtime across production and staging",
+      "Pipelines and DNS cutover handled in the same run, so traffic follows the infrastructure",
+    ],
+    stack: ["ECS", "Terraform", "CircleCI (custom Orbs)", "Route 53", "RDS", "Bash automation"],
+  },
+  {
+    title: "AWS account vending",
+    employer: "Agero",
+    summary:
+      "Self-service AWS accounts for other teams. A team requests one and gets it already inside the organisation, with permissions, IAM roles and networking in place, billing consolidated, and its pipelines ready to deploy.",
+    highlights: [
+      "New accounts land pre-provisioned with IAM roles, guardrails and a standard VPC layout",
+      "Everything under one organisation with consolidated billing and central policy",
+      "Terraform modules and CI/CD pipelines generated with the account, so a microservice can deploy on day one",
+      "Removes the ticket queue: teams self-serve instead of waiting on platform engineering",
+    ],
+    stack: ["AWS Organizations", "IAM", "VPC", "Terraform", "CircleCI (custom Orbs)", "ECS"],
+  },
   {
     title: "OpenSearch instance upgrade",
     employer: "Agero",

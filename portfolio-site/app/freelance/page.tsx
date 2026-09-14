@@ -1,219 +1,282 @@
 import type { Metadata } from "next";
-import { Clock, Globe2, MapPin, Sparkles } from "lucide-react";
+import Link from "next/link";
+import {
+  ArrowRight,
+  Boxes,
+  Cloud,
+  Globe,
+  Handshake,
+  MessagesSquare,
+  ShieldCheck,
+  Workflow,
+  Wrench,
+  GitBranch,
+  type LucideIcon,
+} from "lucide-react";
 
-import { ContactCTAs } from "@/components/contact-ctas";
-import { FreelanceServices } from "@/components/freelance-services";
+import { PageClose } from "@/components/page-close";
+import { ProfileAvatar } from "@/components/profile-avatar";
+import { IndexRow, IndexRows, Section } from "@/components/section";
+import { buttonVariants } from "@/components/ui/button";
 import { site } from "@/content/site";
+import { cta } from "@/lib/analytics";
+import { buildHireMeMailto } from "@/lib/mailto";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Freelance DevOps & Platform Engineering",
+  title: {
+    absolute: "Freelance DevOps & Platform Engineering · David Navarro",
+  },
   description:
-    "Hire David Navarro for freelance and contract DevOps / Platform Engineering work. AWS architecture and cost, Terraform and IaC, CI/CD pipelines, Kubernetes ops, platform reliability and security, and internal tooling. Remote, US East hours, bilingual EN / ES. 2 to 12 week engagements, hourly or fixed scope.",
+    "Hire David Navarro for contract DevOps and Platform Engineering. AWS architecture and cost, Terraform, CI/CD pipelines, Kubernetes, reliability and internal tooling. Remote, US East hours, bilingual EN / ES. Two to twelve week engagements.",
   alternates: { canonical: "/freelance" },
 };
 
-const engagementHighlights = [
+const services: { icon: LucideIcon; title: string; body: string }[] = [
   {
-    icon: Clock,
-    label: "Async-first",
-    body: "Weekly written updates and a shared channel. Works across time zones.",
+    icon: Cloud,
+    title: "AWS architecture and cost",
+    body: "A greenfield account set up properly, or an audit of the one you have. Multi-account organisations, networking, IAM, and cost cuts that survive the next quarter.",
   },
   {
-    icon: Globe2,
-    label: "Remote, EN / ES",
-    body: "US East hours by default. Bilingual English / Spanish.",
+    icon: GitBranch,
+    title: "Terraform and infrastructure as code",
+    body: "Move click-ops into Terraform, with module and state structure a small team can operate safely. Plan on pull request, apply on merge.",
   },
   {
-    icon: Sparkles,
-    label: "Senior-only",
-    body: "I work the engagement myself. No juniors handed the keys.",
+    icon: Workflow,
+    title: "CI/CD pipelines",
+    body: "CircleCI or GitHub Actions tuned for deploys that are fast and boring. Blue/green, canary, and ephemeral environments per pull request. I can pick up a Jenkins estate too, though I would rather help you leave it.",
+  },
+  {
+    icon: Boxes,
+    title: "Kubernetes and containers",
+    body: "EKS and GKE clusters with the Helm and Argo plumbing around them. Workloads that scale and recover without paging anyone at 3am.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Reliability and security",
+    body: "Observability in Datadog, an on-call rotation people can live with, an incident process, and a security baseline you can defend in an audit.",
+  },
+  {
+    icon: Wrench,
+    title: "Internal tooling",
+    body: "The small Next.js and Node services, dashboards and bots that unblock your team. The ops tools nobody has time to build.",
+  },
+];
+
+const metrics = [
+  {
+    value: "40%",
+    label:
+      "faster deploys after rebuilding the CI/CD pipelines for ECS services at Agero",
+  },
+  {
+    value: "85%",
+    label:
+      "fewer critical vulnerabilities after hardening images and dependencies",
+  },
+  {
+    value: "99.997%",
+    label: "platform availability, with shift-left QA and test automation",
+  },
+];
+
+const moreMetrics = [
+  "30+ hours of manual ops work a month removed with Bash and Python automation.",
+  "AWS spend down 20% at Blue Apron by moving cross-account infrastructure to Terraform.",
+  "Mean time to detect cut in half with Datadog monitoring and alerting.",
+  "A custom CircleCI Orb replaced a paid third-party deploy product across the org.",
+];
+
+const howIWork: { icon: LucideIcon; title: string; body: string }[] = [
+  {
+    icon: MessagesSquare,
+    title: "Async first",
+    body: "A weekly written update and a shared channel. It works across time zones and leaves a paper trail you can read later.",
+  },
+  {
+    icon: Globe,
+    title: "Remote, English or Spanish",
+    body: "US East hours by default, from Charlotte, NC. Bilingual, so a Spanish-speaking team is no friction.",
+  },
+  {
+    icon: Handshake,
+    title: "You get me, not a bench",
+    body: "I do the work myself. Nobody junior gets handed the keys to your production account halfway through.",
   },
 ];
 
 const steps = [
   {
-    n: "01",
-    title: "30-min intro call",
-    body: "You explain the problem, I tell you whether I'm the right fit. No charge.",
+    title: "Intro call",
+    body: "Thirty minutes. You describe the problem, I tell you honestly whether I am the right person for it. No charge.",
   },
   {
-    n: "02",
     title: "Written scope",
-    body: "One page covering deliverables, timeline, and pricing (hourly or fixed).",
+    body: "One page: deliverables, timeline, and price, hourly or fixed. You know what you are buying before anything starts.",
   },
   {
-    n: "03",
     title: "The work",
-    body: "Async with a shared channel and a weekly written update. Demos when it helps.",
+    body: "Async, in a shared channel, with a written update every week and a demo when a demo helps more than a paragraph.",
   },
   {
-    n: "04",
     title: "Handoff",
-    body: "Docs, runbooks, and a walkthrough so your team owns it after I'm gone.",
+    body: "Docs, runbooks, and a walkthrough, so your team owns it after I am gone. No lock-in to me.",
   },
 ];
 
-export default function FreelancePage() {
+export default function FreelanceHome() {
   return (
-    <main className="px-6 py-16 sm:py-20">
-      <div className="mx-auto w-full max-w-5xl space-y-20">
-        <header className="relative space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500/60" />
-              <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-            </span>
-            Available for contract work
-          </div>
-
-          <div className="space-y-4">
-            <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-              Senior DevOps,{" "}
-              <span className="text-muted-foreground">on a contract basis.</span>
+    <main className="px-6 py-16 sm:py-24">
+      <div className="mx-auto w-full max-w-6xl">
+        <header className="flex flex-col-reverse gap-10 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h1 className="max-w-3xl text-balance font-display text-[2.8rem] leading-[1.02] tracking-[-0.02em] sm:text-6xl">
+              Senior DevOps, on a contract basis.
             </h1>
-            <p className="max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Short-term and project-based engagements for startups and small
-              teams that need a Senior DevOps / Platform Engineer, without
-              making the hire yet. AWS, Kubernetes, Terraform, CI/CD, and the
-              internal tooling that holds it all together.
+            <p className="mt-8 max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground sm:text-xl">
+              Short engagements for startups and small teams that need a senior
+              platform engineer without making the hire yet. AWS, Kubernetes,
+              Terraform, CI/CD, and the tooling that holds it together.
             </p>
+
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <a
+                href={buildHireMeMailto("a contract engagement")}
+                className={cn(
+                  buttonVariants({ size: "lg" }),
+                  "w-full bg-mark px-6 text-mark-ink hover:bg-mark-hover sm:w-auto",
+                )}
+                {...cta("hire_me", "freelance_hero")}
+              >
+                Start a conversation
+                <ArrowRight className="size-4" aria-hidden />
+              </a>
+              <Link
+                href={site.resumeHref}
+                target="_blank"
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "w-full sm:w-auto",
+                )}
+                {...cta("resume", "freelance_hero")}
+              >
+                Résumé (PDF)
+              </Link>
+              <p className="text-sm text-muted-foreground">
+                Available now <span className="text-mark-text">/</span> 2 to 12
+                weeks <span className="text-mark-text">/</span> hourly or fixed
+                scope
+              </p>
+            </div>
           </div>
-
-          <ContactCTAs size="lg" />
-
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-1 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-1.5">
-              <MapPin className="size-4" aria-hidden />
-              Remote from {site.location}
-            </span>
-            <span aria-hidden>·</span>
-            <span>Hourly or fixed-scope</span>
-            <span aria-hidden>·</span>
-            <span>2-12 week engagements</span>
+          <div className="relative shrink-0 self-start">
+            <span
+              aria-hidden
+              className="absolute -right-2 -top-2 size-full rounded-xl bg-mark-soft"
+            />
+            <ProfileAvatar
+              src="/ai-fixed.png"
+              className="relative size-28 rounded-xl sm:size-36"
+            />
           </div>
         </header>
 
-        <section aria-labelledby="services" className="space-y-8">
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-                Services
-              </p>
-              <h2
-                id="services"
-                className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl"
-              >
-                What I can build for you
-              </h2>
-            </div>
-          </div>
-          <FreelanceServices />
-        </section>
-
-        <section aria-labelledby="engagement" className="space-y-6">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-              Engagement
-            </p>
-            <h2
-              id="engagement"
-              className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl"
-            >
-              How I work
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-            {engagementHighlights.map((h) => {
-              const Icon = h.icon;
-              return (
-                <div
-                  key={h.label}
-                  className="group rounded-2xl border border-border bg-card p-5 transition-colors hover:border-foreground/30"
-                >
-                  <div className="inline-flex size-9 items-center justify-center rounded-lg border border-border bg-muted/60 transition-colors group-hover:bg-foreground group-hover:text-background">
-                    <Icon className="size-4" aria-hidden />
-                  </div>
-                  <p className="mt-3 text-sm font-semibold tracking-tight">
-                    {h.label}
-                  </p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                    {h.body}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        <section aria-labelledby="how-it-works" className="space-y-6">
-          <div>
-            <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-              Process
-            </p>
-            <h2
-              id="how-it-works"
-              className="mt-1 text-2xl font-semibold tracking-tight sm:text-3xl"
-            >
-              How it works
-            </h2>
-          </div>
-          <ol className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {steps.map((s) => (
-              <li
-                key={s.n}
-                className="group relative rounded-2xl border border-border bg-card p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-foreground/30 hover:shadow-sm"
-              >
-                <div className="flex items-baseline gap-3">
-                  <span className="font-mono text-xs text-muted-foreground transition-colors group-hover:text-foreground">
-                    {s.n}
-                  </span>
-                  <h3 className="text-base font-semibold tracking-tight">
-                    {s.title}
-                  </h3>
-                </div>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  {s.body}
-                </p>
-              </li>
+        <Section id="services" heading="What I can build for you.">
+          <IndexRows>
+            {services.map((s) => (
+              <IndexRow key={s.title} icon={s.icon} title={s.title}>
+                {s.body}
+              </IndexRow>
             ))}
-          </ol>
-        </section>
+          </IndexRows>
+        </Section>
 
+        {/* The one dark block: numbers, because contract buyers ask for them */}
         <section
-          aria-labelledby="engagements"
-          className="rounded-2xl border border-dashed border-border bg-muted/30 p-6 text-center"
+          aria-labelledby="results"
+          className="mt-20 overflow-hidden rounded-xl bg-foreground text-background sm:mt-24"
         >
-          <h2
-            id="engagements"
-            className="text-base font-semibold tracking-tight"
-          >
-            No public engagements listed yet
-          </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            As I take on freelance work, projects (with each client&rsquo;s
-            permission) will show up here.
-          </p>
-        </section>
-
-        <section className="relative overflow-hidden rounded-3xl border border-border bg-card p-8 sm:p-10">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute inset-0 bg-gradient-to-br from-foreground/[0.04] via-transparent to-foreground/[0.06]"
-          />
-          <div className="relative flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <div className="space-y-2">
-              <h2 className="text-xl font-semibold tracking-tight sm:text-2xl">
-                Need a hand with platform work?
+          <div className="grid grid-cols-1 gap-10 p-8 sm:grid-cols-[2fr_3fr] sm:gap-14 sm:p-14">
+            <div>
+              <h2
+                id="results"
+                className="font-display text-3xl leading-tight sm:text-4xl"
+              >
+                What changed on the last two platforms I ran.
               </h2>
-              <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
-                The Hire me button drops you straight into an email draft with
-                the right questions already there: company, scope, timeline,
-                stack. Five minutes to send.
-              </p>
+              <ul className="mt-6 space-y-3">
+                {moreMetrics.map((m) => (
+                  <li
+                    key={m}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-background/75"
+                  >
+                    <span
+                      aria-hidden
+                      className="mt-2 inline-block size-1.5 shrink-0 bg-mark"
+                    />
+                    {m}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ContactCTAs size="lg" className="shrink-0" />
+            <div className="flex flex-col justify-center gap-8 border-t border-background/15 pt-8 sm:border-l sm:border-t-0 sm:pl-14 sm:pt-0">
+              {metrics.map((m) => (
+                <div key={m.value}>
+                  <p className="font-mono text-4xl font-semibold tracking-tight text-mark sm:text-5xl">
+                    {m.value}
+                  </p>
+                  <p className="mt-1 max-w-sm text-sm text-background/70">
+                    {m.label}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
+
+        <Section
+          id="how-i-work"
+          heading="How I work."
+          lede="The parts people usually find out too late."
+        >
+          <IndexRows>
+            {howIWork.map((h) => (
+              <IndexRow key={h.title} icon={h.icon} title={h.title}>
+                {h.body}
+              </IndexRow>
+            ))}
+          </IndexRows>
+        </Section>
+
+        <Section id="process" heading="How an engagement runs.">
+          <IndexRows>
+            {steps.map((s, i) => (
+              <IndexRow
+                key={s.title}
+                mark={
+                  <span
+                    aria-hidden
+                    className="font-display text-4xl leading-none text-mark-text transition-transform group-hover:scale-110"
+                  >
+                    {i + 1}
+                  </span>
+                }
+                title={s.title}
+              >
+                {s.body}
+              </IndexRow>
+            ))}
+          </IndexRows>
+        </Section>
+
+        <PageClose
+          heading="Need a hand with platform work?"
+          body="The button opens an email draft with the questions I would ask anyway: company, scope, timeline, stack. Five minutes to send."
+          cta="Start a conversation"
+          href={buildHireMeMailto("a contract engagement")}
+        />
       </div>
     </main>
   );

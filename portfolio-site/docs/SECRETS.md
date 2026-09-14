@@ -15,7 +15,8 @@
 |---|---|---|
 | `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID` | **GitHub repo Secrets** (`gh secret set`) | The deploy workflow only |
 | Server-side env vars for the app (none today; future: e.g., contact-form provider key) | **Vercel project Environment Variables** (per environment: Production / Preview / Development) | Next.js server runtime; pulled into local `.env.local` via `vercel env pull` |
-| Public values bundled into the client (none today; future: e.g., analytics site ID) | **Vercel project env vars prefixed `NEXT_PUBLIC_*`** | Browser bundle |
+| `NEXT_PUBLIC_POSTHOG_KEY`, `NEXT_PUBLIC_POSTHOG_HOST` | **Vercel project env vars** (Production + Preview) | Browser bundle. The PostHog project key is write-only ingest and is public by design. |
+| `SITE_PASSWORD` | **Vercel project env var**, marked Secret (Production + Preview) | `proxy.ts`, server side only. Basic auth on the two private index pages, `/` and `/agency`. Never prefix it with `NEXT_PUBLIC_`: that would ship the password to every visitor. |
 | Local-only development secrets | **`portfolio-site/.env.local`** (git-ignored) — populated by `vercel env pull` | `npm run dev` |
 
 ## Local dev workflow
@@ -52,4 +53,6 @@ git ls-files | grep -E '\.env($|\.)'
 
 ## Today's secret footprint
 
-**Zero application secrets.** The site has no backend. The only credentials in the system are the three GH Secrets needed by the deploy workflow. Keep it that way as long as possible.
+**Zero application secrets.** The site has no backend. The only credentials are the three GH Secrets the deploy workflow needs.
+
+The PostHog vars are not secrets. A project key (`phc_...`) can only write events, which is why it is safe to inline into the browser bundle. What must never land in this repo or in a `NEXT_PUBLIC_` var is a PostHog **personal** API key (`phx_...`): those can read and change the whole account, and nothing in this app needs one. Dashboard work is done from the PostHog UI or the MCP server, never from app code.
