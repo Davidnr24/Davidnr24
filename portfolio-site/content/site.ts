@@ -18,5 +18,5 @@ export const site = {
    * at all. Paste the link in and the booking calendar appears, with no other
    * change needed.
    */
-  calendlyUrl: "" as string,
+  calendlyUrl: "https://calendly.com/hi-david-navarro/30min" as string,
 } as const;
