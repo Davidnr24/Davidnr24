@@ -18,7 +18,7 @@ enforced by `proxy.ts`; nothing else needs to know about it.
 |---|---|
 | `www.david-navarro.dev` | David personally: `/resume/*`, `/freelance/*`, and the private index at `/`. |
 | `agency.navarlabs.dev` | Navar Labs' automation offer: `/automation` (EN) and `/automatizacion` (ES). `/` redirects to `/automation`. |
-| `navarlabs.dev` | A one page index of what runs on the domain: DWMT, the agency, and a link out to the studio site. `www` redirects to the bare domain. Nothing else answers. |
+| `navarlabs.dev` | One page describing the company. It links to nothing: the product and agency subdomains are deliberately not advertised from here. `www` redirects to the bare domain, and nothing else answers. |
 
 The agency pages are authored at `/agency/automation` and `/agency/automatizacion`
 and the proxy maps the public paths onto them. On the agency host nothing else
@@ -32,9 +32,10 @@ still reach `/agency/*` directly, so a branch is testable before it ships.
 DNS, all in the Cloudflare `navarlabs.dev` zone and all unproxied so Vercel can
 terminate TLS: `agency` and `www` are CNAMEs to `cname.vercel-dns.com`, matching
 `dwmt`, and the apex is an `A` record to `76.76.21.21`, which is what Vercel
-requires for a root domain. The studio's own site at navarlabs.com sits in a
-different Cloudflare account and is untouched; the `.dev` index links out to it
-and carries `noindex`, so the two do not compete for the brand.
+requires for a root domain.
+
+Note: `navarlabs.com` is a different company and nothing to do with this
+project. Do not link to it or borrow its wording.
 
 `sitemap.xml` and `robots.txt` are route handlers rather than Next's static
 conventions, because each host has to answer with its own URLs.

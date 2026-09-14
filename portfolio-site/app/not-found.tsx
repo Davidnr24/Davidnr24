@@ -1,7 +1,8 @@
-import Link from "next/link";
-
-import { site } from "@/content/site";
-
+/**
+ * Shown on every host, so it says nothing about which other domains exist and
+ * links nowhere. Next includes this boundary in each route's payload, and a
+ * cross-domain link here would leak into every page on every domain.
+ */
 export default function NotFound() {
   return (
     <main className="flex flex-1 items-center px-6 py-24">
@@ -11,30 +12,8 @@ export default function NotFound() {
           That page isn&rsquo;t here.
         </h1>
         <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-          It may have moved. The résumé lives at{" "}
-          <Link
-            href="/resume"
-            className="text-mark-text underline-offset-4 hover:underline"
-          >
-            /resume
-          </Link>
-          , contract work at{" "}
-          <Link
-            href="/freelance"
-            className="text-mark-text underline-offset-4 hover:underline"
-          >
-            /freelance
-          </Link>
-          , and the automation pages at{" "}
-          <a
-            href="https://agency.navarlabs.dev/automation"
-            className="text-mark-text underline-offset-4 hover:underline"
-          >
-            agency.navarlabs.dev
-          </a>
-          .
+          The address may be wrong, or the page may have moved.
         </p>
-        <p className="mt-8 text-sm text-muted-foreground">{site.email}</p>
       </div>
     </main>
   );

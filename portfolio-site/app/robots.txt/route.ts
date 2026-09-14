@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 
 import {
   AGENCY_ORIGIN,
+  LABS_ORIGIN,
   PERSONAL_ORIGIN,
   isAgencyHost,
   isLabsHost,
@@ -11,15 +12,11 @@ import {
 export async function GET() {
   const host = (await headers()).get("host");
 
-  // The navarlabs.dev index is a hub, not a page to rank. navarlabs.com is
-  // the studio's own site and owns the brand in search.
-  if (isLabsHost(host)) {
-    return new Response("User-agent: *\nDisallow: /\n", {
-      headers: { "Content-Type": "text/plain" },
-    });
-  }
-
-  const origin = isAgencyHost(host) ? AGENCY_ORIGIN : PERSONAL_ORIGIN;
+  const origin = isLabsHost(host)
+    ? LABS_ORIGIN
+    : isAgencyHost(host)
+      ? AGENCY_ORIGIN
+      : PERSONAL_ORIGIN;
 
   const body = [
     "User-agent: *",

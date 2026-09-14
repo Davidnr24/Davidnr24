@@ -14,8 +14,6 @@ export const AGENCY_HOST = "agency.navarlabs.dev";
 export const AGENCY_ORIGIN = `https://${AGENCY_HOST}`;
 export const LABS_HOST = "navarlabs.dev";
 export const LABS_ORIGIN = `https://${LABS_HOST}`;
-/** The studio's full marketing site, on a domain this project does not serve. */
-export const LABS_STUDIO_URL = "https://navarlabs.com";
 
 /** Clean hostname, no port, lowercased. */
 export function hostnameOf(host: string | null | undefined): string {
