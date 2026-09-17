@@ -1,15 +1,15 @@
 <h1 align="center">David Navarro</h1>
-<h3 align="center">Senior DevOps / Platform Engineer ⚙️ — I build the infrastructure that keeps software running.</h3>
+<h3 align="center">Senior DevOps / Platform Engineer ⚙️<br/>I build the infrastructure that keeps software running.</h3>
 
 <p align="center">
-  <a href="https://[MY-DOMAIN]"><img src="https://img.shields.io/badge/Portfolio-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio"/></a>
+  <a href="https://www.david-navarro.dev"><img src="https://img.shields.io/badge/Portfolio-2563EB?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio"/></a>
   <a href="https://www.linkedin.com/in/david-navarror"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
   <a href="mailto:d.navarroriano@gmail.com"><img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
 </p>
 
 ---
 
-Senior DevOps/Platform Engineer based in **Charlotte, NC** — born and raised in **Madrid 🇪🇸** (bilingual EN/ES). I design CI/CD pipelines, automate cloud infrastructure with Terraform, and run resilient workloads on AWS and Kubernetes. Currently at **Agero**, where the platform I help run hit **99.997% availability**; previously SRE/DevOps at **Blue Apron**.
+Senior DevOps/Platform Engineer based in **Charlotte, NC**, born and raised in **Madrid 🇪🇸** (bilingual EN/ES). I design CI/CD pipelines, automate cloud infrastructure with Terraform, and run resilient workloads on AWS and Kubernetes. Currently at **Agero**, where the platform I help run hit **99.997% availability**; previously SRE/DevOps at **Blue Apron**.
 
 🎓 B.S. Software Engineering, Polytechnic University of Madrid · 📜 **AWS Solutions Architect – Associate** · **CKA** · **HashiCorp Terraform Associate**
 
@@ -67,13 +67,13 @@ Senior DevOps/Platform Engineer based in **Charlotte, NC** — born and raised i
 
 ### 🔧 Outside of Work
 
-I build things for fun — side projects and experiments where I get to pick up new tech and go deep without a ticket telling me to. That curiosity is half of why I'm a better engineer each year. Away from the keyboard: huge **Real Madrid** fan ⚽, snowboarder 🏂, and I play tennis and soccer whenever I can.
+I build things for fun: side projects and experiments where I get to pick up new tech and go deep without a ticket telling me to. That curiosity is half of why I'm a better engineer each year. Away from the keyboard: huge **Real Madrid** fan ⚽, snowboarder 🏂, and I play tennis and soccer whenever I can.
 
 ---
 
 ### 📬 Let's Connect
 
-🌐 **Portfolio:** https://[MY-DOMAIN] &nbsp;·&nbsp; 💼 **[LinkedIn](https://www.linkedin.com/in/david-navarror)** &nbsp;·&nbsp; 📧 **d.navarroriano@gmail.com**
+🌐 **Portfolio:** https://www.david-navarro.dev &nbsp;·&nbsp; 💼 **[LinkedIn](https://www.linkedin.com/in/david-navarror)** &nbsp;·&nbsp; 📧 **d.navarroriano@gmail.com**
 
 <p align="center">
   <img height="160em" src="https://github-readme-stats.vercel.app/api?username=Davidnr24&show_icons=true&theme=default&hide_border=true&include_all_commits=true&count_private=true"/>
