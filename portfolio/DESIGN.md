@@ -7,7 +7,7 @@ Source of truth for how this site looks. Read it before touching any UI. If a ch
 Two readers, one site:
 
 1. A hiring manager or engineering lead deciding whether to interview David for a Senior DevOps / Platform role.
-2. A small business owner (today: online coaches) deciding whether to pay David to automate their admin.
+2. A startup or small team deciding whether to hire David for a contract DevOps or platform engagement.
 
 Both are skimming. Both have seen a hundred template portfolios. The site has to look like a person with taste built it, and it has to get out of the way of the content.
 
