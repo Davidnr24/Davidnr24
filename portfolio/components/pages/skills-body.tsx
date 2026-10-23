@@ -65,7 +65,7 @@ export function SkillsBody({ children }: { children?: React.ReactNode }) {
         <Section
           id="work-projects"
           heading="Work projects."
-          lede="Kept short on purpose. Happy to walk through any of them on a call."
+          lede="Newest first. Happy to walk through any of them on a call."
         >
           <IndexRows>
             {workProjects.map((p) => (
