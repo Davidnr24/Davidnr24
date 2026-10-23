@@ -117,24 +117,24 @@ export type Certification = {
 
 export const certifications: Certification[] = [
   {
-    name: "AWS Certified Solutions Architect (Associate)",
-    issuer: "Amazon Web Services",
-    date: "June 2023",
-    validity: "Valid 3 years",
-    href: "https://www.credly.com/badges/853033b4-4f3c-46d3-85d6-38499bd8f545",
-  },
-  {
     name: "Certified Kubernetes Administrator (CKA)",
     issuer: "The Linux Foundation",
     date: "February 2024",
-    validity: "Valid 3 years",
+    validity: "Valid until February 2027",
     href: "https://www.credly.com/badges/8a918573-f297-495e-87cc-b690fbd5834c",
   },
   {
     name: "HashiCorp Certified: Terraform Associate (003)",
     issuer: "HashiCorp",
     date: "September 2025",
-    validity: "Valid 2 years",
+    validity: "Valid until September 2027",
     href: "https://www.credly.com/badges/f6fcb896-3760-498e-8571-6cfdd077a272",
+  },
+  {
+    name: "AWS Certified Solutions Architect (Associate)",
+    issuer: "Amazon Web Services",
+    date: "June 2023",
+    validity: "Expired June 2026",
+    href: "https://www.credly.com/badges/853033b4-4f3c-46d3-85d6-38499bd8f545",
   },
 ];

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     absolute: "David Navarro · Senior DevOps / Platform Engineer",
   },
   description:
-    "Senior DevOps / Platform Engineer in Charlotte, NC. Five years on AWS, Kubernetes, Terraform and CI/CD at Blue Apron and Agero. AWS Solutions Architect, CKA and Terraform Associate certified.",
+    "Senior DevOps / Platform Engineer in Charlotte, NC. Five years on AWS, Kubernetes, Terraform and CI/CD at Blue Apron and Agero. CKA and Terraform Associate certified.",
   alternates: { canonical: "/resume" },
 };
 
@@ -53,7 +53,6 @@ export default function ResumeHome() {
                 Contact me
               </a>
               <p className="text-sm text-muted-foreground">
-                AWS Solutions Architect <span className="text-mark-text">/</span>{" "}
                 CKA <span className="text-mark-text">/</span> Terraform
                 Associate
               </p>

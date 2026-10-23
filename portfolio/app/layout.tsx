@@ -52,7 +52,6 @@ export const metadata: Metadata = {
     "Madrid",
     "bilingual engineer",
     "Spanish English DevOps",
-    "AWS Solutions Architect",
     "CKA",
     "Terraform Associate",
   ],
