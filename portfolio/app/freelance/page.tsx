@@ -51,7 +51,7 @@ const services: { icon: LucideIcon; title: string; body: string }[] = [
   {
     icon: Boxes,
     title: "Kubernetes and containers",
-    body: "EKS and GKE clusters with the Helm and Argo plumbing around them. Workloads that scale and recover without paging anyone at 3am.",
+    body: "EKS or ECS, with the Helm, secrets and load balancer plumbing around them. Rollouts that drain gracefully, and workloads that scale and recover without paging anyone at 3am.",
   },
   {
     icon: ShieldCheck,
@@ -87,6 +87,8 @@ const moreMetrics = [
   "AWS spend down 20% at Blue Apron by moving cross-account infrastructure to Terraform.",
   "Mean time to detect cut in half with Datadog monitoring and alerting.",
   "A custom CircleCI Orb replaced a paid third-party deploy product across the org.",
+  "Pull request environments deploy in 8 to 11 minutes, down from 14.9.",
+  "Production ML inference moved to a new AWS account with zero errors in the first 24 hours.",
 ];
 
 const howIWork: { icon: LucideIcon; title: string; body: string }[] = [
