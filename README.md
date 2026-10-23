@@ -9,9 +9,19 @@
 
 ---
 
-Senior DevOps/Platform Engineer based in **Charlotte, NC**, born and raised in **Madrid 🇪🇸** (bilingual EN/ES). I design CI/CD pipelines, automate cloud infrastructure with Terraform, and run resilient workloads on AWS and Kubernetes. Currently at **Agero**, where the platform I help run hit **99.997% availability**; previously SRE/DevOps at **Blue Apron**.
+Senior DevOps/Platform Engineer based in **Charlotte, NC**, born and raised in **Madrid 🇪🇸** (bilingual EN/ES). At **Agero** I run the platform under four products: a Ruby on Rails dispatch app on multi-region ECS Fargate, an AI agent platform on EKS, a simulation product and an ML platform. I build the CI/CD and the Terraform under it, and the platform I help run holds **99.997% availability**. Previously SRE/DevOps at **Blue Apron**.
 
-🎓 B.S. Software Engineering, Polytechnic University of Madrid · 📜 **AWS Solutions Architect – Associate** · **CKA** · **HashiCorp Terraform Associate**
+🎓 B.S. Software Engineering, Polytechnic University of Madrid · 📜 **CKA** · **HashiCorp Terraform Associate**
+
+---
+
+### 🚀 Lately
+
+- Built a production platform for a new simulation product from scratch: 15 Terraform modules in a private registry, and AWS Batch scaled to 1,000 parallel jobs.
+- Moved ML inference to its own AWS account with zero errors and zero throttling in the first 24 hours.
+- Cut deploys of per-PR test environments from 14.9 minutes to 8 to 11, on a seeded golden database instead of masked production data.
+- Shipped just-in-time production database access: approved, IAM-authenticated and audited in about 9 seconds, revoked on expiry.
+- Working with an AI coding agent under strict guardrails since June 2026, at about three times my previous pull request rate.
 
 ---
 
@@ -30,6 +40,7 @@ Senior DevOps/Platform Engineer based in **Charlotte, NC**, born and raised in *
 ![Terraform](https://img.shields.io/badge/Terraform-7B42BC?style=flat-square&logo=terraform&logoColor=white)
 ![CloudFormation](https://img.shields.io/badge/CloudFormation-FF4F8B?style=flat-square&logo=amazonaws&logoColor=white)
 ![Ansible](https://img.shields.io/badge/Ansible-EE0000?style=flat-square&logo=ansible&logoColor=white)
+![Terraform Cloud](https://img.shields.io/badge/Terraform_Cloud-7B42BC?style=flat-square&logo=terraform&logoColor=white)
 
 **Containers / Orchestration**
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
@@ -47,6 +58,12 @@ Senior DevOps/Platform Engineer based in **Charlotte, NC**, born and raised in *
 ![CloudWatch](https://img.shields.io/badge/CloudWatch-FF4F8B?style=flat-square&logo=amazoncloudwatch&logoColor=white)
 ![Splunk](https://img.shields.io/badge/Splunk-000000?style=flat-square&logo=splunk&logoColor=white)
 ![PagerDuty](https://img.shields.io/badge/PagerDuty-06AC38?style=flat-square&logo=pagerduty&logoColor=white)
+
+**AI-assisted engineering**
+![Claude](https://img.shields.io/badge/Claude-D97757?style=flat-square&logo=claude&logoColor=white)
+![MCP](https://img.shields.io/badge/MCP-000000?style=flat-square&logo=modelcontextprotocol&logoColor=white)
+![GitHub Copilot](https://img.shields.io/badge/GitHub_Copilot-000000?style=flat-square&logo=githubcopilot&logoColor=white)
+![SageMaker](https://img.shields.io/badge/SageMaker-FF9900?style=flat-square&logo=amazonaws&logoColor=white)
 
 **Security**
 ![Wiz](https://img.shields.io/badge/Wiz-3F2A91?style=flat-square&logo=wiz&logoColor=white)
