@@ -198,13 +198,13 @@ export const workProjects: WorkProject[] = [
     title: "Simulation platform from scratch",
     employer: "Agero",
     summary:
-      "Gave a new dispatch simulation product a production home with GitOps: Terraform applied by CI, images tagged by commit, and deploys through the same CircleCI orb as the main product.",
+      "Gave a new simulation product a production home with GitOps: Terraform applied by CI, images tagged by commit, and deploys through the same CircleCI orb as the main product.",
     highlights: [
       "Argued for a monorepo over a git submodule design, and the team agreed",
       "15 Terraform modules in a private registry, each with mocked terraform test suites, Trivy scanning and versioning CI",
       "A new VPC on the corporate transit network, with Aurora Serverless v2, AWS Batch on Fargate, load balancers and ECS",
       "Path-filtered builds: an unchanged service skips its image build in about 30 seconds instead of 6 minutes",
-      "Scaled Batch from 100 to 1,000 parallel jobs with a secondary address range, and cut the world load from over 5 minutes to about 40 seconds by fixing a disabled cache",
+      "Scaled Batch from 100 to 1,000 parallel jobs with a secondary address range, and cut a data load step from over 5 minutes to about 40 seconds by fixing a disabled cache",
     ],
     stack: ["Terraform Cloud", "GitHub Actions", "CircleCI (custom Orbs)", "AWS Batch", "ECS", "Aurora", "Trivy"],
   },
@@ -227,7 +227,7 @@ export const workProjects: WorkProject[] = [
     summary:
       "A full copy of the main product for every pull request, created from a PR comment and destroyed on close. I built the first version in 2025 and rebuilt its data layer in 2026. Between 30 and 40 are alive at any time.",
     highlights: [
-      "A seed that runs inside the production image replaced masked staging data. All 28 CI acceptance scenarios pass on it, which QA had considered not possible for almost two years",
+      "A seed that runs inside the production image replaced masked staging data. All 28 CI acceptance scenarios pass on it",
       "A golden database refreshed weekly by a Step Function, with copy-on-write clones in a pool that keeps spares ready",
       "Measured before optimizing: the cost was three serial database tasks, not the infrastructure. Deploys went from 14.9 minutes to 8 to 11, trigger to green from about 20 to 14",
       "Teardown rebuilt as a state machine that waits for the app to stop before releasing its database, verified over 105 teardowns",
@@ -316,14 +316,14 @@ export const workProjects: WorkProject[] = [
     stack: ["AWS Organizations", "IAM", "VPC", "Terraform", "CircleCI (custom Orbs)", "ECS"],
   },
   {
-    title: "Least privilege and a CA compromise response",
+    title: "Least privilege and supply chain hygiene",
     employer: "Agero",
     summary:
-      "Security work that ships as pull requests and is backed by evidence, not guesses.",
+      "Security work that ships as pull requests and is backed by CloudTrail and Access Advisor evidence.",
     highlights: [
       "Cut CI/CD and runtime IAM roles down to least privilege using CloudTrail and Access Advisor data",
       "Pinned every GitHub Action to a commit SHA in about 20 repositories",
-      "Led the response to a public certificate authority compromise in October 2026: about 17 PRs across 11 repositories, with real certificate chains checked before and after",
+      "Hardened Docker images and kept dependencies patched, cutting critical vulnerabilities by 85%",
     ],
     stack: ["IAM", "Wiz", "Trivy", "GitHub Actions", "KMS", "Docker"],
   },
@@ -353,7 +353,7 @@ export const workProjects: WorkProject[] = [
     stack: ["AWS OpenSearch", "Terraform", "AWS Reserved Instances"],
   },
   {
-    title: "“Herb” preview environments",
+    title: "Preview environments in the staging cluster",
     employer: "Blue Apron",
     summary:
       "Preview environments that live inside the staging Kubernetes cluster, so feature branches can talk to real staging services.",
