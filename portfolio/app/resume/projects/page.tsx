@@ -7,7 +7,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Personal Projects",
   description:
-    "Side projects David Navarro has built outside of work: Squadra, Astra DevOps, Xtock, Stylistic and Generational Pictures. Full-stack, mobile, machine learning and DevOps tooling.",
+    "Side projects David Navarro has built outside of work: Tardeo Club, Squadra, Astra DevOps, Xtock, Stylistic and Generational Pictures. Full-stack, mobile, machine learning and DevOps tooling.",
   alternates: { canonical: "/resume/projects" },
 };
 

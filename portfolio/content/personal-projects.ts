@@ -17,6 +17,32 @@ export type PersonalProject = {
 
 export const personalProjects: PersonalProject[] = [
   {
+    slug: "tardeo-club",
+    name: "Tardeo Club",
+    tagline: "Booking, membership and operations platform for a social tennis club.",
+    description:
+      "Tardeo is a weekly night of coached social tennis, then wine and tapas at a partner restaurant, in Charlotte and Minneapolis. I built the platform it runs on: booking with waitlists, the Passport membership, referrals and badges, check-in for coaches, a shop, and an ops console for staff.",
+    category: "Full-stack web",
+    year: "2026",
+    status: "Production",
+    stack: [
+      "Next.js 16 (App Router)",
+      "React 19",
+      "TypeScript",
+      "Supabase (Postgres, Auth, RLS)",
+      "Stripe",
+      "Shopify",
+      "Sentry",
+      "Vitest",
+      "Playwright",
+      "Vercel",
+    ],
+    liveUrl: "https://www.tardeosocialclub.com",
+    repoVisibility: "private",
+    notes:
+      "Row-level security on every table, an ops console behind MFA, and check-in that keeps working offline. The source belongs to the club and stays private.",
+  },
+  {
     slug: "squadra",
     name: "Squadra",
     tagline: "World Cup 2026 quiniela web app for friends.",
@@ -46,8 +72,8 @@ export const personalProjects: PersonalProject[] = [
     description:
       "An IDP that gives startups the deployment workflows and operational maturity of a mature platform team, without having to staff one. Infrastructure runs in the customer's own AWS account; Astra provides the control plane.",
     category: "DevOps tooling",
-    year: "2025-2026",
-    status: "Active development",
+    year: "2025",
+    status: "Archived",
     stack: [
       "TypeScript",
       "Next.js",
