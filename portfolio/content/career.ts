@@ -37,7 +37,7 @@ export const jobs: Job[] = [
       "Moved every deploy off HarnessCD onto a CircleCI orb and pipelines I built, cutting deploy times by 40%. Standardizing teams on it lifted uptime by 25%, and a later major version deploys three products across separate AWS accounts.",
       "Rebuilt the AI agent platform's staging and dev accounts on EKS with no interruption, and took the downtime out of its deploys with readiness gates, preStop hooks and graceful drain.",
       "Made the weekly QA database refresh reliable with fast clones, retries and autoscaling-aware scale-down. Downtime per environment dropped to 31 to 46 minutes.",
-      "Built on-demand ephemeral environments in 2025, improving developer workflow speed by 20%, and shift-left QA automation that kept platform availability at 99.997%.",
+      "Built on-demand ephemeral environments in 2025, improving developer workflow speed by 20%, and shift-left QA automation that kept platform availability at 99.97%.",
       "Implemented Datadog monitoring and alerting, cutting MTTD by 50%, and moved the AI platform's logs into one Datadog organization with consistent tags.",
       "Hardened Docker images, reducing critical vulnerabilities by 85%, and cut CI/CD and runtime IAM roles to least privilege using CloudTrail and Access Advisor data.",
       "Automated infrastructure tasks with Bash and Python, removing 30+ hours of manual ops work per month.",

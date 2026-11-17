@@ -77,7 +77,7 @@ const metrics = [
       "fewer critical vulnerabilities after hardening images and dependencies",
   },
   {
-    value: "99.997%",
+    value: "99.97%",
     label: "platform availability, with shift-left QA and test automation",
   },
 ];

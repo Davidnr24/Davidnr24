@@ -9,7 +9,7 @@
 
 ---
 
-Senior DevOps/Platform Engineer based in **Charlotte, NC**, born and raised in **Madrid 🇪🇸** (bilingual EN/ES). At **Agero** I run the platform under four products: a Ruby on Rails dispatch app on multi-region ECS Fargate, an AI agent platform on EKS, a simulation product and an ML platform. I build the CI/CD and the Terraform under it, and the platform I help run holds **99.997% availability**. Previously SRE/DevOps at **Blue Apron**.
+Senior DevOps/Platform Engineer based in **Charlotte, NC**, born and raised in **Madrid 🇪🇸** (bilingual EN/ES). At **Agero** I run the platform under four products: a Ruby on Rails dispatch app on multi-region ECS Fargate, an AI agent platform on EKS, a simulation product and an ML platform. I build the CI/CD and the Terraform under it, and the platform I help run holds **99.97% availability**. Previously SRE/DevOps at **Blue Apron**.
 
 🎓 B.S. Software Engineering, Polytechnic University of Madrid · 📜 **CKA** · **HashiCorp Terraform Associate**
 
