@@ -37,7 +37,9 @@ export const skillGroups: SkillGroup[] = [
       "Terraform Cloud",
       "terraform test",
       "CloudFormation",
+      "Atlantis",
       "Ansible",
+      "Packer",
     ],
   },
   {
@@ -124,6 +126,8 @@ export const skillGroups: SkillGroup[] = [
     items: [
       "VPC",
       "Transit Gateway",
+      "Direct Connect",
+      "Site-to-site VPN",
       "Load balancers",
       "DNS",
       "Route 53",
@@ -362,6 +366,19 @@ export const workProjects: WorkProject[] = [
       "Integrates with existing CI/CD workflow, so there's no parallel system to maintain",
     ],
     stack: ["Kubernetes (EKS)", "Helm", "Jenkins"],
+  },
+  {
+    title: "Base image pipeline",
+    employer: "Blue Apron",
+    summary:
+      "Rebuilt the Jenkins pipeline for Blue Apron's 22 shared Docker base images after it kept running into its 6-hour limit.",
+    highlights: [
+      "Parallel builds across Jenkins agents, with a lock per agent to avoid races",
+      "A buildx layer cache in S3, so unchanged layers aren't rebuilt",
+      "amd64 and arm64 images, with a switch to skip ARM during incidents",
+      "Build, test and push in one stage, on a Monday, Wednesday and Friday schedule",
+    ],
+    stack: ["Jenkins", "Groovy", "Docker buildx", "S3"],
   },
   {
     title: "Fastly CI/CD pipeline with Terraform",

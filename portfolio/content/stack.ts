@@ -18,7 +18,7 @@ export const stack: StackEntry[] = [
   {
     icon: "kubernetes",
     name: "Kubernetes",
-    body: "EKS at both Agero and Blue Apron, alongside ECS at Agero. At Agero I rebuilt an AI agent platform's EKS environments and took the downtime out of its deploys with readiness gates, preStop hooks and graceful drain. Shared Helm charts, least-privilege pod identity and version upgrades. Certified Kubernetes Administrator.",
+    body: "EKS at both Agero and Blue Apron, alongside ECS at Agero. At Agero I rebuilt an AI agent platform's EKS environments and took the downtime out of its deploys with readiness gates, preStop hooks and graceful drain. At Blue Apron each environment ran a blue and a green cluster, and an upgrade meant building the other one at the new version. Shared Helm charts, least-privilege pod identity and version upgrades. Certified Kubernetes Administrator.",
   },
   {
     icon: "terraform",
@@ -28,7 +28,7 @@ export const stack: StackEntry[] = [
   {
     icon: "ci",
     name: "CI/CD",
-    body: "CircleCI and GitHub Actions, with Jenkins earlier in my career. At Agero I built the CircleCI deployment orb that replaced a paid deploy product and now deploys three products across separate accounts, plus an environment per pull request that deploys in 8 to 11 minutes, down from 14.9.",
+    body: "CircleCI and GitHub Actions today. Jenkins at Blue Apron, where I worked on a shared Groovy library and rebuilt the base image pipeline. At Agero I built the CircleCI deployment orb that replaced a paid deploy product and now deploys three products across separate accounts, plus an environment per pull request that deploys in 8 to 11 minutes, down from 14.9.",
   },
   {
     icon: "docker",

@@ -2,11 +2,15 @@ import {
   Bird,
   Bot,
   Bug,
+  Cable,
   Code,
   Database,
+  GitPullRequest,
   Globe,
   KeyRound,
   Lock,
+  Network,
+  Package,
   Plug,
   ScanSearch,
   ScrollText,
@@ -48,6 +52,10 @@ const CONCEPT_ICONS: Record<string, LucideIcon> = {
   "Fluent Bit": ScrollText,
   Trivy: ScanSearch,
   SQL: Database,
+  Atlantis: GitPullRequest,
+  Packer: Package,
+  "Direct Connect": Cable,
+  "Site-to-site VPN": Network,
 };
 
 function Mark({ name }: { name: string }) {
